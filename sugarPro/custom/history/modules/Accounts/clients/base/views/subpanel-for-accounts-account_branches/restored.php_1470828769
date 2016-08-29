@@ -1,5 +1,0 @@
-<?php
-// created: 2016-08-10 11:32:46
-$viewdefs['Accounts']['base']['view']['subpanel-for-accounts-account_branches'] = array (
-  'type' => 'subpanel-list',
-);
