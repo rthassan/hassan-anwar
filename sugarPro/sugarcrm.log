@@ -1,0 +1,2515 @@
+Fri Aug 26 06:52:21 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:52:21 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:52:22 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:52:23 2016 [3768][1][FATAL] Array
+(
+    [0] => Principal
+    [1] => Vice Principal
+    [2] => Accountant
+    [3] => Clerk
+)
+
+Fri Aug 26 06:54:14 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:54:14 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:54:15 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:54:16 2016 [5824][1][FATAL] Array
+(
+    [favorite_link] => 
+    [following] => 
+    [following_link] => 
+    [id] => b4eca200-10a2-34bb-fb17-57ad711c3be5
+    [name] => Principal
+    [date_entered] => 12-08-2016 11:47am
+    [date_modified] => 12-08-2016 11:47am
+    [modified_user_id] => 1
+    [modified_by_name] => Hassan Administrator
+    [created_by] => 1
+    [created_by_name] => Hassan Administrator
+    [doc_owner] => 
+    [user_favorites] => 
+    [description] => 
+    [deleted] => 0
+    [created_by_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [modified_user_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [activities] => 
+    [team_id] => 1
+    [team_set_id] => 1
+    [team_count] => 
+    [team_name] => Global
+    [team_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [team_count_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [teams] => 
+    [assigned_user_id] => 
+    [assigned_user_name] => 
+    [assigned_user_link] => 
+    [email1] => 
+    [email2] => 
+    [invalid_email] => 
+    [email_opt_out] => 
+    [email_addresses_primary] => 
+    [email_addresses] => 
+    [email_addresses_non_primary] => 
+    [salutation] => 
+    [first_name] => 
+    [last_name] => Principal
+    [full_name] => Principal
+    [title] => 
+    [facebook] => 
+    [twitter] => 
+    [googleplus] => 
+    [department] => 
+    [do_not_call] => 0
+    [phone_home] => 
+    [phone_mobile] => 
+    [phone_work] => 
+    [phone_other] => 
+    [phone_fax] => 
+    [primary_address_street] => 
+    [primary_address_street_2] => 
+    [primary_address_street_3] => 
+    [primary_address_city] => 
+    [primary_address_state] => 
+    [primary_address_postalcode] => 
+    [primary_address_country] => 
+    [alt_address_street] => 
+    [alt_address_street_2] => 
+    [alt_address_street_3] => 
+    [alt_address_city] => 
+    [alt_address_state] => 
+    [alt_address_postalcode] => 
+    [alt_address_country] => 
+    [assistant] => 
+    [assistant_phone] => 
+    [picture] => upload//
+    [role_field] => Principal
+    [school_name] => Student Islamia
+    [school_id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+    [schools] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+            [name] => Student Islamia
+            [date_entered] => 12-08-2016 11:47am
+            [date_modified] => 25-08-2016 05:54pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 1
+            [created_by_name] => Hassan Administrator
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => 
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [team_count_link] => 
+            [teams] => 
+            [assigned_user_id] => 1
+            [assigned_user_name] => Hassan Administrator
+            [assigned_user_link] => 
+            [email1] => 
+            [email2] => 
+            [invalid_email] => 
+            [email_opt_out] => 
+            [email_addresses_primary] => 
+            [email_addresses] => 
+            [email_addresses_non_primary] => 
+            [facebook] => 
+            [twitter] => 
+            [googleplus] => 
+            [rt_schools_type] => Analyst
+            [industry] => 
+            [annual_revenue] => 
+            [phone_fax] => 
+            [billing_address_street] => 
+            [billing_address_street_2] => 
+            [billing_address_street_3] => 
+            [billing_address_street_4] => 
+            [billing_address_city] => 
+            [billing_address_state] => 
+            [billing_address_postalcode] => 
+            [billing_address_country] => 
+            [rating] => 
+            [phone_office] => 
+            [phone_alternate] => 
+            [website] => 
+            [ownership] => 
+            [employees] => 
+            [ticker_symbol] => 
+            [shipping_address_street] => 
+            [shipping_address_street_2] => 
+            [shipping_address_street_3] => 
+            [shipping_address_street_4] => 
+            [shipping_address_city] => 
+            [shipping_address_state] => 
+            [shipping_address_postalcode] => 
+            [shipping_address_country] => 
+            [principal_c] => Hassan Anwar Ch
+            [country] => Pakistan
+            [city] => Lahore
+            [students] => 
+            [staffs] => 
+            [teachers] => 
+        )
+
+)
+
+Fri Aug 26 06:54:16 2016 [5824][1][FATAL] Array
+(
+    [favorite_link] => 
+    [following] => 
+    [following_link] => 
+    [id] => bd8c4291-1549-c633-9b66-57ad71be5d93
+    [name] => Vice Principal
+    [date_entered] => 12-08-2016 11:47am
+    [date_modified] => 12-08-2016 11:47am
+    [modified_user_id] => 1
+    [modified_by_name] => Hassan Administrator
+    [created_by] => 1
+    [created_by_name] => Hassan Administrator
+    [doc_owner] => 
+    [user_favorites] => 
+    [description] => 
+    [deleted] => 0
+    [created_by_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [modified_user_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [activities] => 
+    [team_id] => 1
+    [team_set_id] => 1
+    [team_count] => 
+    [team_name] => Global
+    [team_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [team_count_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [teams] => 
+    [assigned_user_id] => 
+    [assigned_user_name] => 
+    [assigned_user_link] => 
+    [email1] => 
+    [email2] => 
+    [invalid_email] => 
+    [email_opt_out] => 
+    [email_addresses_primary] => 
+    [email_addresses] => 
+    [email_addresses_non_primary] => 
+    [salutation] => 
+    [first_name] => 
+    [last_name] => Vice Principal
+    [full_name] => Vice Principal
+    [title] => 
+    [facebook] => 
+    [twitter] => 
+    [googleplus] => 
+    [department] => 
+    [do_not_call] => 0
+    [phone_home] => 
+    [phone_mobile] => 
+    [phone_work] => 
+    [phone_other] => 
+    [phone_fax] => 
+    [primary_address_street] => 
+    [primary_address_street_2] => 
+    [primary_address_street_3] => 
+    [primary_address_city] => 
+    [primary_address_state] => 
+    [primary_address_postalcode] => 
+    [primary_address_country] => 
+    [alt_address_street] => 
+    [alt_address_street_2] => 
+    [alt_address_street_3] => 
+    [alt_address_city] => 
+    [alt_address_state] => 
+    [alt_address_postalcode] => 
+    [alt_address_country] => 
+    [assistant] => 
+    [assistant_phone] => 
+    [picture] => upload//
+    [role_field] => Vice Principal
+    [school_name] => Student Islamia
+    [school_id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+    [schools] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+            [name] => Student Islamia
+            [date_entered] => 12-08-2016 11:47am
+            [date_modified] => 25-08-2016 05:54pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 1
+            [created_by_name] => Hassan Administrator
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => 
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [team_count_link] => 
+            [teams] => 
+            [assigned_user_id] => 1
+            [assigned_user_name] => Hassan Administrator
+            [assigned_user_link] => 
+            [email1] => 
+            [email2] => 
+            [invalid_email] => 
+            [email_opt_out] => 
+            [email_addresses_primary] => 
+            [email_addresses] => 
+            [email_addresses_non_primary] => 
+            [facebook] => 
+            [twitter] => 
+            [googleplus] => 
+            [rt_schools_type] => Analyst
+            [industry] => 
+            [annual_revenue] => 
+            [phone_fax] => 
+            [billing_address_street] => 
+            [billing_address_street_2] => 
+            [billing_address_street_3] => 
+            [billing_address_street_4] => 
+            [billing_address_city] => 
+            [billing_address_state] => 
+            [billing_address_postalcode] => 
+            [billing_address_country] => 
+            [rating] => 
+            [phone_office] => 
+            [phone_alternate] => 
+            [website] => 
+            [ownership] => 
+            [employees] => 
+            [ticker_symbol] => 
+            [shipping_address_street] => 
+            [shipping_address_street_2] => 
+            [shipping_address_street_3] => 
+            [shipping_address_street_4] => 
+            [shipping_address_city] => 
+            [shipping_address_state] => 
+            [shipping_address_postalcode] => 
+            [shipping_address_country] => 
+            [principal_c] => Hassan Anwar Ch
+            [country] => Pakistan
+            [city] => Lahore
+            [students] => 
+            [staffs] => 
+            [teachers] => 
+        )
+
+)
+
+Fri Aug 26 06:54:16 2016 [5824][1][FATAL] Array
+(
+    [favorite_link] => 
+    [following] => 
+    [following_link] => 
+    [id] => bf6eba9a-4668-1691-6c65-57ad714a3065
+    [name] => Accountant
+    [date_entered] => 12-08-2016 11:47am
+    [date_modified] => 12-08-2016 11:47am
+    [modified_user_id] => 1
+    [modified_by_name] => Hassan Administrator
+    [created_by] => 1
+    [created_by_name] => Hassan Administrator
+    [doc_owner] => 
+    [user_favorites] => 
+    [description] => 
+    [deleted] => 0
+    [created_by_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [modified_user_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [activities] => 
+    [team_id] => 1
+    [team_set_id] => 1
+    [team_count] => 
+    [team_name] => Global
+    [team_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [team_count_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [teams] => 
+    [assigned_user_id] => 
+    [assigned_user_name] => 
+    [assigned_user_link] => 
+    [email1] => 
+    [email2] => 
+    [invalid_email] => 
+    [email_opt_out] => 
+    [email_addresses_primary] => 
+    [email_addresses] => 
+    [email_addresses_non_primary] => 
+    [salutation] => 
+    [first_name] => 
+    [last_name] => Accountant
+    [full_name] => Accountant
+    [title] => 
+    [facebook] => 
+    [twitter] => 
+    [googleplus] => 
+    [department] => 
+    [do_not_call] => 0
+    [phone_home] => 
+    [phone_mobile] => 
+    [phone_work] => 
+    [phone_other] => 
+    [phone_fax] => 
+    [primary_address_street] => 
+    [primary_address_street_2] => 
+    [primary_address_street_3] => 
+    [primary_address_city] => 
+    [primary_address_state] => 
+    [primary_address_postalcode] => 
+    [primary_address_country] => 
+    [alt_address_street] => 
+    [alt_address_street_2] => 
+    [alt_address_street_3] => 
+    [alt_address_city] => 
+    [alt_address_state] => 
+    [alt_address_postalcode] => 
+    [alt_address_country] => 
+    [assistant] => 
+    [assistant_phone] => 
+    [picture] => upload//
+    [role_field] => Accountant
+    [school_name] => Student Islamia
+    [school_id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+    [schools] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+            [name] => Student Islamia
+            [date_entered] => 12-08-2016 11:47am
+            [date_modified] => 25-08-2016 05:54pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 1
+            [created_by_name] => Hassan Administrator
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => 
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [team_count_link] => 
+            [teams] => 
+            [assigned_user_id] => 1
+            [assigned_user_name] => Hassan Administrator
+            [assigned_user_link] => 
+            [email1] => 
+            [email2] => 
+            [invalid_email] => 
+            [email_opt_out] => 
+            [email_addresses_primary] => 
+            [email_addresses] => 
+            [email_addresses_non_primary] => 
+            [facebook] => 
+            [twitter] => 
+            [googleplus] => 
+            [rt_schools_type] => Analyst
+            [industry] => 
+            [annual_revenue] => 
+            [phone_fax] => 
+            [billing_address_street] => 
+            [billing_address_street_2] => 
+            [billing_address_street_3] => 
+            [billing_address_street_4] => 
+            [billing_address_city] => 
+            [billing_address_state] => 
+            [billing_address_postalcode] => 
+            [billing_address_country] => 
+            [rating] => 
+            [phone_office] => 
+            [phone_alternate] => 
+            [website] => 
+            [ownership] => 
+            [employees] => 
+            [ticker_symbol] => 
+            [shipping_address_street] => 
+            [shipping_address_street_2] => 
+            [shipping_address_street_3] => 
+            [shipping_address_street_4] => 
+            [shipping_address_city] => 
+            [shipping_address_state] => 
+            [shipping_address_postalcode] => 
+            [shipping_address_country] => 
+            [principal_c] => Hassan Anwar Ch
+            [country] => Pakistan
+            [city] => Lahore
+            [students] => 
+            [staffs] => 
+            [teachers] => 
+        )
+
+)
+
+Fri Aug 26 06:54:16 2016 [5824][1][FATAL] Array
+(
+    [favorite_link] => 
+    [following] => 
+    [following_link] => 
+    [id] => c0fbe43d-9ffb-4897-b0c4-57ad7184b118
+    [name] => Clerk
+    [date_entered] => 12-08-2016 11:47am
+    [date_modified] => 12-08-2016 11:47am
+    [modified_user_id] => 1
+    [modified_by_name] => Hassan Administrator
+    [created_by] => 1
+    [created_by_name] => Hassan Administrator
+    [doc_owner] => 
+    [user_favorites] => 
+    [description] => 
+    [deleted] => 0
+    [created_by_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [modified_user_link] => Array
+        (
+            [id] => 1
+            [user_name] => admin
+            [user_hash] => $1$Zvfdsdda$h/SaeTUj2SNLrHpWrul9u/
+            [system_generated_password] => 0
+            [pwd_last_changed] => 
+            [authenticate_id] => 
+            [sugar_login] => 1
+            [picture] => upload//6c33054f-c410-c8fb-bc23-57b15e8d6f3b
+            [first_name] => Hassan
+            [last_name] => Administrator
+            [full_name] => Hassan Administrator
+            [name] => Hassan Administrator
+            [is_admin] => 1
+            [external_auth_only] => 0
+            [receive_notifications] => 1
+            [description] => 
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 15-08-2016 11:16am
+            [last_login] => 25-08-2016 08:42pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [title] => Administrator
+            [department] => 
+            [phone_home] => 
+            [phone_mobile] => 
+            [phone_work] => 
+            [phone_other] => 
+            [phone_fax] => 
+            [status] => Active
+            [address_street] => 
+            [address_city] => 
+            [address_state] => 
+            [address_country] => 
+            [address_postalcode] => 
+            [UserType] => 
+            [default_team] => 1
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [default_primary_team] => 
+            [team_count_link] => 
+            [teams] => 
+            [team_memberships] => 
+            [team_sets] => 
+            [users_signatures] => 
+            [deleted] => 0
+            [portal_only] => 0
+            [show_on_employees] => 1
+            [employee_status] => Active
+            [messenger_id] => 
+            [messenger_type] => 
+            [calls] => 
+            [meetings] => 
+            [contacts_sync] => 
+            [reports_to_id] => 
+            [reports_to_name] => 
+            [reports_to_link] => 
+            [reportees] => 
+            [email1] => hassan.anwar@rolustech.net
+            [email_addresses] => 
+            [email_addresses_primary] => 
+            [email_link_type] => 
+            [aclroles] => 
+            [is_group] => 0
+            [c_accept_status_fields] => 
+            [m_accept_status_fields] => 
+            [accept_status_id] => 
+            [accept_status_name] => 
+            [accept_status_calls] => 
+            [accept_status_meetings] => 
+            [prospect_lists] => 
+            [emails_users] => 
+            [holidays] => 
+            [eapm] => 
+            [oauth_tokens] => 
+            [project_resource] => 
+            [quotas] => 
+            [forecasts] => 
+            [preferred_language] => 
+            [activities] => 
+            [acl_role_set_id] => 
+            [acl_role_sets] => 
+        )
+
+    [activities] => 
+    [team_id] => 1
+    [team_set_id] => 1
+    [team_count] => 
+    [team_name] => Global
+    [team_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [team_count_link] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => 1
+            [name] => Global
+            [date_entered] => 01-08-2016 09:59am
+            [date_modified] => 01-08-2016 09:59am
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 
+            [created_by_name] => 
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => Globally Visible
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [name_2] => 
+            [associated_user_id] => 
+            [private] => 0
+            [users] => 
+            [teams_sets] => 
+            [activities_teams] => 
+        )
+
+    [teams] => 
+    [assigned_user_id] => 
+    [assigned_user_name] => 
+    [assigned_user_link] => 
+    [email1] => 
+    [email2] => 
+    [invalid_email] => 
+    [email_opt_out] => 
+    [email_addresses_primary] => 
+    [email_addresses] => 
+    [email_addresses_non_primary] => 
+    [salutation] => 
+    [first_name] => 
+    [last_name] => Clerk
+    [full_name] => Clerk
+    [title] => 
+    [facebook] => 
+    [twitter] => 
+    [googleplus] => 
+    [department] => 
+    [do_not_call] => 0
+    [phone_home] => 
+    [phone_mobile] => 
+    [phone_work] => 
+    [phone_other] => 
+    [phone_fax] => 
+    [primary_address_street] => 
+    [primary_address_street_2] => 
+    [primary_address_street_3] => 
+    [primary_address_city] => 
+    [primary_address_state] => 
+    [primary_address_postalcode] => 
+    [primary_address_country] => 
+    [alt_address_street] => 
+    [alt_address_street_2] => 
+    [alt_address_street_3] => 
+    [alt_address_city] => 
+    [alt_address_state] => 
+    [alt_address_postalcode] => 
+    [alt_address_country] => 
+    [assistant] => 
+    [assistant_phone] => 
+    [picture] => upload//
+    [role_field] => Clerk
+    [school_name] => Student Islamia
+    [school_id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+    [schools] => Array
+        (
+            [favorite_link] => 
+            [following] => 
+            [following_link] => 
+            [id] => a3572178-60fe-fa7c-2011-57ad71cd6192
+            [name] => Student Islamia
+            [date_entered] => 12-08-2016 11:47am
+            [date_modified] => 25-08-2016 05:54pm
+            [modified_user_id] => 1
+            [modified_by_name] => Hassan Administrator
+            [created_by] => 1
+            [created_by_name] => Hassan Administrator
+            [doc_owner] => 
+            [user_favorites] => 
+            [description] => 
+            [deleted] => 0
+            [created_by_link] => 
+            [modified_user_link] => 
+            [activities] => 
+            [team_id] => 1
+            [team_set_id] => 1
+            [team_count] => 
+            [team_name] => Global
+            [team_link] => 
+            [team_count_link] => 
+            [teams] => 
+            [assigned_user_id] => 1
+            [assigned_user_name] => Hassan Administrator
+            [assigned_user_link] => 
+            [email1] => 
+            [email2] => 
+            [invalid_email] => 
+            [email_opt_out] => 
+            [email_addresses_primary] => 
+            [email_addresses] => 
+            [email_addresses_non_primary] => 
+            [facebook] => 
+            [twitter] => 
+            [googleplus] => 
+            [rt_schools_type] => Analyst
+            [industry] => 
+            [annual_revenue] => 
+            [phone_fax] => 
+            [billing_address_street] => 
+            [billing_address_street_2] => 
+            [billing_address_street_3] => 
+            [billing_address_street_4] => 
+            [billing_address_city] => 
+            [billing_address_state] => 
+            [billing_address_postalcode] => 
+            [billing_address_country] => 
+            [rating] => 
+            [phone_office] => 
+            [phone_alternate] => 
+            [website] => 
+            [ownership] => 
+            [employees] => 
+            [ticker_symbol] => 
+            [shipping_address_street] => 
+            [shipping_address_street_2] => 
+            [shipping_address_street_3] => 
+            [shipping_address_street_4] => 
+            [shipping_address_city] => 
+            [shipping_address_state] => 
+            [shipping_address_postalcode] => 
+            [shipping_address_country] => 
+            [principal_c] => Hassan Anwar Ch
+            [country] => Pakistan
+            [city] => Lahore
+            [students] => 
+            [staffs] => 
+            [teachers] => 
+        )
+
+)
+
+Fri Aug 26 06:54:16 2016 [5824][1][FATAL] Array
+(
+    [0] => Principal
+    [1] => Vice Principal
+    [2] => Accountant
+    [3] => Clerk
+)
+
+Fri Aug 26 06:55:12 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:55:12 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:55:12 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:56:18 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:56:19 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:56:20 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:56:20 2016 [1530][1][FATAL] Array
+(
+    [0] => Principal
+    [1] => Vice Principal
+    [2] => Accountant
+    [3] => Clerk
+)
+
+Fri Aug 26 06:58:15 2016 [3775][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:58:16 2016 [3775][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:58:16 2016 [3775][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 06:58:17 2016 [3775][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [0] => Principal
+            [1] => Principal
+        )
+
+    [1] => Array
+        (
+            [0] => Vice Principal
+            [1] => Vice Principal
+        )
+
+    [2] => Array
+        (
+            [0] => Accountant
+            [1] => Accountant
+        )
+
+    [3] => Array
+        (
+            [0] => Clerk
+            [1] => Clerk
+        )
+
+)
+
+Fri Aug 26 07:00:12 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:12 2016 [5732][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:12 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:14 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:14 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:15 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:16 2016 [5783][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [role] => Principal
+            [name] => Principal
+        )
+
+    [1] => Array
+        (
+            [role] => Vice Principal
+            [name] => Vice Principal
+        )
+
+    [2] => Array
+        (
+            [role] => Accountant
+            [name] => Accountant
+        )
+
+    [3] => Array
+        (
+            [role] => Clerk
+            [name] => Clerk
+        )
+
+)
+
+Fri Aug 26 07:00:34 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:38 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:41 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:42 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:00:53 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:22 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:23 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:25 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:30 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:30 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:32 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:32 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:34 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:34 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:34 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:35 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:35 2016 [1530][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => e90ebcf498abfcf879c32fc9e972bbac
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [1] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => c0fbe43d-9ffb-4897-b0c4-57ad7184b118
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Clerk
+                                    [full_name] => Clerk
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [1] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bf6eba9a-4668-1691-6c65-57ad714a3065
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Accountant
+                                    [full_name] => Accountant
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [2] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bd8c4291-1549-c633-9b66-57ad71be5d93
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Vice Principal
+                                    [full_name] => Vice Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [3] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => b4eca200-10a2-34bb-fb17-57ad711c3be5
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Principal
+                                    [full_name] => Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 9bf047ec3dc14dc6821c859ef9d7ed34
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [2] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => eb11fbe2-c450-06ac-2de2-57ac12f0dfa5
+                                    [date_modified] => 2016-08-17T17:39:48+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Muhammad
+                                    [last_name] => Saqib
+                                    [full_name] => Muhammad Saqib
+                                    [title] => 
+                                    [phone_home] => 
+                                    [phone_work] => 
+                                    [type] => 1
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Teachers
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 8a820ec73e2c87af04ebdc6490f56297
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+)
+
+Fri Aug 26 07:01:36 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:37 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:38 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:39 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:01:39 2016 [4848][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [role] => Principal
+            [name] => Principal
+        )
+
+    [1] => Array
+        (
+            [role] => Vice Principal
+            [name] => Vice Principal
+        )
+
+    [2] => Array
+        (
+            [role] => Accountant
+            [name] => Accountant
+        )
+
+    [3] => Array
+        (
+            [role] => Clerk
+            [name] => Clerk
+        )
+
+)
+
+Fri Aug 26 07:05:13 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:05:13 2016 [5732][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:05:13 2016 [6126][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:10:14 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:10:14 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:10:14 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:15 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:15 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:15 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:18 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:29 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:32 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:33 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:15:36 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:15 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:15 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:15 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:29 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:29 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:31 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:39 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:39 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:40 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:46 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:46 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:49 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:58 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:20:58 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:01 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:02 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:04 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:04 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:10 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:11 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:13 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:14 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:18 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:18 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:22 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:22 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:23 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:23 2016 [3769][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => a4913cde-259d-33e4-f5dd-57ab226956a5
+                                    [date_modified] => 2016-08-26T12:21:13+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Hassan
+                                    [last_name] => Anwar
+                                    [full_name] => Hassan Anwar
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Students
+                                )
+
+                            [1] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => 4b4b13fe-3cea-0388-3bd5-57ac2fcb685c
+                                    [date_modified] => 2016-08-26T12:20:58+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Farrukh
+                                    [last_name] => Shahzad
+                                    [full_name] => Farrukh Shahzad
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Students
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => dde08ddc3f411909dcfa392a2fc08b06
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [1] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => c0fbe43d-9ffb-4897-b0c4-57ad7184b118
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Clerk
+                                    [full_name] => Clerk
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [1] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bf6eba9a-4668-1691-6c65-57ad714a3065
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Accountant
+                                    [full_name] => Accountant
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [2] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bd8c4291-1549-c633-9b66-57ad71be5d93
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Vice Principal
+                                    [full_name] => Vice Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [3] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => b4eca200-10a2-34bb-fb17-57ad711c3be5
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Principal
+                                    [full_name] => Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 9bf047ec3dc14dc6821c859ef9d7ed34
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [2] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => eb11fbe2-c450-06ac-2de2-57ac12f0dfa5
+                                    [date_modified] => 2016-08-17T17:39:48+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Muhammad
+                                    [last_name] => Saqib
+                                    [full_name] => Muhammad Saqib
+                                    [title] => 
+                                    [phone_home] => 
+                                    [phone_work] => 
+                                    [type] => 1
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Teachers
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 8a820ec73e2c87af04ebdc6490f56297
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+)
+
+Fri Aug 26 07:21:24 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:25 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:37 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:43 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:43 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:21:44 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:22:44 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:22:45 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:22:46 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:23:18 2016 [6126][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:23:21 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:23:24 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:23:25 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:23:34 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:47 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:48 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:50 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:53 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:53 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:55 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:55 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:55 2016 [6126][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:56 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:56 2016 [6126][1][FATAL] Array
+(
+    [0] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => 4b4b13fe-3cea-0388-3bd5-57ac2fcb685c
+                                    [date_modified] => 2016-08-26T12:20:58+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Farrukh
+                                    [last_name] => Shahzad
+                                    [full_name] => Farrukh Shahzad
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Students
+                                )
+
+                            [1] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => a4913cde-259d-33e4-f5dd-57ab226956a5
+                                    [date_modified] => 2016-08-26T12:21:13+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Hassan
+                                    [last_name] => Anwar
+                                    [full_name] => Hassan Anwar
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Students
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 49ae433aca1f8e8c33827d72e774a79e
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [1] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => c0fbe43d-9ffb-4897-b0c4-57ad7184b118
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Clerk
+                                    [full_name] => Clerk
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [1] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bf6eba9a-4668-1691-6c65-57ad714a3065
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Accountant
+                                    [full_name] => Accountant
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [2] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => bd8c4291-1549-c633-9b66-57ad71be5d93
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Vice Principal
+                                    [full_name] => Vice Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                            [3] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => b4eca200-10a2-34bb-fb17-57ad711c3be5
+                                    [date_modified] => 2016-08-12T11:47:42+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => 
+                                    [last_name] => Principal
+                                    [full_name] => Principal
+                                    [title] => 
+                                    [phone_work] => 
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Staffs
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 9bf047ec3dc14dc6821c859ef9d7ed34
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+    [2] => Array
+        (
+            [contents] => Array
+                (
+                    [next_offset] => -1
+                    [records] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [my_favorite] => 
+                                    [id] => eb11fbe2-c450-06ac-2de2-57ac12f0dfa5
+                                    [date_modified] => 2016-08-17T17:39:48+05:00
+                                    [created_by] => 1
+                                    [assigned_user_id] => 1
+                                    [email] => Array
+                                        (
+                                        )
+
+                                    [salutation] => 
+                                    [first_name] => Muhammad
+                                    [last_name] => Saqib
+                                    [full_name] => Muhammad Saqib
+                                    [title] => 
+                                    [phone_home] => 
+                                    [phone_work] => 
+                                    [type] => 1
+                                    [_acl] => Array
+                                        (
+                                            [fields] => stdClass Object
+                                                (
+                                                )
+
+                                        )
+
+                                    [_module] => Rt_Teachers
+                                )
+
+                        )
+
+                )
+
+            [headers] => Array
+                (
+                    [Cache-Control] => max-age=0, private
+                    [Expires] => 
+                    [Pragma] => 
+                    [ETag] => 8a820ec73e2c87af04ebdc6490f56297
+                )
+
+            [status] => 200
+            [status_text] => OK
+        )
+
+)
+
+Fri Aug 26 07:24:57 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:58 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:58 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:24:59 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:25:16 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:25:16 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:25:16 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:30:17 2016 [5783][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:30:17 2016 [4833][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:30:17 2016 [6376][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:18 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:18 2016 [6126][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:18 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:18 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:19 2016 [1530][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:19 2016 [4848][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:35:19 2016 [6126][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:40:19 2016 [3768][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:40:19 2016 [5770][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:40:19 2016 [5824][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+Fri Aug 26 07:41:08 2016 [3769][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
