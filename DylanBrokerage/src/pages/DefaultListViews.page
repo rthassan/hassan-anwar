@@ -1,0 +1,20 @@
+<apex:page >
+    <script>
+        // Leads Page redirect
+        if('{!$CurrentPage.URL}'.indexOf('%2F00Q%2Fo') > 0) {
+            window.top.location='/00Q?fcf=00B6F000009geXp';
+        }     
+        // Accounts Page redirect
+        else if('{!$CurrentPage.URL}'.indexOf('%2F001%2Fo') > 0) {
+            window.top.location='/001?fcf=00B6F00000A5tmk';
+        }     
+        // Contacts Page redirect
+        else if('{!$CurrentPage.URL}'.indexOf('%2F003%2Fo') > 0) {
+            window.top.location='/003?fcf=00B6F00000A5tla';
+        } 
+    	// Opportunities Page redirect
+        else if('{!$CurrentPage.URL}'.indexOf('%2F006%2Fo') > 0) {
+            window.top.location='/006?fcf=00B6F00000A5tld';
+        } 
+    </script>
+</apex:page>

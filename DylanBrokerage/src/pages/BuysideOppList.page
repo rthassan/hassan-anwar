@@ -1,0 +1,24 @@
+<apex:page standardController="Opportunity" extensions="BuysideOppListCtrl" showHeader="false" sidebar="false">   
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1" >
+                <apex:outputLabel rendered="{!noRecords}">No records to display</apex:outputLabel>
+                <apex:pageBlockTable value="{!intbuyers}" var="buyer" rendered="{!isRecords}">
+                    <apex:column headerValue="Wishlist Id">
+                        <apex:commandLink value="{!buyer.Name}" action="/{!buyer.Id}" target="blank" />
+                    </apex:column>
+                    <apex:column value="{!buyer.Company_Name__c}"/>
+                    <apex:column headerValue="Account">
+                        <apex:commandLink value="{!buyer.Account__r.Name}" action="/{!buyer.Account__r.Id}" target="blank" />
+                    </apex:column>
+                    <apex:column value="{!buyer.Deal_Type__c}"/>
+                    <apex:column value="{!buyer.Share_Class__c}"/>
+                    <apex:column value="{!buyer.Price_Share__c}"/>
+                    <apex:column value="{!buyer.Transaction_Size__c}"/>
+                    <apex:column value="{!buyer.Demand__c}"/>
+                    <apex:column value="{!buyer.ROFR__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

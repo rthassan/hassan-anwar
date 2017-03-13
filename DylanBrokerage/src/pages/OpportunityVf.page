@@ -1,0 +1,4 @@
+<apex:page showHeader="true" tabstyle="Opportunity" action="/006?fcf=00B41000007U9BE" >  
+</apex:page>
+
+<!--<apex:ListViews type="Opportunity"/> -->

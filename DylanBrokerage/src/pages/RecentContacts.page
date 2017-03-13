@@ -1,0 +1,16 @@
+<apex:page controller="RecentContactsController" showHeader="false" sidebar="false">
+        <apex:form >
+            <apex:pageBlock title="Recent Contacts">
+                <apex:pageBlockSection columns="1" >
+                    <apex:pageBlockTable value="{!RecentContacts}" var="Contact">
+                        <apex:column headerValue="Name">
+                            <apex:commandLink value="{!Contact.Name}" action="/{!Contact.Id}" target="blank"/>
+                        </apex:column>
+                        <apex:column value="{!Contact.Email}" headerValue="Email"/>
+                        <apex:column value="{!Contact.Phone}" headerValue="Phone"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <br/>
+        </apex:form>
+</apex:page>
