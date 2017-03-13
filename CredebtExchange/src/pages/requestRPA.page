@@ -1,0 +1,187 @@
+<apex:page standardController="Opportunity" extensions="requestRPAcontroller" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <apex:includeLightning />
+    <apex:form >
+        
+        
+        <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+            <head>
+                <meta charset="utf-8" />
+                <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                <title>Salesforce Lightning Design System Trailhead Module</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <apex:stylesheet value="{!URLFOR($Resource.SLDS214, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+                <script type="javascript">
+                function editRecord(id) {
+                    alert(id);   
+                }
+                </script>
+            </head>
+            
+            <body>  
+                <!-- REQUIRED SLDS WRAPPER -->
+                <div class="credebt" style="margin-left: 10px; margin-right: 10px">
+                    <apex:pageMessages ></apex:pageMessages>
+                    
+                    
+                                       
+                    
+                    <!-- PAGE HEADER -->
+                    <div class="slds-page-header" role="banner">
+                        
+                        <!-- LAYOUT GRID -->
+                        <div class="slds-grid">
+                            
+                            <!-- GRID COL -->
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <!-- HEADING AREA -->
+                                <!-- MEDIA OBJECT = FIGURE + BODY -->
+                                <div class="slds-media">
+                                    
+                                    <div class="slds-media__body">
+                                       <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                           <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Convertibill® Trade RPA">Request Convertibill® Trade RPA</h1>
+                                       </apex:outputpanel>
+                                       <apex:outputPanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+                                           <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Convertibill® Sales RPA">Request Convertibill® Sales RPA</h1>
+                                       </apex:outputPanel>
+                                    </div>
+                                </div>
+                                <!-- / MEDIA OBJECT -->
+                                <!-- /HEADING AREA -->
+                                
+                            </div>
+                            
+                            <!-- ACTION BUTTONS -->
+                            
+                  
+                            <!-- / ACTION BUTTONS -->
+                            
+                        </div>
+                        <!-- / LAYOUT GRID -->                    
+                    </div>
+                    <!-- / PAGE HEADER -->
+                    
+                    
+                    <!-- / PRIMARY CONTENT WRAPPER -->
+                    
+                    <fieldset class="slds-form--compound" style="padding: 1.5rem">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-2">
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01" >o-ETR</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.o_ETR__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01">a-ETR</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.a_ETR__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel>
+ 
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01" >Credit Card</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.Credit_Card__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel> 
+                                                                        
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01">a-ETR Value</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.a_ETR_Value__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel>
+                                    
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01">End of Term Value</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.End_of_Term_Value__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel>
+                                    
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+                                        <label class="slds-form-element__label" for="text-input-01">Term</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:inputField styleClass="slds-output" value="{!opp.Term__c}"/>                            
+                                        </div> 
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                    <label class="slds-form-element__label" for="text-input-01">d-ETR Required</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.d_ETR_Required__c}"/>                            
+                                    </div>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                    <label class="slds-form-element__label" for="text-input-01">Average DSO</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Average_DSO__c}"/>                            
+                                    </div>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+                                    <label class="slds-form-element__label" for="text-input-01">c-ETR Required</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.c_ETR_Required__c}"/>                            
+                                    </div>
+                                    </apex:outputPanel>
+                                    
+                                </div>
+                                
+                                <div class="slds-form-element slds-size--1-of-2">
+                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Turnover</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Turnover_Last_Year__c}"/>                            
+                                    </div>                                    
+                                    
+                                    <!--<label class="slds-form-element__label" for="text-input-01">Turnover(Expected This Year)</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Turnover_Expected_This_Year__c}"/>                            
+                                    </div>
+                                    -->
+                                    <label class="slds-form-element__label" for="text-input-01">Working Capital Requirement</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Working_Capital_Requirement__c}"/>                            
+                                    </div>
+                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Average Gross Margin</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Average_Gross_Margin__c}"/>                            
+                                    </div>
+                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Probability</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Probability}"/>                            
+                                    </div>
+                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Expected Close Date</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.closeDate}"/>                            
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="slds-col slds-no-flex slds-grid slds-align-bottom">
+                                    <div class="slds-button-group" role="group">
+                                            <!--<apex:commandLink value="Preview PDF" action="/apex/provisionalRpaOfferPDF?id={!opp.id}" styleClass="slds-button slds-button--neutral" immediate="false" target="_blank" style="text-decoration:none; padding: 4px"/>-->
+                                         <!--<apex:commandLink value="Preview PDF" onclick="window.open('/apex/provisionalRpaOfferPDF?id={!opp.id}')" styleClass="slds-button slds-button--neutral" immediate="false" style="text-decoration:none; padding: 4px"  /> -->
+                                        <apex:commandButton styleClass="slds-button slds-button--brand" value="Save" action="{!save}" />                
+                                        <!--<apex:commandButton styleClass="slds-button slds-button--neutral" value="Request RPA Approval" action="{!requestRPA}" />-->
+                                    </div>
+                                </div>
+                        </div>
+                    </fieldset>  
+                </div>
+            </body>
+        </html>
+    </apex:form>
+</apex:page>

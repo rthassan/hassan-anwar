@@ -1,0 +1,35 @@
+<apex:page controller="ApplicationProcess" extensions="ReferAFriendController" tabStyle="Application__tab"  >
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
+    <apex:sectionHeader title="Refer A Friend" subtitle="Step 1"/>
+    <apex:form >
+        <apex:pageBlock title="Refer A Friend" mode="edit">
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!cancel}" value="Cancel"
+                                    onclick="return confirmCancel()" immediate="true"/>
+                <apex:commandButton action="{!skip}" value="Skip" immediate="true"/>
+                <apex:commandButton action="{!step2}" value="Save & Continue"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="My Friend's Details">
+                <apex:inputField value="{!lead.FirstName}" label="First Name (?)" required="true"/>
+                <apex:inputField value="{!lead.Company}" label="Organisation Name (?)"/>
+                <apex:inputField value="{!lead.LastName}" label="Last Name (?)"/>
+                <apex:inputField value="{!lead.phone}" label="Phone Number (?)" required="true"/>
+                <apex:inputField value="{!lead.Title}" label="Job Title (?)"/>
+                <apex:inputField value="{!lead.Country}" label="Country/Area (?)"/>
+                <apex:inputField value="{!lead.email}" label="Email (?)" required="true"/>
+                <apex:inputField value="{!lead.Industry}" label="Industry Sector (?)" required="true"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="My Bank Information">
+                <apex:inputField value="{!originator.Referral_Bank_Account_Number__c}" label="Bank Account no."/>
+                <apex:inputField value="{!originator.Referral_Swift_Bic__c}" label="SWIFT/BIC"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

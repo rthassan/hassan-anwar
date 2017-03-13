@@ -1,0 +1,983 @@
+<apex:page standardController="Opportunity"  extensions="rpaOfferPdfController" renderAs="pdf" showHeader="false" applyBodyTag="false"  applyHtmlTag="false">
+    
+    
+
+    <head>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="shortcut icon" href="" />
+        
+<style>
+
+sub{
+    font-size: 11px;
+    vertical-align: -1px;
+    
+    
+    }
+    
+    @page{
+    size: A4;
+    margin-top: 40px;
+    //margin-top: 20px;
+    margin-left: 90px;
+    margin-right: 62px;
+    margin-bottom: 0px;
+    
+    }
+    
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    color: #000;
+    font-family:  Arial, Helvetica, sans-serif;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------------- grid */
+
+.row {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.col {
+    float: left;
+    margin: 0 2.5%;
+}
+
+.col-span-1 {
+    width: 5.833333333333333%
+}
+
+.col-span-2 {
+    width: 14.166666666666666%;
+}
+
+.col-span-3 {
+    width: 22.5%;
+}
+
+.col-span-4 {
+    width: 26%;
+}
+
+.col-span-6 {
+    width: 45%;
+}
+
+.col-span-8 {
+    width: 64%;
+}
+
+.col-span-9 {
+    width: 72.5%;
+}
+
+.col-span-12 {
+    width: 95%;
+}
+
+.col.align-right {
+    float: right;
+}
+
+.t-clearfix:after {
+    content: "";
+    //display: table;
+    clear: both;
+}
+
+#logo {
+    //width: 100%;
+    //max-width:  520px;
+    padding-top: 15px;
+    height: 61px;
+    width: auto;
+}
+
+#address {
+    padding-left: 16.2%;
+    padding-top: 16px;
+}
+
+#address h2 {
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+#address p {
+    line-height: 1.3em;
+    font-size: 11px;
+}
+
+h1 {
+    text-align: center;
+    padding: 6px 0;
+    font-size: 18px;
+    padding-left: 36px;
+    margin-top: 4px;
+    
+}
+
+/* ---------------------------------------------------------------------------------- table 1 */
+
+.table-1 {
+margin-bottom:  10px;
+    margin-top: 2px;
+}
+
+.table-1 th,
+.table-1 td {
+    font-size: 13.5px;
+    padding-bottom:  6px;
+}
+
+.table-1 th {
+    text-align: left;
+    padding-right:  20px;
+    vertical-align: top;
+}
+
+/* ---------------------------------------------------------------------------------- table 2 */
+
+.table-2 {
+    width: 100%;
+    margin-bottom: 18px;
+    margin-top: 8px;
+}
+
+.table-2 th,
+.table-2 td {
+    font-size: 9.3px;
+    padding: 1.5px;
+    padding-left: 0;
+}
+
+.table-2 th {
+    text-align: left;
+    font-weight: normal;
+}
+
+/* ---------------------------------------------------------------------------------- table 3 */
+
+.table-3 {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    margin-right: -10px;
+    margin-left: 8px;
+}
+
+.table-3 th,
+.table-3 td {
+    font-size: 8px;
+    border: 1px solid #000;
+    padding: 1px;
+}
+
+.table-3 th {
+    text-align: left;
+    font-weight: normal;
+}
+
+/* ---------------------------------------------------------------------------------- table 2 */
+
+.table-4 {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.table-4 th,
+.table-4 td {
+    font-size: 12.6px;
+    border: 1px solid #000;
+    padding: 1px;
+    background-color: #fff;
+}
+
+.table-4 th {
+    text-align: left;
+    font-weight: normal;
+}
+
+.table-4 td {
+    text-align: right;
+}
+
+.table-4 td.spacer{
+    background-color: #ccc;
+}
+
+
+
+p {
+    font-size: 13px;
+}
+
+.grey-panel {
+    border: 1px solid #000;
+    background-color:  #ccc;
+    padding: 4px 10px 8px;
+    margin-bottom: 14px;
+}
+
+.grey-panel h2 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+}
+    
+.grey-panel h3 {
+    text-align: center;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 2px;
+}
+
+.grey-panel.note {
+    font-size: 8px;
+    text-align: center;
+    
+}
+
+.centre {
+    text-align: center !important;
+}
+
+.spacer-vertical {
+    width: 25px;
+    background-color: #ccc !important;
+    height: 18px;
+}
+    
+.spacer-vertical2 {
+    width: 8px;
+    background-color: #ccc !important;
+    height: 18px;
+}
+
+.spacer-horizontal {
+    background-color: #ccc !important;
+    height: 5.5px;
+}
+
+.table-4.costs-table th {
+    text-align: right;
+    
+}
+    
+.white-panel {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 6px 20px 6px 6px;
+}
+
+ol li {
+    font-size: 13.5px;
+    margin-bottom: 18px;
+    margin-left: 12px;
+    padding-left: 8px;
+}
+
+ol {
+    margin-bottom: 36px;
+}
+
+.footer {
+    //background-image: url({!URLFOR($Resource.RPA_Approval_Images, 'stamp.png')});
+    background-repeat: no-repeat;
+    background-position: bottom 200px right 150px;
+    background-size: 180px;
+    padding-bottom: 40px;
+    max-width: 2400px;
+    margin: 0 auto;
+    padding-top: 0px;
+    margin-right: -50px !important;
+    margin-left: -4px
+}
+
+.warning {
+    border: 3px solid #000;
+    text-align: center;
+    padding: 2px 2px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+    
+    .left-col{
+        margin-left: 5px;
+    }
+    .right-col{
+        margin-right: 5px;
+    }
+
+</style>
+
+</head>
+
+
+    
+ <body>
+     
+    
+
+    <div class="row t-clearfix">
+        <div class="col col-span-6">
+            <img id="logo" src="{!URLFOR($Resource.RPA_Approval_Images, 'Convertibill_Bank_On_Us.png')}" alt=""/>            
+        </div>
+        <div class="col col-span-4" id="address">
+            <h2>Credebt Exchange Limited</h2>
+            <p>60 Lower Baggot Street, Dublin,<br/>D02 KP79, Ireland<br/>Phone: +353 1 685-3600<br/>Website: www.convertibill.com</p>           
+        </div>
+    </div>
+    <div class="row t-clearfix">
+        <div class="col col-span-12">
+            <h1>Provisional RPA Offer</h1>   
+        </div>        
+    </div>
+    
+    <div class="row t-clearfix">
+        <div class="col col-span-8">
+            <table cellpadding="0" cellspacing="0" class="table-1">
+                <tr>
+                    <th style="font-weight: normal ">Organisation</th>
+                    <td>{!acc.Name}&nbsp;<apex:outputText rendered="{!acc.Trading_Name__c != null}" value="t/a {!acc.Trading_Name__c}"/></td>
+                </tr>
+                <tr>
+                    <th>Attn</th>
+                    <td><strong>{!cont.firstName} {!cont.lastName}</strong></td>
+                </tr>
+                <tr>
+                    <th style="font-weight: normal ">Address</th>
+                    <td>{!address}</td>
+                </tr>
+            </table>   
+        </div>        
+    </div>
+     
+    <div class="row t-clearfix">
+        <div class="col col-span-8">
+            <table cellpadding="0" cellspacing="0" class="table-2">
+                <tr>
+                    <th>From</th>
+                    <td>Originator Trade Desk</td>
+                    <th>Specialist</th>
+                    <td>{!opp.Owner.Name}</td>
+                </tr>
+                <tr>
+                    <th>Issued</th>
+                    <td><strong><apex:outputtext value="{0,date, dd MMMMMMMMMM, yyyy}" ><apex:param value="{!todayDate}" /></apex:outputtext></strong></td>
+                    <th>Phone (Direct)</th>
+                    <td>{!cont.Phone}</td>
+                </tr>
+                <tr>
+                    <th>Pages</th>
+                    <td>Page 1 of 1</td>
+                    <th>Email</th>
+                    <td>{!cont.Email}</td>
+                </tr>
+            </table>   
+        </div>        
+        <div class="col col-span-4" style="margin-left: 5px !important;" >
+            <table cellpadding="0" cellspacing="0" class="table-3"  style=" width: 160px;">
+                <tr>
+                    <th style="width: 50%">Co. Reg. No.</th>
+                    <td style="width: 50%">{!acc.Company_Registration_Number__c}</td>
+                </tr>
+                <tr>
+                    <th>NACEC/NACED</th>
+                    <td>{!nace}</td>
+                </tr>
+                <tr>
+                    <th>Y/E</th>
+                    <td>{!acc.Fiscal_Year_End__c}</td>
+                </tr>
+            </table>   
+        </div>        
+    </div>           
+    
+    <!--  rendered when record type is Trade -->
+    <apex:outputpanel rendered="{!opp.RecordType.Name == '1. Convertibill® Trade Finance'}">
+        <div class="row t-clearfix">
+            <div class="col col-span-12" style="height: 48px; padding-top: 6px;">
+                <p style="font-size: 13.8px">
+                    Based on the information received, we are in a position to make a provisional offer to purchase most/all of the Creditor/Debtor ETR presented to us. The following is a summary of the offer:
+                </p><br/><br/>
+            </div>
+        </div>
+    
+        <div class="row t-clearfix">
+            <div class="col col-span-6">
+                <div class="grey-panel">
+                    <h2 style="padding-bottom: 6px;"><strong><apex:outputtext value="{!opp.ATR_Calculated__c}% ATR† " rendered="{!NOT(opp.No_ATR__c)}"/>Facility Overview</strong></h2>
+                    <table cellpadding="0" cellspacing="0" class="table-4">
+                        <tr>
+                            <th style="width: 45%">Currency</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre">{!opp.currencyISOCode}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th style="height: 20px">d-ETR <sub>(customers)</sub></th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.--}"><apex:param value="{!opp.d_ETR_Required__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    
+                        <tr>
+                            <th><apex:outputText >DSO</apex:outputtext></th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText >{!opp.Average_DSO__c}-Days</apex:outputtext></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th class="centre"><apex:outputText >d-RSA</apex:outputtext></th>
+                            <td class="spacer-vertical"></td>
+                            <td class="right"><apex:outputText value="{0,number, ###,###,###.--}">{!opp.currencyISOCode}<apex:param value="{!opp.Annual_RSA__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th style="height: 20px"><apex:outputText >c-ETR <sub>(suppliers)</sub></apex:outputtext></th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.--}"  rendered="{!AND(opp.c_ETR_Required__c != null)}"><apex:param value="{!opp.c_ETR_Required__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th class="centre"><apex:outputText >c-RSA</apex:outputtext></th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.--}" rendered="{!AND(opp.c_ETR_Required__c != null)}"><apex:param value="{!opp.Annual_RPA__c }" /></apex:outputText></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>        
+            <div class="col col-span-6">
+                <div class="grey-panel note" style="padding-bottom: 10px; ">
+                    <p style="font-size: 15px !important;"><strong>Note:-</strong> Offer expires within 72 hours</p>
+                </div>
+                    
+                <div class="grey-panel" style="padding-bottom: 16px">
+                    <h3>c-ETR Deposit &amp; Repayment Details</h3>
+                    <table cellpadding="0" cellspacing="0" class="table-4">
+                        <tr>
+                            <th style="width: 50%">Deposit per Order</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,###.00}"><apex:param value="{!opp.c_ETR_Deposit__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>1st repayment</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.First_Repayment__c != null)}" /><apex:outputText rendered="{!opp.First_Repayment__c != null}"  value="{!opp.First_Repayment__c}-Days" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th>Repayment Every</th>
+                            <td class="spacer-vertical"></td>
+                        <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.Repayment_every__c != null)}" /><apex:outputText rendered="{!opp.Repayment_every__c != null}"  value="{!opp.Repayment_every__c}-Days" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>  
+                        <tr>
+                            <th>Settled within</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.Settled_Within__c != null && opp.Settled_Within__c != '0')}" /><apex:outputText rendered="{!(opp.Settled_Within__c != null && opp.Settled_Within__c != '0')}"  value="{!opp.Settled_Within__c}-Days" /></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    
+        <br/><br/>
+       
+        
+            
+        
+        <div class="row t-clearfix">
+            <div class="col col-span-12">
+                <div class="grey-panel" style="padding-bottom: 3px; margin-top: -3px">
+                    <p>Note:- this RPA Offer is based on information provided and is subject to the Allocation Policy</p>
+                </div>
+            </div>
+        </div>
+           
+        <br/><br/>
+        
+        <div class="row t-clearfix">
+            <div class="col col-span-6">
+                <div class="grey-panel" style="padding-bottom: 5px !important;">
+                    <h2><strong>Cost of Funds<apex:outputtext ><apex:outputtext value=": {!opp.ATR_Calculated__c}% ATR† " rendered="{!NOT(opp.No_ATR__c)}"/></apex:outputtext></strong></h2>
+                    <table cellpadding="0" cellspacing="0" class="table-4 costs-table" >
+                        <tr>
+                            <th style="width: 55%">Revolving Purchase :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td >{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.--}"><apex:param value="{!opp.d_ETR_Required__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Purchase Payment :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,###.00}"><apex:param value="{!opp.Purchase_Payment__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>d-ETR Sell Rate :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,##0.000}"><apex:param value="{!opp.d_ETR_Sell_Rate__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th style="background-color: #ccc">Total RSA Sell Rate :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre" style="background-color: #ccc"><apex:outputText value="{0,number, ###,###,##0.000}"><apex:param value="{!opp.d_ETR_Sell_Rate__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th><apex:outputtext >c-ETR Discount :</apex:outputtext></th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,##0.000}"><apex:param value="{!opp.c_ETR_Discount__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>o-ETR Enabled :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="YES" rendered="{!AND(opp.o_ETR__c)}" /><apex:outputText value="NO" rendered="{!NOT(opp.o_ETR__c)}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Specific Conditions :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="Documented" rendered="{!opp.Specific_Conditions__c}" /><apex:outputText value="NO" rendered="{!NOT(opp.Specific_Conditions__c)}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                <apex:outputText rendered="{!NOT(AND(opp.LDC_Premium__c == True))}">
+                                  Posting Fee 
+                                </apex:outputText>
+                                
+                                <apex:outputText rendered="{!AND(opp.LDC_Premium__c == True)}">
+                                  LDC Premium
+                                </apex:outputText> :
+                            </th>
+                            <td class="spacer-vertical2"></td>
+                            <td>
+                            <apex:outputText rendered="{!NOT(AND(opp.LDC_Premium__c == True))}">
+                               {!opp.currencyISOCode}<apex:outputText rendered="{!OR(opp.Posting_Fee__c == null,opp.Posting_Fee__c <= 0)}" value=" --.--" /><apex:outputText rendered="{!AND(opp.Posting_Fee__c != null,opp.Posting_Fee__c >  0)}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Posting_Fee__c}" /></apex:outputText>
+                            </apex:outputText>
+                            
+                            <apex:outputText rendered="{!AND(opp.LDC_Premium__c == True)}">
+                              <apex:outputText rendered="{!opp.LDC_Premium_Commission__c == null || opp.LDC_Premium_Commission__c <= 0 }" value=" --.---" /><apex:outputText rendered="{!NOT(opp.LDC_Premium_Commission__c == null || opp.LDC_Premium_Commission__c <= 0)}">{!opp.LDC_Premium_Commission__c}</apex:outputText>%  
+                            </apex:outputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Arrangement Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Arrangement_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Arrangement_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Arrangement_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Monthly Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Monthly_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Monthly_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Monthly_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <th>Debtors Ratings Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Debtors_Rating_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Debtors_Rating_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Debtors_Rating_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Digi-Access™ Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Digi_Access_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Digi_Access_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Digi_Access_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Processing Commission :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Processing_Commission__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Processing_Commission__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Processing_Commission__c}" /></apex:outputText></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>        
+            <div class="col col-span-6">
+                    
+                <div class="grey-panel" style="padding-bottom: 5px !important;">
+                    <h3>Convertibill® RPA Offer</h3>
+                    <div class="white-panel" >
+                        <ol style="font-size: 16px;">
+                            <li>If this RPA Offer is acceptable to you, the Originator, it must be confirmed within 72 hours or less. Otherwise it may be rescinded</li>
+                            <li>Acceptance of RPA Offers is conditional on the Originator meeting its allocated RPA value within two trade cycles/D.S.O.</li>
+                            <li>Before confirming acceptance, the Originator must read, understand and confirm their acceptance of the <a href="http://www.credebtexchange.com/offer">Terms &amp; Conditions</a> of this RPA Offer</li>
+                        </ol>
+                        <p>We look forward to working with you.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="t-clearfix">
+                <div class="col col-span-12" style="margin-right: -180px">
+                    <p style="font-size: 13.4px; "><strong>Carefully Read &amp; Understand the RPA Offer Terms &amp; Conditions: <a href="http://www.convertibill.com/offer">http://www.convertibill.com/offer</a></strong></p>
+                </div>
+            </div>
+    
+            <div class=" t-clearfix">
+                <div class="col col-span-8" style="width: 430px;">
+                    <p class="warning" style="padding: 4px 8px;">All confirmed Provisional RPA Offers with incomplete applications after 14 calendar days are automatically cancelled</p>
+                </div>
+            </div>
+    
+            <div class=" t-clearfix">
+                <div class="col col-span-12">
+                    <p style="font-size: 11px; padding-top: 0px"><apex:outputtext value="†ATR is Annual Target Rate or Annual Percentage Rate [APR], subject to trading patterns" rendered="{!NOT(opp.No_ATR__c)}"/></p>
+                    <p style="color: #ccc; font-size: 9px; padding-top: 5px;">The Credebt Exchange logo, Credebt &amp; Convertibill are registered European trademarks. ©2011-2016 All rights reserved. No part of the contents of this publication may be reproduced, copied or altered without the written permission of a Director of Credebt Exchange Limited. Registered No. 501210. Directors: P. Reynolds, C. Doherty, C. McCann. Document &amp; File Location: I:\RPA\. DX Document Exchange No.: DX109013</p>
+                </div>
+            </div>
+        </div>
+        
+        
+         <img src="{!URLFOR($Resource.RPA_Approval_Images, 'stamp.png')}" alt="" style="position: absolute; left: 470px; bottom: 32px; height: 108px; width: auto; z-index: 100 "/>            
+   </apex:outputpanel>
+   
+   <!--  Rendered when record Ttpe is Sales PDF -->
+   
+    <apex:outputpanel rendered="{!opp.RecordType.Name == '2. Convertibill® Sales Finance'}">
+        <div class="row t-clearfix">
+            <div class="col col-span-12" style="height: 48px; padding-top: 6px;">
+                <p style="font-size: 13.8px">Based on the information received, we are in a position to make a provisional offer to provide Convertibill® - Sales Finance based on the following summary of the offer:</p>
+                <br/><br/>
+            </div>
+        </div>
+    
+        <div class="row t-clearfix">
+            <div class="col col-span-6">
+                <div class="grey-panel">
+                    <h2 style="padding-bottom: 6px;"><strong>Facility Overview</strong></h2>
+                    <table cellpadding="0" cellspacing="0" class="table-4">
+                        <tr>
+                            <th style="width: 45%">Currency</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre">{!opp.currencyISOCode}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th style="height: 20px">a-ETR <sub>(asset value)</sub></th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode}  <apex:outputText value="{0,number, ###,###,###.--†}"><apex:param value="{!opp.a_ETR_Value__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th>Term</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre">{!opp.Term__c}-Months</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th class="centre">Deposit Payments</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="right">{!opp.Deposit_Payment_No__c}-Payments</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th style="height: 20px">Initial Payment</th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.--†}"  rendered="{!AND(opp.Deposit_Payment__c != null)}"><apex:param value="{!opp.Deposit_Payment__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th class="centre">Monthly Payment</th>
+                            <td class="spacer-vertical"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.##†}" rendered="{!AND(opp.Monthly_Payment__c != null)}"><apex:param value="{!opp.Monthly_Payment__c}" /></apex:outputText></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>        
+            <div class="col col-span-6">
+                <div class="grey-panel note" style="padding-bottom: 10px; ">
+                    <p style="font-size: 15px !important;"><strong>Note:-</strong> Offer expires within 72 hours</p>
+                </div>
+                    
+                <div class="grey-panel" style="padding-bottom: 16px">
+                    <h3>c-ETR Deposit &amp; Repayment Details</h3>
+                    <table cellpadding="0" cellspacing="0" class="table-4">
+                        <tr>
+                            <th style="width: 50%">Deposit per Order</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,###.00}"><apex:param value="{!opp.Deposit_Value__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>1st repayment</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.First_Repayment__c != null)}" /><apex:outputText rendered="{!opp.First_Repayment__c != null}"  value="{!opp.First_Repayment__c}-Days" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>                    <tr>
+                            <th>Repayment Every</th>
+                            <td class="spacer-vertical"></td>
+                        <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.Repayment_every__c != null)}" /><apex:outputText rendered="{!opp.Repayment_every__c != null}"  value="{!opp.Repayment_every__c}-Days" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>  
+                        <tr>
+                            <th>Settled within</th>
+                            <td class="spacer-vertical"></td>
+                            <td class="centre"><apex:outputText value="n/a" rendered="{!NOT(opp.Settled_Within__c != null && opp.Settled_Within__c != '0')}" /><apex:outputText rendered="{!(opp.Settled_Within__c != null && opp.Settled_Within__c != '0')}"  value="{!opp.Settled_Within__c}-Days" /></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    
+        <br/><br/>
+       
+        
+            
+        
+        <div class="row t-clearfix">
+            <div class="col col-span-12">
+                <div class="grey-panel" style="padding-bottom: 3px; margin-top: -3px">
+                    <p>Note:- this RPA Offer is based on information provided and is subject to the Allocation Policy</p>
+                </div>
+            </div>
+        </div>
+           
+        <br/><br/>
+        
+        <div class="row t-clearfix">
+            <div class="col col-span-6">
+                <div class="grey-panel" style="padding-bottom: 5px !important;">
+                    <h2><strong>Cost of Funds</strong></h2>
+                    <table cellpadding="0" cellspacing="0" class="table-4 costs-table" >
+                        <tr>
+                            <th style="width: 55%">Revolving Sale :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td >{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###,###.##†}"><apex:param value="{!opp.Revolving_Sale__c}" /></apex:outputText> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Sale Payments :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre">100%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>d-ETR Sell Rate :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre"><apex:outputText value="{0,number, ###,###,##0.000}"><apex:param value="{!opp.d_ETR_Sell_Rate_formula__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th style="background-color: #ccc">Total RSA Sell Rate :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre" style="background-color: #ccc"><apex:outputText value="{0,number, ###,###,##0.000}"><apex:param value="{!opp.d_ETR_Sell_Rate_formula__c}" /></apex:outputText>%</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>a-ETR <sub>(asset value)</sub> :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="right">{!opp.currencyISOCode}  <apex:outputText value="{0,number, ###,###}"><apex:param value="{!opp.a_ETR_Value__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>R&amp;M/Service Cost :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="right">{!opp.currencyISOCode} <apex:outputText value="{0,number, ###,###.##†}"><apex:outputText rendered="{!AND(opp.R_M_Service__c == null)}"> -- . --†</apex:outputText><apex:param value="{!opp.R_M_Service__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Monthly Total :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode} <apex:outputtext value="{0,number, ###,###.##}"><apex:param value="{!opp.Monthly_Payment_incl_VAT__c}" /></apex:outputtext></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Specific Conditions :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td class="centre">Documented</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Arrangement Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Arrangement_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Arrangement_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Arrangement_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Monthly Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Monthly_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Monthly_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Monthly_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <th>Debtors Ratings Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Debtors_Rating_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Debtors_Rating_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Debtors_Rating_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Digi-Access™ Fee :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Digi_Access_Fee__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Digi_Access_Fee__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Digi_Access_Fee__c}" /></apex:outputText></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="spacer-horizontal"></td>
+                        </tr>
+                        <tr>
+                            <th>Processing Commission :</th>
+                            <td class="spacer-vertical2"></td>
+                            <td>{!opp.currencyISOCode}<apex:outputText rendered="{!opp.Processing_Commission__c == 0}" value=" --.--" /><apex:outputText rendered="{!opp.Processing_Commission__c >  0}" value="{0,number, ###,###,###.--}"><apex:param value="{!opp.Processing_Commission__c}" /></apex:outputText></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>        
+            <div class="col col-span-6">
+                    
+                <div class="grey-panel" style="padding-bottom: 5px !important;">
+                    <h3>Convertibill® RPA Offer</h3>
+                    <div class="white-panel" >
+                        <ol style="font-size: 16px;">
+                            <li>If this RPA Offer is acceptable to you, the Originator, it must be confirmed within 72 hours or less. Otherwise it may be rescinded</li>
+                            <li>Acceptance of RPA Offers is conditional on the Originator meeting its allocated RPA value within two trade cycles/D.S.O.</li>
+                            <li>Before confirming acceptance, the Originator must read, understand and confirm their acceptance of the <a href="http://www.credebtexchange.com/offer">Terms &amp; Conditions</a> of this RPA Offer</li>
+                        </ol>
+                        <p>We look forward to working with you.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="t-clearfix">
+                <div class="col col-span-12" style="margin-right: -180px">
+                    <p style="font-size: 13.4px; "><strong>Carefully Read &amp; Understand the RPA Offer Terms &amp; Conditions: <a href="http://www.convertibill.com/offer">http://www.convertibill.com/offer</a></strong></p>
+                </div>
+            </div>
+    
+            <div class=" t-clearfix">
+                <div class="col col-span-8" style="width: 430px;">
+                    <p class="warning" style="padding: 4px 8px;">All confirmed Provisional RPA Offers with incomplete applications after 14 calendar days are automatically cancelled</p>
+                </div>
+            </div>
+    
+            <div class=" t-clearfix">
+                <div class="col col-span-12">
+                    <p style="font-size: 11px; padding-top: 0px">†Rate shown is net of VAT/Sales tax, i.e. if rate is EUR 10,000 then including VAT will be EUR 12,300</p>
+                    <p style="color: #ccc; font-size: 9px; padding-top: 5px;">The Credebt Exchange logo, Credebt &amp; Convertibill are registered European trademarks. ©2011-2016 All rights reserved. No part of the contents of this publication may be reproduced, copied or altered without the written permission of a Director of Credebt Exchange Limited. Registered No. 501210. Directors: P. Reynolds, C. Doherty, C. McCann. Document &amp; File Location: I:\RPA\. DX Document Exchange No.: DX109013</p>
+                </div>
+            </div>
+        </div>
+        
+        
+         <img src="{!URLFOR($Resource.RPA_Approval_Images, 'stamp.png')}" alt="" style="position: absolute; left: 470px; bottom: 32px; height: 108px; width: auto; z-index: 100 "/>            
+   </apex:outputpanel>
+   
+</body>   
+    
+</apex:page>

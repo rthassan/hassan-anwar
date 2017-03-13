@@ -1,0 +1,45 @@
+<apex:page controller="ApplicationProcess" extensions="DirectorsController" tabStyle="Application__tab" >
+<script>
+function confirmCancel() {
+    var isCancel = confirm("Are you sure you wish to cancel?");
+    if (isCancel) return true;
+    return false;
+}
+</script>
+<apex:sectionHeader title="Directors" subtitle="Step 7"/>
+<apex:form >
+    
+    <apex:pageBlock title="Directors" >
+        <apex:variable value="{!1}" var="rowNum"/>   
+  
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!cancel}" value="Cancel"
+                                onclick="return confirmCancel()" immediate="true"/>
+            <apex:commandButton action="{!saveAndReturn}" value="Save & Return"/>
+            <apex:commandButton action="{!step8}" value="Save & Continue"/>
+        </apex:pageBlockButtons>
+        
+        <apex:repeat value="{!DirectorsList}" var="director">
+        
+        <apex:pageBlockSection title="Director {!FLOOR(rowNum)}">
+           
+            <apex:inputField value="{!director.FirstName}" label="First Name" required="true"/>
+            <apex:inputField value="{!director.MailingStreet}" label="Address Line 1" required="true"/>
+            <apex:inputField value="{!director.LastName}" label="Last Name"/>
+            <apex:inputField value="{!director.OtherStreet}" label="Address Line 2"/>
+            <apex:inputField value="{!director.Email}" label="Email" required="true"/>
+            <apex:inputField value="{!director.MailingCity}" label="City/Town"/>
+            <apex:inputField value="{!director.MobilePhone}" label="Mobile Phone" required="true"/>
+            <apex:inputField value="{!director.MailingPostalCode}" label="Area Code"/>
+             <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+            <apex:inputField value="{!director.MailingCountry}" label="Country/Area" required="true"/>
+            
+           
+        </apex:pageBlockSection>
+        
+        </apex:repeat>
+        
+        
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,122 @@
+<apex:page standardController="Opportunity" extensions="approveRPAcontroller" sidebar="false" tabStyle="Application_process__tab">
+    
+     <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" />
+    <apex:includeScript value="https://www.google.com/jsapi" />
+    <apex:includeScript value="{!URLFOR($Resource.select2, '/select2-4.0.3/dist/js/select2.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.select2, '/select2-4.0.3/dist/css/select2.css')}"/>
+    <style>
+        .selectRow {
+        display : block;
+        padding : 20px;
+        }
+        .select2-container {
+        width: 200px !important;
+        margin-left : 10px;
+        }
+        .select2-selection{
+            padding-bottom: 2px;
+        }
+    </style>
+    <script type="text/javascript">
+$(document).ready(
+    function () {
+        $(".multipleSelect").select2();
+    }
+);
+</script>
+    
+    
+    <apex:form >
+        <apex:pageBlock title="Details" >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}" />                
+                <apex:commandLink value="Preview PDF" action="/apex/provisionalRpaOfferPDF?id={!opp.id}" styleClass="btn" immediate="false" target="_blank" style="text-decoration:none; padding: 4px"/>
+                <apex:commandButton value="Send Offer" action="{!sendOffer}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Email To:</apex:outputLabel>
+                    <apex:selectList styleclass="multipleSelect" multiselect="true" value="{!selectedTo}">                                            
+                        <apex:selectOptions Value="{!oppContacts}"  ></apex:selectOptions>                                            
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >CC:</apex:outputLabel>
+                    <apex:selectList styleclass="multipleSelect" multiselect="true" value="{!selectedCC}">                                            
+                        <apex:selectOptions Value="{!oppContacts}"  ></apex:selectOptions>                                            
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+                
+                
+                
+                
+                
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                <apex:outputField value="{!opp.Name}" />
+                <apex:outputField value="{!opp.AccountId}" />
+                <apex:outputField value="{!opp.currencyISOcode}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Funding Requirment">
+                <apex:outputField value="{!opp.c_ETR_Required__c}" />
+                <apex:outputField value="{!opp.o_ETR__c}" />
+                <apex:outputField value="{!opp.d_ETR_Required__c}" />
+                <apex:outputField value="{!opp.a_ETR__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Credit History" columns="1">
+                <apex:pageBlockTable value="{!creditHistories}" var="ch">
+                    <apex:column value="{!ch.createdDate}" />
+                    <apex:column value="{!ch.Credit_Data_Provider__c}" />
+                    <apex:column value="{!ch.Credit_Limit__c}" />
+                    <apex:column value="{!ch.Creditsafe_Rating__c}" />
+                    <apex:column value="{!ch.Y_E_Trade_Creditors__c}" />
+                    <apex:column value="{!ch.Y_E_Trade_Creditors__c}" />
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>  
+            <apex:pageBlockSection title="RPA Offer">
+                <apex:inputField value="{!opp.Monthly_Fee__c}" />
+                <apex:inputField value="{!opp.d_ETR_Required__c}" />
+                
+                <apex:inputField value="{!opp.Posting_Fee__c}" />
+                <apex:inputField value="{!opp.Arrangement_Fee__c}" />
+                
+                <apex:inputField value="{!opp.Revolving_Purchase__c}" />
+                <apex:inputField value="{!opp.Debtors_Rating_Fee__c}" />
+                
+                <apex:inputField value="{!opp.Purchase_Payment__c}" />
+                <apex:inputField value="{!opp.Digi_Access_Fee__c}" />
+                
+                <apex:inputField value="{!opp.d_ETR_Sell_Rate__c}" />
+                <apex:inputField value="{!opp.Processing_Commission__c}" />
+                
+                <apex:inputField value="{!opp.Specific_Conditions__c}" />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                <apex:inputField value="{!opp.c_ETR_Deposit__c}" />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                <apex:inputField value="{!opp.First_Repayment__c}" />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                <apex:inputField value="{!opp.Repayment_every__c}" />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                <apex:inputField value="{!opp.Settled_Within__c}" />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                
+                <!--
+                <apex:outputField value="{!opp.c_ETR_Discount_value__c}" />
+                <apex:outputField value="{!opp.c_ETR_Discount__c}" />
+                <apex:outputField value="{!opp.d_ETR_Annual_Value__c}" />
+                -->
+            </apex:pageBlockSection>
+                      
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,10 @@
+<apex:page controller="ApplicationProcess" extensions="ReviewingApplicationController" action="{!SubmitForApproval}">
+<!-- Begin Default Content REMOVE THIS -->
+    <apex:sectionHeader title="Approval Status" subtitle="Step11"/>
+<apex:pageBlock title="Approval Status">
+    <br/><br/><br/><h1>Congratulations!!!
+    Trade Desk And Treasury are reviewing their application and that they should have a formal response within 24 hours!! </h1><br/><br/><br/>
+<!-- End Default Content REMOVE THIS -->
+</apex:pageBlock>
+   
+</apex:page>

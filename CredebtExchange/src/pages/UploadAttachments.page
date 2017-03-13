@@ -1,0 +1,57 @@
+<apex:page controller="ApplicationProcess" extensions="UploadController" action="{!SkipUploadPage}">
+
+	<apex:sectionHeader title="Upload All Missing Attachments" subtitle="Step10"/>
+	<apex:form >
+		<apex:pageblock >
+		   <apex:messages style="color:red"></apex:messages>
+		   <apex:PageBlockSection title="Company's Logo" rendered="{!company_logo == false}">
+		    	<apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF" />
+			              <apex:inputFile value="{!LogoAttachment.body}" filename="{!LogoAttachment.name}" id="file" required="true"/>
+			    </apex:pageBlockSectionItem>
+		   </apex:PageBlockSection>
+		    
+		   <apex:PageBlockSection title="Bank Statement" rendered="{!obank_statement == false}">
+		    	<apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!BankStatementAttachment.body}" filename="{!BankStatementAttachment.name}" id="file" required="true"/>
+			    </apex:pageBlockSectionItem>
+		   </apex:PageBlockSection>
+	       <apex:repeat value="{!UAttachments}" var="att">
+	             
+	             <apex:pageBlock title="Director[{!att.name}]" rendered="{!att.PBlockVisibility == true}">
+		             <apex:pageBlockSection title="Director’s Passport/Driving License Document" rendered="{! att.passport_attachment_visibility == false}">
+				       	<apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.passport_attachment.body}" filename="{!att.passport_attachment.name}" id="file" required="true"/>
+			            </apex:pageBlockSectionItem>
+		             </apex:pageBlockSection>
+	          
+	            
+	           
+		            <apex:pageBlockSection title="Director’s Utility Bill/Bank Statement Document" rendered="{! att.bank_attachment_visibility == false}">
+			            <apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.bill_bankattachment.body}" filename="{!att.bill_bankattachment.name}" id="file" required="true"/>
+			            </apex:pageBlockSectionItem>
+		             </apex:pageBlockSection>
+		        
+		          
+		       
+		            <apex:pageBlockSection title="Company's Bank Statement Document" rendered="{! att.director_signature_visibility == false}">
+			            <apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.company_bankattachment.body}" filename="{!att.company_bankattachment.name}" id="file" required="true"/>
+			            </apex:pageBlockSectionItem>
+			        </apex:pageBlockSection>    
+               </apex:pageBlock>
+              
+	       </apex:repeat>
+	       
+	       <apex:pageBlockButtons >
+	       		<apex:commandButton value="Save & Continue" action="{!save}"/>
+	       </apex:pageBlockButtons>
+		</apex:pageblock>
+     </apex:form>
+
+</apex:page>

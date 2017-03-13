@@ -1,0 +1,47 @@
+<apex:page controller="ApplicationProcess" extensions="OrganisationDetailsController"  tabStyle="Application__tab">
+    
+    <script>
+		function confirmCancel()
+		{
+			var isCancel = confirm("Are you sure you wish to cancel?");
+            if (isCancel) return true;
+            return false;
+		}
+	</script>
+    
+    <style>
+        #col1{float:left; width:49%;}
+        #col2{float:right; width:49%;}
+    </style>
+    <apex:sectionHeader title="Organisation Details" subtitle="Step 5"/>
+    
+    <apex:form >
+        <apex:pageBlock title="Organisation Details">    
+            <apex:pageBlockSection columns="2">
+                <apex:inputField value="{!originator.Credit_Insurer__c}" label="Our current credit Insurance provider is:"/>
+                <apex:inputField value="{!originator.website}" label="Website:"/>
+                <apex:inputField value="{!originator.IDF_Provider__c}" label="Our current invoice discounting provider is:"/>
+                <apex:inputField value="{!originator.Company_Registration_Number__c}" label="Company Number:"/>
+                <apex:inputField value="{!originator.name}" label="Organisation Name:"/>
+                <apex:inputField value="{!originator.VAT_Number__c}" label="VAT Number:"/>
+                <apex:inputField value="{!originator.Trading_Name__c}" label="Organisation Trade Name:"/>
+                <apex:inputField value="{!originator.Company_Structure__c}" label="Organisation Type:"/>
+                <apex:inputField value="{!originator.NumberOfEmployees}" label="Total Employees:"/>
+                <apex:inputField value="{!originator.Number_of_Directors__c}" label="Number of Directors:" required="true"/>
+                <apex:inputField value="{!originator.Country_of_Registration__c}" label="Country of Registration:"/> 
+                 <apex:pageBlockSectionItem >
+                     <apex:outputLabel value="Upload Logo" for="Upload Logo"/>
+                     <apex:inputFile value="{!Attachment.body}" filename="{!Attachment.name}" id="file"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+             
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!cancel}" value="Cancel"
+			                                    onclick="return confirmCancel()" immediate="true"/>
+                <apex:commandButton value="Save & Continue" action="{!save}"/>
+            </apex:pageBlockButtons>       
+        </apex:pageBlock>
+    </apex:form>
+    
+    
+</apex:page>

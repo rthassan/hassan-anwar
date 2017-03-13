@@ -1,0 +1,412 @@
+<apex:page standardController="Opportunity" extensions="applicationProcessController" tabstyle="Application_Process__tab" sidebar="false">
+    <apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/versioning.css" />
+    <apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/extended.css" />
+    <style>
+        .block{
+            height: 30px;
+            padding: 4px;
+            font-size: 12px;
+            vertical-align: text-top;
+        }
+        .info {
+        //color: #0070DC;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .complete{
+            color: black;
+        }
+        
+        .incomplete{
+            color: black;
+        }
+        
+        
+    h1 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+    p {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+        .color-box {
+            width: 5px;
+            height: 30px;
+            display: inline-block;
+            background-color: black;
+            //position: absolute;
+            //left: 5px;
+            //top: 5px;
+            margin-right: 10px;
+        }
+    </style>
+   
+    <apex:form >
+        
+        <apex:pageMessages ></apex:pageMessages>
+        
+        <table>
+            <tr>
+                <td class="{!IF(opp.Funding_Requirement_Complete__c, 'complete', 'incomplete')} block"><div class="color-box" ></div><div  style="display: inline-block" >Funding Requirement<br/><span class="info"><apex:outputText value="{0,date,dd-MM-yyyy}" rendered="{!opp.Funding_Requirement_Complete__c}" ><apex:param value="{!opp.Funding_Requirement_Complete_Date__c}" /></apex:outputText><apex:outputText value="Incomplete" rendered="{!NOT(opp.Funding_Requirement_Complete__c)}" /></span></div></td>
+                
+                <td class="{!IF(opp.Account.Additional_Information_Complete__c, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Additional Information<br/><span class="info"><apex:outputText value="{0,date,dd-MM-yyyy}" rendered="{!opp.Account.Additional_Information_Complete__c}" ><apex:param value="{!opp.Account.Additional_Info_Complete_Date__c}" /></apex:outputText><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Additional_Information_Complete__c)}" /></span></div></td>
+                
+                <td class="{!IF(opp.Account.Number_of_Bank_Accounts__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Bank Accounts<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Bank_Accounts__c}" rendered="{!opp.Account.Number_of_Bank_Accounts__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Bank_Accounts__c > 0)}" /></span></div></td>
+                
+                <td class="{!IF(opp.Account.Directors_Details_Count__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Directors<br/><span class="info"><apex:outputText value="{!opp.Account.Directors_Details_Count__c}" rendered="{!opp.Account.Directors_Details_Count__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Directors_Details_Count__c > 0)}" /></span></div></td>
+                
+                <td class="{!IF(opp.Account.Number_of_Debtors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Debtors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Debtors__c}" rendered="{!opp.Account.Number_of_Debtors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Debtors__c > 0)}" /></span></div></td>
+                
+                <td class="{!IF(opp.Account.Number_of_Creditors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Creditors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Creditors__c}" rendered="{!opp.Account.Number_of_Creditors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Creditors__c > 0)}" /></span></div></td>
+                
+            </tr>
+        </table>
+        
+        <apex:tabPanel value="{!selectedTab}" >
+            <apex:tab label="Funding Requirement"  id="tab1">
+                <apex:pageBlock >
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Save" action="{!save}" />
+                    </apex:pageBlockButtons>
+                    <p>Please enter in the details of your funding requirements below, hover over the ? for further explanation of the different fields.</p>
+                    <apex:pageBlockSection >
+                        <apex:inputField value="{!opp.d_ETR_Required__c}" />
+                        <apex:inputField value="{!opp.c_ETR_Required__c}" />
+                        <apex:inputField value="{!opp.a_ETR__c}" />
+                        <apex:inputField value="{!opp.o_ETR__c}" />
+                        <apex:inputField value="{!opp.Average_DSO__c}" />                        
+                        <apex:inputField value="{!opp.CurrencyISOCode}" />
+                        <!-- <apex:inputField value="{!opp.Finance_Type__c}" /> -->                        
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:tab>
+            
+             <apex:tab label="Additional Information"  id="tab2">
+                <apex:pageBlock >
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Save" action="{!save}" />
+                    </apex:pageBlockButtons>
+                    <p>Please enter in further details regarding your company below.</p>
+                    <apex:pageBlockSection title="Company">
+                        <apex:inputField value="{!acc.Company_Registration_Number__c}" />
+                        <apex:inputField value="{!acc.Country_of_Registration__c}" />
+                        <apex:inputField value="{!acc.Number_of_Directors__c}" />
+                        <apex:inputField value="{!acc.NumberofEmployees}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Insurance">
+                        <apex:inputField value="{!acc.Credit_Insurer__c}" />
+                        <apex:inputField value="{!acc.IDF_Provider__c}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="NACE">
+                        <apex:inputField value="{!acc.NACE_Section__c}" />   
+                        <apex:inputField value="{!acc.NACE_Code__c}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Performance">
+                        <apex:inputField value="{!acc.Debenture__c}" />   
+                        <apex:inputField value="{!acc.Turnover__c}" />
+                        <apex:inputField value="{!acc.Fiscal_Year_End__c}" />
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Practices" id="tab3">
+                <apex:pageBlock >
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Save" action="{!save}" />
+                    </apex:pageBlockButtons>
+                    <p>Please enter in the details regarding some of your companies practices.</p>
+                    <apex:pageBlockSection title="Details">
+                        <apex:inputField value="{!acc.Rebates_Discounts_or_other_Incentives__c}" />
+                        <apex:inputField value="{!acc.Accounting_Software__c}" />
+                        <apex:inputField value="{!acc.Customers_pay_Percentage__c}" />
+                        <apex:inputField value="{!acc.Other_Software__c}" />                        
+                        <apex:inputField value="{!acc.Invoice_on_Consignment__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        <apex:inputField value="{!acc.Offer_Warranties__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        <apex:inputField value="{!acc.Offer_Return_Rights__c}" />
+                    </apex:pageBlockSection>
+                    
+                    
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Bank Accounts" id="tab4">
+                <apex:pageBlock >
+                    <p>Please add in the details of your bank accounts below.</p>
+                    <apex:pageBlockTable value="{!bankAccs}" var="bAcc">
+                        <apex:column headerValue="Name">
+                            <apex:outputLink value="{!bAcc.Id}">{!bAcc.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!bAcc.Bank__c}" />
+                        <apex:column value="{!bAcc.Bank_Account_Number__c}" />
+                        <apex:column value="{!bAcc.CurrencyIsoCode}" />
+                        <apex:column value="{!bAcc.IBAN_Number__c}" />
+                        <apex:column value="{!bAcc.Sort_Code__c}" />
+                        <apex:column value="{!bAcc.Swift_Code__c}" />
+                    </apex:pageBlockTable>
+                    <hr/>
+                    <apex:pageBlockTable value="{!newBankAcc}" var="nbAcc">
+                        <apex:column headerValue="Name" >
+                            <apex:inputField value="{!nbAcc.Name}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="Bank">
+                            <apex:inputField value="{!nbAcc.Bank__c}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="Bank Account Number">
+                            <apex:inputField value="{!nbAcc.Bank_Account_Number__c}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="Currency">
+                            <apex:inputField value="{!nbAcc.CurrencyIsoCode}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="IBAN">
+                            <apex:inputField value="{!nbAcc.IBAN_Number__c}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="Sort">
+                            <apex:inputField value="{!nbAcc.Sort_Code__c}" required="false" />
+                        </apex:column>
+                        <apex:column headerValue="Swift">
+                            <apex:inputField value="{!nbAcc.Swift_Code__c}" required="false" />
+                        </apex:column>
+                        
+                    </apex:pageBlockTable>
+                    <apex:commandButton value="Add Account" action="{!addBankAcc}" />
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Directors" id="tab5">
+                <apex:pageBlock title="Existing Directors">
+                    <p>Please enter in the contact details of your directors below.</p>
+                    <apex:pageBlockTable value="{!directors}" var="dir">
+                        <apex:column headerValue="Name">
+                            <apex:outputLink value="{!dir.Id}">{!dir.firstName} {!dir.lastName}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!dir.email}" />
+                        <apex:column value="{!dir.mobilePhone}" />
+                        <apex:column value="{!dir.mailingCity}" />
+                        <apex:column value="{!dir.mailingCountry}" />
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+                <apex:pageBlock title="New Director">
+                    <apex:pageBlockSection >                        
+                            <apex:inputField value="{!newDirector.firstName}" />                        
+                            <apex:inputField value="{!newDirector.lastName}" required="false" />                        
+                            <apex:inputField value="{!newDirector.Email}" />                        
+                            <apex:inputField value="{!newDirector.mobilePhone}" />                        
+                            <apex:inputField value="{!newDirector.mailingStreet}" />
+                            <apex:inputField value="{!newDirector.mailingCity}" />
+                            <apex:inputField value="{!newDirector.mailingState}" />
+                            <apex:inputField value="{!newDirector.mailingPostalCode}" />
+                            <apex:inputField value="{!newDirector.mailingCountry}" />                        
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Add Director" action="{!addDirector}" />
+                    </apex:pageBlockButtons>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Supporting Files" id="tab6">
+                <apex:pageBlock >
+                    <p>Upload supporting files here by selecting the file type, choosing file and saving.</p>
+                    <apex:pageBlockSection >
+                    <apex:selectList value="{!selectedType}" multiselect="false" size="1">
+                        <apex:selectOptions value="{!fileTypes}" />
+                    </apex:selectList>
+                        
+                    <apex:inputFile value="{!supportFile.body}"  id="file" contentType="{!supportFile.contenttype}" fileName="{!supportFile.Name}" />
+                    <apex:commandButton value="Save File" action="{!uploadSupportFile}" />
+                        </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Debtor Details" id="tab7">
+                <p>Enter in the details of your debtors below.</p>
+                <apex:pageBlock title="Existing Debtors"  rendered="{!debtors.size!=0}">
+                    <apex:pageBlockTable value="{!debtors}" var="debtor">
+                        <apex:column headerValue="Name">
+                            <apex:outputLink value="{!debtor.Id}">{!debtor.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!debtor.Trading_Name__c}"/>
+                        <apex:column value="{!debtor.Total_Historic_Value__c}"/>
+                        <apex:column value="{!debtor.Average_Cycle_Payment__c}"/>
+                        <apex:column value="{!debtor.NOI_Status__c}"/>
+                    </apex:pageBlockTable>                 
+                </apex:pageBlock>
+                <apex:pageBlock title="Add New Debtors">
+                    <apex:pageBlockSection title="Account">
+                        <apex:inputField value="{!newDebtor.CurrencyISOCode}" />
+                        <apex:inputField value="{!newDebtor.Name}" required="false" />
+                        <apex:inputField value="{!newDebtor.Trading_Name__c}" />
+                        <apex:inputField value="{!newDebtor.Invoice_Street__c}" />
+                        <apex:inputField value="{!newDebtor.Invoice_City__c}" />
+                        <apex:inputField value="{!newDebtor.Invoice_State_Province__c}" />
+                        <apex:inputField value="{!newDebtor.Invoice_Zip_Postal_Code__c}" />
+                        <apex:inputField value="{!newDebtor.Invoice_Country__c}" />
+                        <apex:inputField value="{!newDebtor.Counterparty_Since__c}" />
+                        <apex:inputField value="{!newDebtor.Total_Historic_Value__c}" />
+                        <apex:inputField value="{!newDebtor.Average_Cycle_Payment__c}" />
+                        <apex:inputField value="{!newDebtor.Credit_Notes_Issued__c}" />
+                        <apex:inputField value="{!newDebtor.Invoices_Predicted_Per_Annum__c}" />
+                        <apex:inputField value="{!newDebtor.Predicted_Annual_revenue__c }" />
+                        <apex:inputField value="{!newDebtor.NOI_Status__c}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Contact">
+                        <apex:inputField value="{!newDebtor.First_Name__c}" />
+                        <apex:inputField value="{!newDebtor.Last_Name__c}" required="false"/>
+                        <apex:inputField value="{!newDebtor.Phone__c}" />
+                        <apex:inputField value="{!newDebtor.Email__c}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Add Debtor" action="{!addDebtor}" />
+                    </apex:pageBlockButtons>apex:pageBlockButtons >
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="Creditor Details" id="tab8">
+                <p>Enter in the details of your creditors below.</p>
+                <apex:pageBlock title="Existing Creditors" rendered="{!creditors.size!=0}">
+                    <apex:pageBlockTable value="{!creditors}" var="creditor">
+                        <apex:column headerValue="Name">
+                            <apex:outputLink value="{!creditor.Id}">{!creditor.Name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!creditor.Trading_Name__c}"/>
+                        <apex:column value="{!creditor.Total_Historic_Value__c}"/>
+                        <apex:column value="{!creditor.Average_Cycle_Payment__c}"/>
+                        <apex:column value="{!creditor.Predicted_Annual_Revenue__c}"/>
+                    </apex:pageBlockTable>                 
+                </apex:pageBlock>
+                <apex:pageBlock title="Add New Creditors">
+                    <apex:pageBlockSection title="Account">
+                        <apex:inputField value="{!newCreditor.CurrencyISOCode}" />
+                        <apex:inputField value="{!newCreditor.Name}" required="false" />
+                        <apex:inputField value="{!newCreditor.Trading_Name__c}" />
+                        <apex:inputField value="{!newCreditor.Invoice_Street__c}" />
+                        <apex:inputField value="{!newCreditor.Invoice_City__c}" />
+                        <apex:inputField value="{!newCreditor.Invoice_State_Province__c}" />
+                        <apex:inputField value="{!newCreditor.Invoice_Zip_Postal_Code__c}" />
+                        <apex:inputField value="{!newCreditor.Invoice_Country__c}" />
+                        <apex:inputField value="{!newCreditor.Counterparty_Since__c}" />
+                        <apex:inputField value="{!newCreditor.Total_Historic_Value__c}" />
+                        <apex:inputField value="{!newCreditor.Average_Cycle_Payment__c}" />
+                        <apex:inputField value="{!newCreditor.Credit_Notes_Issued__c}" />
+                        <apex:inputField value="{!newCreditor.Invoices_Predicted_Per_Annum__c}" />
+                        <apex:inputField value="{!newCreditor.Predicted_Annual_revenue__c }" />
+                        
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Contact">
+                        <apex:inputField value="{!newCreditor.First_Name__c}" />
+                        <apex:inputField value="{!newCreditor.Last_Name__c}" required="false"/>
+                        <apex:inputField value="{!newCreditor.Phone__c}" />
+                        <apex:inputField value="{!newCreditor.Email__c}" />
+                    </apex:pageBlockSection>
+                    <!--
+                    <apex:pageBlockSection title="Bank Account">
+                        <apex:inputField value="{!newDebtorBankAcc.Bank__c}" required="false"/>
+                        <apex:inputField value="{!newDebtorBankAcc.Bank_Account_number__c}" />
+                        <apex:inputField value="{!newDebtorBankAcc.Sort_code__c}" />
+                        <apex:inputField value="{!newDebtorBankAcc.IBAN_Number__c}" required="false"/>
+                        <apex:inputField value="{!newDebtorBankAcc.Swift_Code__c}" required="false"/>
+                    </apex:pageBlockSection>
+                    -->
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Add Creditor" action="{!addCreditor}" />
+                    </apex:pageBlockButtons>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="NOI" id="tab9">
+                <apex:pageBlock title="Email Content">
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="Save" action="{!save}" />
+                    </apex:pageBlockButtons>
+                    <apex:pageblockSection >
+                        <apex:inputTextarea value="{!acc.NOI_Email__c}" rows="10" cols="80"/>
+                    </apex:pageblockSection>
+                    <apex:pageBlockSection title="Originator Logo" >                        
+                        <apex:outputField value="{!originatorLogo.name}" rendered="{!originatorLogo.Id != null}" />
+                        <apex:outputLink value="{!URLFOR($Action.Attachment.Download, originatorLogo.id)}" target="_blank" rendered="{!originatorLogo.Id != null}">Download File </apex:outputLink>
+                        <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Upload New File</apex:outputLabel>
+                            <apex:inputFile value="{!originatorLogo.body}"  id="logoFile" contentType="{!originatorLogo.contenttype}" fileName="{!originatorLogo.Name}" />  
+                        </apex:pageBlockSectionItem>
+                        
+                        
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Originator Signature" >                        
+                        <apex:outputField value="{!originatorSignature.name}" rendered="{!originatorSignature.Id != null}" />
+                        <apex:outputLink value="{!URLFOR($Action.Attachment.Download, originatorSignature.id)}" target="_blank" rendered="{!originatorSignature.Id != null}">Download File </apex:outputLink>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel >Upload New File</apex:outputLabel>
+                        <apex:inputFile value="{!originatorSignature.body}"  id="logoFile" contentType="{!originatorSignature.contenttype}" fileName="{!originatorSignature.Name}" />
+                        
+                        </apex:pageBlockSectionItem>
+                        
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            <apex:tab label="RPA Offer" rendered="{!opp.RPA_Status__c == 'Approved'}"  id="tab10">
+                <apex:pageBlock >
+                    <apex:pageBlockButtons >
+                        <apex:commandLink value="Preview PDF" action="/apex/provisionalRpaOfferPDF?id={!opp.id}" styleClass="btn" immediate="false" target="_blank" style="text-decoration:none; padding: 4px"/>
+                        <apex:commandButton value="Accept" action="{!acceptOffer}" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection title="Funding Requirment">
+                        <apex:outputField value="{!opp.c_ETR_Required__c}" />
+                        <apex:outputField value="{!opp.o_ETR__c}" />
+                        <apex:outputField value="{!opp.d_ETR_Required__c}" />
+                        <apex:outputField value="{!opp.a_ETR__c}" />
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="RPA Offer">
+                        <apex:outputField value="{!opp.ATR_Calculated__c}" />
+                        <apex:outputField value="{!opp.Monthly_Fee__c}" />
+                        
+                        <apex:outputField value="{!opp.d_ETR_Required__c}" />
+                        <apex:outputField value="{!opp.Posting_Fee__c}" />
+                        
+                        <apex:outputField value="{!opp.Average_DSO__c}" />
+                        <apex:outputField value="{!opp.Arrangement_Fee__c}" />
+                        
+                        <apex:outputField value="{!opp.Revolving_Purchase__c}" />
+                        <apex:outputField value="{!opp.Debtors_Rating_Fee__c}" />
+                        
+                        <apex:outputField value="{!opp.Purchase_Payment__c}" />
+                        <apex:outputField value="{!opp.Digi_Access_Fee__c}" />
+                        
+                        <apex:outputField value="{!opp.d_ETR_Sell_Rate__c}" />
+                        <apex:outputField value="{!opp.Processing_Commission__c}" />
+                        
+                        <apex:outputField value="{!opp.Specific_Conditions__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        
+                        <apex:outputField value="{!opp.c_ETR_Deposit__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        
+                        <apex:outputField value="{!opp.First_Repayment__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        
+                        <apex:outputField value="{!opp.Repayment_every__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        
+                        <apex:outputField value="{!opp.Settled_Within__c}" />
+                        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                        
+                        
+                        <!--
+                        <apex:outputField value="{!opp.c_ETR_Discount_value__c}" />
+                        <apex:outputField value="{!opp.c_ETR_Discount__c}" />
+                        <apex:outputField value="{!opp.d_ETR_Annual_Value__c}" />
+                        -->
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:tab>
+            
+            
+            
+            
+            
+        </apex:tabPanel>
+    </apex:form>
+</apex:page>

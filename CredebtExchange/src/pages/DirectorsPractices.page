@@ -1,0 +1,61 @@
+<apex:page controller="ApplicationProcess" extensions="DirectorsPracticesController">
+  
+  <apex:sectionHeader title="Originator Accounting Information Form" subtitle="Step8"/>
+  <apex:form >
+      <apex:pageBlock >
+          <apex:pageMessages ></apex:pageMessages>
+          <apex:pageBlockSection >
+              <apex:inputField label="Fiscal Year end Date:" value="{!originator.Fiscal_Year_End__c}" required="true"/>
+          </apex:pageBlockSection>
+          
+            
+          <apex:PageBlockSection columns="1" title="Billing Practices">
+              <apex:inputField label="Do you offer any rebates, discounts or other incentives to customers?" 
+              value="{!originator.Rebates_Discounts_or_other_Incentives__c}" required="true"/>
+             
+              <apex:inputField label="Do your customers pay for percentage of work contracted as opposed 
+              to actual work completed / delivered?" value="{!originator.Customers_pay_Percentage__c}" required="true"/>
+              
+              <apex:inputField label="Are you using any Accounting Software?" value="{!originator.Accounting_Software__c}" required="true"/>
+              <apex:inputField label="Do you ever invoice on consignment?" value="{!originator.Invoice_on_Consignment__c}" required="true"/>
+              <apex:inputField label="Do your offer any warranties?" value="{!originator.Offer_Warranties__c}" required="true"/>
+              <apex:inputField label="Do your offer any return rights?" value="{!originator.Offer_Return_Rights__c}" required="true"/>
+          </apex:PageBlockSection>
+          
+          
+          <apex:repeat value="{!UAttachments}" var="att">
+	             
+	             <apex:pageBlock title="Director[{!att.name}]">
+		             <apex:pageBlockSection title="Director’s Passport/Driving License Document">
+				       	<apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.passport_attachment.body}" filename="{!att.passport_attachment.name}" id="file" />
+			            </apex:pageBlockSectionItem>
+		             </apex:pageBlockSection>
+	            
+		            <apex:pageBlockSection title="Director’s Utility Bill/Bank Statement Document">
+			            <apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.bill_bankattachment.body}" filename="{!att.bill_bankattachment.name}" id="file" />
+			            </apex:pageBlockSectionItem>
+		             </apex:pageBlockSection>
+		         
+		            <apex:pageBlockSection title="Company's Bank Statement Document">
+			            <apex:pageBlockSectionItem >
+			              <apex:outputLabel value="PDF" for="PDF"/>
+			              <apex:inputFile value="{!att.company_bankattachment.body}" filename="{!att.company_bankattachment.name}" id="file" />
+			            </apex:pageBlockSectionItem>
+			        </apex:pageBlockSection> 
+			   </apex:pageBlock>
+	            
+	       </apex:repeat>
+          
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Skip" action="{!save}" />
+              <apex:commandButton value="Submit" action="{!save}" />
+          </apex:pageBlockButtons>
+         
+      </apex:pageBlock>
+  
+  </apex:form>
+</apex:page>

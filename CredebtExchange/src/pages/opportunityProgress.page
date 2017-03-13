@@ -1,0 +1,49 @@
+<apex:page standardController="Opportunity" extensions="opportunityProgressController" >
+    <style>
+        .block{
+            height: 30px;
+            padding: 4px;
+            font-size: 12px;
+        	vertical-align: text-top;
+        	
+        }
+        .complete{
+            color: black;
+        }
+        
+        .incomplete{
+            color: black;
+        }
+        .info {
+        	color: #0070DC;
+        	font-weight: bold;
+        	font-size: 18px;
+        }
+        .color-box {
+            width: 5px;
+            height: 30px;
+            display: inline-block;
+            background-color: #5FCC64;
+            //position: absolute;
+            //left: 5px;
+            //top: 5px;
+            margin-right: 10px;
+        }
+    </style>
+    <table>
+        <tr>
+            <td class="{!IF(opp.Funding_Requirement_Complete__c, 'complete', 'incomplete')} block"><div class="color-box" ></div><div  style="display: inline-block" >Funding Requirement<br/><span class="info"><apex:outputText value="{0,date,dd-MM-yyyy}" rendered="{!opp.Funding_Requirement_Complete__c}" ><apex:param value="{!opp.Funding_Requirement_Complete_Date__c}" /></apex:outputText><apex:outputText value="Incomplete" rendered="{!NOT(opp.Funding_Requirement_Complete__c)}" /></span></div></td>
+            
+            <td class="{!IF(opp.Account.Additional_Information_Complete__c, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Additional Information<br/><span class="info"><apex:outputText value="{0,date,dd-MM-yyyy}" rendered="{!opp.Account.Additional_Information_Complete__c}" ><apex:param value="{!opp.Account.Additional_Info_Complete_Date__c}" /></apex:outputText><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Additional_Information_Complete__c)}" /></span></div></td>
+            
+            <td class="{!IF(opp.Account.Number_of_Bank_Accounts__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Bank Accounts<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Bank_Accounts__c}" rendered="{!opp.Account.Number_of_Bank_Accounts__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Bank_Accounts__c > 0)}" /></span></div></td>
+            
+            <td class="{!IF(opp.Account.Directors_Details_Count__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Directors<br/><span class="info"><apex:outputText value="{!opp.Account.Directors_Details_Count__c}" rendered="{!opp.Account.Directors_Details_Count__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Directors_Details_Count__c > 0)}" /></span></div></td>
+            
+            <td class="{!IF(opp.Account.Number_of_Debtors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Debtors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Debtors__c}" rendered="{!opp.Account.Number_of_Debtors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Debtors__c > 0)}" /></span></div></td>
+            
+            <td class="{!IF(opp.Account.Number_of_Creditors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Creditors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Creditors__c}" rendered="{!opp.Account.Number_of_Creditors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Creditors__c > 0)}" /></span></div></td>
+            
+        </tr>
+    </table>
+</apex:page>

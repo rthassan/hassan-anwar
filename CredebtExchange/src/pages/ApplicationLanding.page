@@ -1,0 +1,3 @@
+<apex:page controller="ApplicationProcess" action="{!LandingPage}"  >
+   
+</apex:page>

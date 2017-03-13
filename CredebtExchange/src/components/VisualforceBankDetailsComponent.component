@@ -1,0 +1,57 @@
+<apex:component controller="VisualforceEmailController" access="global">
+    
+    <apex:attribute name="ContactId" type="Id" Description="Id of the Contact" assignTo="{!CId}" />
+    
+    
+   <center> <apex:image url="{!LogoId}"  style="display:block;text-align: center;" alt="Logo" title="Logo" width="200" height="87" /> </center>
+    <p>Dear Sir,</p>
+    
+    <p>We hereby give you notice that pursuant to the Deed of Assignment dated [  ] 20 [ ] made
+        between the Originator and Credebt Exchange®, the Originator has assigned absolutely to
+        Credebt Exchange all of its rights, title, interest and benefit in all and any debts and invoices
+        now or in the future to be issued by the Originator and payable by or addressed to [you] (the
+        “Invoices”).</p>
+    
+    <p>
+        Unless Credebt Exchange® otherwise directs, you shall treat the Assignee as being entitled to
+        all of the Assignor’s rights, title, interest and benefit in the Invoices. All obligations you now
+        owe or may owe in the future to the Originator to make payments under the Invoices shall
+        henceforth be owed to Credebt Exchange and shall be payable to the following account of the
+        Assignee:
+    </p>
+    
+    
+    <form>
+       Name                : <apex:outputText label="Name                :"  value="{!BankAccount.name}" /><br/>
+       Sort Code           : <apex:outputText label="Sort Code           :" value="{!BankAccount.Sort_Code__c}" /><br/>
+       Bank Account Number : <apex:outputText label="Bank Account Number :" value="{!BankAccount.Bank_Account_Number__c}" /><br/>
+       IBAN                : <apex:outputText label="IBAN                :" value="{!BankAccount.IBAN_Number__c}" /><br/>
+       SWIFTBIC Address    : <apex:outputText label="SWIFTBIC Address    :" value="{!BankAccount.Swift_Code__c}" />   <br/>     
+    </form>
+     
+    
+    <p>  We approve that under no circumstances shall you:</p>
+    <p>  1. be liable to pay to Credebt Exchange® any greater amount; or      </p>
+    <p>  2. be subject to any greater obligation or liability to Credebt Exchange®, </p>
+    
+    <p>
+        than that to which it would have otherwise been liable, or subject to, had the Originator not
+assigned its rights, title, interest and benefit in the Invoices.
+    </p>
+    
+    <p>
+        This notice and the instructions contained herein are irrevocable. This notice is governed by
+Irish law.
+    </p>
+    
+    <a href="http://rtdev2-credebt-exchange.cs88.force.com/ApproveBankDetails?id={!CId}">Click on this Link to approve Changed Bank Details </a>
+    <p>Yours faithfully</p>
+    
+    <apex:image url="{!LogoId}"  style="display:block;" alt="Logo" title="Logo" width="200" height="87" />
+    <p>For and on behalf of</p> 
+    
+    
+    
+    
+    
+</apex:component>

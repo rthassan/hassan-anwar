@@ -1,0 +1,235 @@
+<apex:page standardController="Opportunity" extensions="requestRPAcontroller" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <apex:includeLightning />
+    <apex:form >
+        
+        
+        <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+            <head>
+                <meta charset="utf-8" />
+                <meta http-equiv="x-ua-compatible" content="ie=edge" />
+                <title>Salesforce Lightning Design System Trailhead Module</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <apex:stylesheet value="{!URLFOR($Resource.SLDS214, 'assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+                <script type="javascript">
+                function editRecord(id) {
+                    alert(id);   
+                }
+                </script>
+            </head>
+            
+            <body>  
+                <!-- REQUIRED SLDS WRAPPER -->
+                <div class="credebt" style="margin-left: 10px; margin-right: 10px">
+                    <apex:pageMessages ></apex:pageMessages>
+                    
+                    
+                                        
+                    
+                    <!-- PAGE HEADER -->
+                    <div class="slds-page-header" role="banner">
+                        
+                        <!-- LAYOUT GRID -->
+                        <div class="slds-grid">
+                            
+                            <!-- GRID COL -->
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <!-- HEADING AREA -->
+                                <!-- MEDIA OBJECT = FIGURE + BODY -->
+                                <div class="slds-media">
+                                    
+                                    <div class="slds-media__body">
+                                        <!--<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Request RPA">Request RPA</h1>-->
+                                    </div>
+                                </div>
+                                <!-- / MEDIA OBJECT -->
+                                <!-- /HEADING AREA -->
+                                
+                            </div>
+                             <!-- ACTION BUTTONS -->
+                            
+                            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                                <div class="slds-button-group" role="group">
+                                    <!--<button class="slds-button slds-button--neutral">
+                                        Save
+                                    </button>
+                                    <button class="slds-button slds-button--neutral">
+                                        Preview PDF
+                                    </button>
+                                    <button class="slds-button slds-button--neutral" >
+                                        Send Offer
+									</button>-->
+                                    
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral" value="Add Credit History" action="{!addCredit}" />
+                                    
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral" value="Save" action="{!save}" />                
+                                    <!--<apex:commandLink value="Preview PDF" action="/apex/provisionalRpaOfferPDF?id={!opp.id}" styleClass="slds-button slds-button--neutral" immediate="false" target="_blank" style="text-decoration:none; padding: 4px"/>-->
+                                    <apex:commandLink value="Preview PDF" onclick="window.open('/apex/provisionalRpaOfferPDF?id={!opp.id}')" styleClass="slds-button slds-button--neutral" immediate="false" style="text-decoration:none; padding: 4px"  />
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral" value="Request RPA Approval" action="{!requestRPA}" />
+                                </div>
+                            </div>
+
+                            <!-- / ACTION BUTTONS -->
+                            
+                            
+                        </div>
+                        <!-- / LAYOUT GRID -->                    
+                    </div>
+                    <!-- / PAGE HEADER -->
+                    
+                    
+                    <!-- / PRIMARY CONTENT WRAPPER -->
+                    
+                    <fieldset class="slds-form--compound" style="padding: 1.5rem">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">Type</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:outputField styleClass="slds-output" value="{!opp.Type}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">d-ETR Required</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.d_ETR_Required__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">Average DSO</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Average_DSO__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-5">                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Expected Close Date</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.closeDate}"/>                            
+                                    </div>
+                                </div>
+                                 <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">Probability</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Probability}"/>                            
+                                    </div>
+                                </div>
+                                
+                                                               
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-5">                                    
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-form-element slds-size--1-of-2">
+                                            <label class="slds-form-element__label" for="text-input-01">a-ETR</label>                                        
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField styleClass="slds-output" value="{!opp.a_ETR__c}"/>                            
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element slds-size--1-of-2">
+                                            <label class="slds-form-element__label" for="text-input-01">o-ETR</label>                                        
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField styleClass="slds-output" value="{!opp.o_ETR__c}"/>                            
+                                            </div>                                        
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">c-ETR Required</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.c_ETR_Required__c}"/>                            
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">Average Gross Margin</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.Average_Gross_Margin__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">RPA Accepted Date</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!opp.RPA_Accepted_Date__c}"/>                            
+                                    </div>
+                                </div>
+                                
+                                
+                               
+                                
+                                <div class="slds-form-element slds-size--1-of-5">
+                                    <label class="slds-form-element__label" for="text-input-01">Approver</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:selectList multiselect="false" value="{!selectedApprover}" size="1">                                            
+                                            <apex:selectOptions Value="{!approvers}"  ></apex:selectOptions>                                            
+                                        </apex:selectList>                   
+                                    </div>
+                                </div>
+                                
+                                                              
+                            </div>
+                        </div>
+                        <div class="slds-form-element__group">
+                            
+                            
+                           
+                            
+                        </div>
+                        
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row" style="font-weight: bold;">
+                                <br/>
+                                <br/>
+                                To submit an RPA, you will need at least one Credit History against the Organisation (see above right panel). Please add a Credit History below if one not present.
+                                <br/>
+                                <br/>
+                            </div>
+                            <div class="slds-form-element__row">
+                                
+                                <div class="slds-form-element slds-size--1-of-6">                                    
+                                    <label class="slds-form-element__label" for="text-input-01">Credit Date Provider</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.Credit_Data_Provider__c}"/>                            
+                                    </div> 
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="text-input-01">Credit Limit</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.Credit_Limit__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="text-input-01">CreditSafe Rating</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.Creditsafe_Rating__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="text-input-01">Y/E trade Creditors</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.Y_E_Trade_Creditors__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="text-input-01">Y/E Trade Debtors</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.Y_E_Trade_Debtors__c}"/>                            
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="text-input-01">As At Date</label>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputField styleClass="slds-output" value="{!credHis.As_At_Date__c}"/>                            
+                                    </div>
+                                </div>    
+                                
+                            </div>
+                            <apex:commandButton styleClass="slds-button slds-button--neutral" value="Add Credit History" action="{!addCredit}" />
+                        </div>
+                    
+                        
+                    </fieldset>  
+                    
+
+                </div>
+            </body>
+        </html>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,30 @@
+<apex:page tabStyle="Application__tab">
+    
+    <style>
+        h1 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        }
+        p {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        }
+        #col1{float:left; width:49%;}
+        #col2{float:right; width:49%;}
+    </style>
+    <apex:sectionHeader title="Verification" subtitle="Step 3"/>
+    
+    <apex:form >
+        <apex:pageBlock >
+            <h1>Verification in Progress</h1><br/>
+            <p> Your Application is being verified by our team. Please wait until it is approved. 
+                <br/>We will notify you via email when it is approved.
+                <br/>Thank you for your patience.
+            </p><br/><br/>
+            
+        </apex:pageBlock>   
+    </apex:form>
+    
+    
+</apex:page>

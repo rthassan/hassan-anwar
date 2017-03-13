@@ -1,0 +1,59 @@
+<apex:page standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardController="Application__c" showHeader="false" sidebar="false">
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+        </head>
+        <body>
+            
+            <!-- REQUIRED SLDS WRAPPER -->
+            <div class="slds-scope">
+                
+                <!-- PRIMARY CONTENT WRAPPER -->
+                <div class="myapp">
+                    
+                    <section aria-labelledby="badges">
+                        <div>
+                            <apex:pageBlock >
+                                <apex:pageBlockSection columns="2" >
+                                    <apex:outputField value="{! Application__c.RPA_Confirmed__c }"/>
+                                    <apex:outputField value="{! Application__c.Debtors_Received__c }"/>
+                                    <apex:outputField value="{! Application__c.Creditors_Received__c }"/>
+                                    <apex:outputField value="{! Application__c.Directors_AML_KYC__c }"/>
+                                    <apex:outputField value="{! Application__c.Trade_Desk_Approved__c }"/>
+                                    <apex:outputField value="{! Application__c.Signature_Scan__c }"/>
+                                    <apex:outputField value="{! Application__c.Logged_in__c }"/>
+                                    <apex:outputField value="{! Application__c.Company_Bank_Statement__c }"/>
+                                    <apex:outputField value="{! Application__c.Refer_A_Friend__c }"/>
+                                    <apex:outputField value="{! Application__c.NoA_Issued__c }"/>
+                                    <apex:outputField value="{! Application__c.Details_Confirmed__c }"/>
+                                    <apex:outputField value="{! Application__c.Sector_and_Providers__c }"/>
+                                    <apex:outputField value="{! Application__c.Verification_Approved__c }"/>
+                                    <apex:outputField value="{! Application__c.Bank_Changed__c }"/>
+                                    <apex:outputField value="{! Application__c.Fast_Trading__c }"/>
+                                    <apex:outputField value="{! Application__c.Practices_and_Software__c }"/>
+                                    <apex:outputField value="{! Application__c.Organisation_Details__c }"/>
+                                    <apex:outputField value="{! Application__c.Traded__c }"/>
+                                    <apex:outputField value="{! Application__c.Bank_Accounts__c }"/>
+                                    <apex:outputField value="{! Application__c.Directors__c }"/>
+                                </apex:pageBlockSection>
+                            </apex:pageBlock>
+                        </div>
+                    </section>
+                    
+                </div>
+                <!-- / PRIMARY CONTENT WRAPPER -->
+                
+            </div>
+            <!-- / REQUIRED SLDS WRAPPER -->
+            
+        </body>
+    </html>
+    
+    
+</apex:page>

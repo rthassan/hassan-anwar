@@ -1,0 +1,56 @@
+<apex:page controller="ApplicationProcess" extensions="SelectOrganizationController" tabStyle="Application__tab" >
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
+    <apex:sectionHeader title="Select Organisations" subtitle="Step 2"/>
+    <apex:form >
+        
+        <apex:pageBlock title="Select Organisations">
+            
+            <apex:pageBlockSection title="Creditors">
+                
+                <apex:pageBlockTable value="{!CreditorOrganisations}" var="OrgC">
+                    <apex:column headerValue="Company No." value="{!OrgC.Company_Number__c}" /> 
+                    <apex:column headerValue="Credebtor" value="{!OrgC.Name}" /> 
+                    <apex:column headerValue="Amount" value="{!OrgC.Amount__c}" />
+                    <apex:column headerValue="Mandatory" >
+                        <apex:outputField value="{!OrgC.Mandatory__c}" >
+                            <apex:inlineEditSupport event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"
+                                                    disabled="{!OrgC.Mandatory__c}"/>
+                        </apex:outputField>
+                    </apex:column>
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Debtors">
+                
+                <apex:pageBlockTable value="{!DebtorOrganisations}" var="OrgD">
+                    <apex:column headerValue="Company No." value="{!OrgD.Company_Number__c}" /> 
+                    <apex:column headerValue="Credebtor" value="{!OrgD.Name}" />
+                    <apex:column headerValue="Amount" value="{!OrgD.Amount__c}" />
+                    <apex:column headerValue="Mandatory" >
+                        <apex:outputField value="{!OrgD.Mandatory__c}" >
+                            <apex:inlineEditSupport event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"
+                                                    disabled="{!OrgD.Mandatory__c}"/>
+                        </apex:outputField>
+                    </apex:column>
+                    
+                </apex:pageBlockTable>
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons >
+                 <apex:commandButton action="{!cancel}" value="Cancel"
+                                    onclick="return confirmCancel()" immediate="true"/>
+                <apex:commandButton value="Save & Continue" action="{!step3}" />
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>
