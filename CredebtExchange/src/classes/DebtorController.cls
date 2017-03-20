@@ -29,7 +29,7 @@ public class DebtorController {
                        	Direct_Dial_Phone__c, Email__c, Counterparty_Since__c, Total_Historic_Value__c,
                        Average_Cycle_Payment__c, Credit_Notes_Issued__c, Invoices_Predicted_Per_Annum__c,
                        Predicted_Annual_Revenue__c, isFilled__c
-                       from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false];
+                       from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false AND Mandatory__c=true];
         
         if(debtorsList.size()>0)
         {
@@ -46,7 +46,7 @@ public class DebtorController {
     
     public Application_Bank_Account__c getAppBankAccount()
     {
-        List<Application_Bank_Account__c> bankList= [Select Name, IBAN_Number__c, Bank_Account_Number__c, Swift_Code__c, 
+        List<Application_Bank_Account__c> bankList= [Select Name, IBAN_Number__c, Bank_Account_Number__c, Swift_Code__c, Bank_Name__c,
                                                      Sort_Code__c from Application_Bank_Account__c WHERE Application_Debtor__c=:debtor.Id];
         if(bankList.size()>0)
         {
@@ -66,16 +66,24 @@ public class DebtorController {
         
         if(attachment.body != null)
         {
+            attachment.name=debtor.name+'-ExperienceFile';
             attachment.ParentId = this.app.Id;
             attachment.ownerId = UserInfo.getUserId();
             insert attachment;
+        }
+        else
+        {
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Provide Experience Document'));
+            upsert bank;
+            update debtor;
+            return null;
         }
         upsert bank;
         
         debtor.isFilled__c=true;
         update debtor;
         
-        debtorsList=[SELECT Id, Name from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false];
+        debtorsList=[SELECT Id, Name from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false AND Mandatory__c=true];
         if(debtorsList.size()>0)
         {
             PageReference p = new PageReference('/apex/Creditor');
@@ -85,22 +93,23 @@ public class DebtorController {
         else
         {
             this.app.Debtors_Received__c = true;
+            this.app.Stage__c='Debtors';
             update app;
-            return Page.UploadAttachments;
+            return Page.Creditor;
         }
         
     }
     
     public PageReference isDebtorsFilled()
     {
-        debtorsList=[SELECT Id, Name from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false];
+        debtorsList=[SELECT Id, Name from Application_Debtor__c where Originator__c=:originator.Id AND isFilled__c=false AND Mandatory__c=true];
         if(!(debtorsList.size()>0))
         {
-             return Page.UploadAttachments;
+            this.app.Debtors_Received__c = true;
+            this.app.Stage__c='Debtors';
+            update app;
+            return Page.Creditor;
         }
         return null;
     }
-    
-    //credContact.RecordTypeId= [Select Id,SobjectType,Name From RecordType where Name ='Creditor' and SobjectType ='Contact' limit 1].Id;
-    
 }

@@ -1,0 +1,8 @@
+<!--
+ - Created by ansja02 on 10/28/16.
+ -->
+<aura:event type="APPLICATION" description="Event_Record_Action_Chosen" access="global">
+    <aura:attribute name="action" type="s2cor.Sage_COR_Action_DTO"/>
+    <aura:attribute name="parentId" type="string"/>
+    <aura:attribute name="recordId" type="ID"/>
+</aura:event>

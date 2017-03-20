@@ -1,0 +1,87 @@
+<!--
+ - Created by ansja02 on 10/18/16.
+ -->
+
+<aura:component description="Tabs_Area_Reports" extends="s2cor:Base_Component">
+    <aura:attribute name="actionDTOs" type="object" default="[]"/>
+    <aura:attribute name="mobile" type="boolean" default="False"
+                    description="True if the UI is being run in Salesforce1."/>
+    <aura:attribute name="startTouchY" type="Integer" default="0"/>
+    <aura:attribute name="moveTouchY" type="Integer" default="0"/>
+    <aura:attribute name="transformPixels" type="Integer" default="0"/>
+
+    <div>
+        <aura:if isTrue="{!v.mobile == true}">
+            <div>
+                <div class="slds-has-divider--bottom slds-theme--shade mobile-header-style" >
+                    <div aura:id="header" class="slds-page-header--object-home slds-p-around--medium" role="banner">
+                        <lightning:layout multipleRows="false">
+                            <lightning:layoutItem flexibility="auto">
+                                <lightning:layoutItem >
+                                    <lightning:icon iconName="standard:report" size="medium" class="slds-float--left slds-m-right--small"/>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem >
+                                    <span class="slds-text-heading--medium slds-truncate">
+                                        {!$Label.s2cor.VF_Financials_Reports}
+                                    </span>
+                                </lightning:layoutItem>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </div>
+                </div>
+
+                <div class="sl-scrollable" role="presentation" ontouchstart="{!c.touchStart}"
+                    ontouchmove="{!c.touchMove}"
+                    ontouchend="{!c.touchEnd}">
+                    <div class="sl-uiscroller">
+                        <div aura:id="tableArea" class="sl-scroller-start sl-scroller">
+                            <div class="slds-grid slds-wrap slds-grid--pull-padded slds-theme--default slds-p-around--medium">
+                                <div class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3">
+                                    <s2cor:Form_Report_Settings_Financials />
+                                </div>
+                                <div class="slds-p-horizontal--small slds-p-vertical--small slds-size--1-of-1 slds-medium-size--2-of-3">
+                                    <ul class="slds-has-dividers--bottom-space">
+                                        <aura:iteration items="{!v.actionDTOs}" var="actionDTO">
+                                            <s2cor:Tabs_Area_Panel_Link mobile="{!v.mobile}" actionDTO="{!actionDTO}">
+                                                <s2cor:Tabs_Area_Panel mobile="{!v.mobile}" actionDTO="{!actionDTO}"></s2cor:Tabs_Area_Panel>
+                                            </s2cor:Tabs_Area_Panel_Link>
+                                        </aura:iteration>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aura:set attribute="else">
+
+                <div class="links_page">
+                    <lightning:layout multipleRows="true">
+                        <lightning:layoutItem size="12">
+                            <div class="slds-page-header__title links_page_title "> {!$Label.s2cor.VF_Financials_Reports}</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="2">
+
+                            <s2cor:Form_Report_Settings_Financials />
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="1">
+
+                        </lightning:layoutItem>
+                        <lightning:layoutItem >
+                            <div class="links_page_link_content">
+                                <aura:iteration items="{!v.actionDTOs}" var="actionDTO">
+                                    <div class="link_Element">
+                                        <s2cor:Output_Action_Link action="{!actionDTO}" class=""
+                                                              displayAs="Link"/>
+                                    </div>
+
+                                </aura:iteration>
+                            </div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </div>
+            </aura:set>
+        </aura:if>
+    </div>
+
+</aura:component>

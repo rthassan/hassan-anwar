@@ -1,0 +1,45 @@
+<!--
+ - Created by ansja02 on 12/6/16.
+ -->
+
+<aura:component description="Action_List_Rename" controller="s2cor.Sage_COR_Inner_List_View_Ctl" access="global"
+                extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="SObjectType" type="string" required="true" description="sObject for which the list view must be displayed"/>
+    <aura:attribute name="UID" type="string" description="Optional filter for the list view which can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
+    <aura:attribute name="listViewsTitles" type="List" />
+    <aura:attribute name="listViewTitle" type="String" />
+    <aura:attribute name="listViewUID" type="String"
+                    description="The UID of the list whose definition we will copy for this new list."/>
+    <aura:attribute name="privateList" type="String" default="true"
+                    description="True if the list if private for that user; otherwise it is public - visible to all users."/>
+    <aura:attribute name="name" type="String" description="The name of the new list"/>
+
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Save}"/>
+    <aura:set attribute="buttons" value="InputForm" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.name}" action="{!c.handleChangeName}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <aura:registerEvent name="Event_Header_Option_Selected" type="s2cor:Event_Header_Option_Selected"/>
+
+    <div >
+        <div>
+            <fieldset class="slds-form--compound">
+                <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                        <div aura:id="name-form" class="slds-form-element slds-size--1-of-1">
+                            <lightning:input name="name" aura:id="name" type="text" label="{!$Label.s2cor.List_Name}" maxlength="50"
+                                             value="{!v.name}" required="true" />
+                            <div aura:id="error-message" class="slds-form-element__help slds-hide">{!$Label.s2cor.Error_List_Already_Exists}</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/>
+    </div>
+
+</aura:component>

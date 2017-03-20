@@ -1,0 +1,71 @@
+<!--
+ - Created by daniel.nicholson on 19/10/2016.
+ -->
+
+<aura:component description="Action_Transaction_Email" implements="force:lightningQuickActionWithoutHeader" controller="s2cor.Sage_INV_Trade_Document_Helper" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="emailTemplates" type="String[]" />
+    <aura:attribute name="selectedEmailTemplate" type="String" />
+    <aura:attribute name="emailAttachmentIdLookup" type="Object" />
+    <aura:attribute name="emailAttachmentMetadata" type="Object" />
+    <aura:attribute name="selectedAttachmentIds" type="String[]" />
+    <aura:attribute name="cc_EmailsInput" type="String" />
+
+    <aura:attribute name="showCC" type="Boolean" default="true" />
+    <aura:attribute name="showAttachments" type="Boolean" default="true" />
+
+    <aura:set attribute="buttons" value="InputForm" />
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.VF_SendEmail}" />
+    <aura:set attribute="acceptEnabled" value="true" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <aura:registerEvent name="Event_Close_Modal" type="s2cor:Event_Close_Modal"/>
+
+    <div >
+        <aura:if isTrue="{!v.mobile == true}">
+            <div class="slds-grid slds-grid--align-center slds-grid--vertical-align-center">
+                <div class="slds-is-relative">
+                    <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+                </div>
+                <div class="slds-text-heading--small slds-p-left--large">{!$Label.s2cor.Cloning}</div>
+            </div>
+            <aura:set attribute="else" >
+                <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+            </aura:set>
+        </aura:if>
+
+        <div class="slds-hide" aura:id="error">
+            <aura:unescapedHtml value="{!v.message}" />
+        </div>
+
+        <aura:if isTrue="{!v.showCC == true}">
+            <lightning:input type="text" aura:id="cc_Emails" name="cc_Emails" label="{!$Label.s2cor.CC}" value="{!v.cc_EmailsInput}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+        </aura:if>
+
+        <lightning:select aura:id="selectEmailTemplate" name="selectEmailTemplate" label="{!$Label.s2cor.VF_Email_Template}" required="true" onchange="{!c.setEmailTemplate}">
+            <aura:iteration items="{!v.emailTemplates}" var="template">
+                <option value="{!template}">{!template}</option>
+            </aura:iteration>
+        </lightning:select>
+
+        <aura:if isTrue="{!v.showAttachments == true}">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="selectAttachment">{!$Label.s2cor.Select_Attachment}</label>
+                <div class="slds-form-element__control">
+                    <select aura:id="selectAttachmentsId" id="selectAttachment" class="slds-select" multiple="true" onchange="{!c.setAttachmentIds}">
+                        <aura:iteration items="{!v.emailAttachmentMetadata.link}"  var="attach">
+                            <option value="{!attach.id}">{!attach.name}</option>
+                        </aura:iteration>
+                    </select>
+                </div>
+            </div>
+        </aura:if>
+
+    </div>
+
+</aura:component>

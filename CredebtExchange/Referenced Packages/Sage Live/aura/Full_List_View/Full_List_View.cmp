@@ -1,0 +1,17 @@
+<aura:component description="Full_List_View" extends="s2cor:Base_Component" controller="s2cor.Sage_COR_Full_List_View_Ctl" access="global">
+
+    <aura:attribute name="SObjectType" type="string" required="true" description="sObject for which the list view must be displayed"/>
+    <aura:attribute name="UID" type="string" description="Optional filter for the list view which can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
+    <aura:attribute name="listView" type="string" description="The specific List View to display by default." />
+    <aura:attribute name="title" type="string" default=""/>
+    <aura:attribute name="recordId" type="string" description="Default to filter by record id"/>
+    <aura:attribute name="iconName" type="string" default="standard:record"/>
+    <aura:attribute name="type" type="string" default="plain"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="Event_Header_Option_Selected" event="s2cor:Event_Header_Option_Selected" action="{!c.handleHeaderOptionSelected}"/>
+
+    <s2cor:List_View SObjectType="{!v.SObjectType}" UID="{!v.UID}" listView="{!v.listView}" title="{!v.title}" recordId="{!v.recordId}" type="{!v.type}" iconName="{!v.iconName}"/>
+
+
+</aura:component>

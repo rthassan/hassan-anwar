@@ -6,9 +6,9 @@ function confirmCancel() {
     return false;
 }
 </script>
-<apex:sectionHeader title="Directors" subtitle="Step 7"/>
+<apex:sectionHeader title="Directors" subtitle="Step 6"/>
 <apex:form >
-    
+     <apex:messages style="color:red"/>
     <apex:pageBlock title="Directors" >
         <apex:variable value="{!1}" var="rowNum"/>   
   
@@ -38,7 +38,6 @@ function confirmCancel() {
         </apex:pageBlockSection>
         
         </apex:repeat>
-        
         
     </apex:pageBlock>
 </apex:form>

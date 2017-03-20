@@ -1,0 +1,23 @@
+<!--
+ - Created by ansja02 on 10/20/16.
+ -->
+
+<aura:component description="List_View_Titles" extends="s2cor:Base_Component">
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="label" type="String" />
+    <aura:attribute name="listDescriptions" type="object" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:registerEvent name="Event_Header_Option_Selected" type="s2cor:Event_Header_Option_Selected"/>
+    <aura:registerEvent name="Event_Header_View_Mode_Changed" type="s2cor:Event_Header_View_Mode_Changed"/>
+
+    <li class="slds-item" onclick="{!c.selectTitle}">
+        <div class="slds-media slds-media--center slds-has-flexi-truncate sl-list-item">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="utility:list" size="x-small"/>
+            </div>
+            <div class="slds-media__body slds-truncate sl-list-title">{!v.label}</div>
+        </div>
+    </li>
+</aura:component>

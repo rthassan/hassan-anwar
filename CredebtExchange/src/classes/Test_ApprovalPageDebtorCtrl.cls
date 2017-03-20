@@ -1,0 +1,21 @@
+@isTest
+public class Test_ApprovalPageDebtorCtrl {
+    @isTest static void TestApprovalPageDebt() {
+        //insert account
+        Account a = new Account(Name='test_acct');
+        insert a;
+        
+        Application_Debtor__c d = new Application_Debtor__c(Name = 'testappCreditor', Originator__c=a.Id, Last_Name__c = 'testln',
+                                                           Email__c = 'test@mailinator.com',Company_Number__c='99');
+        insert d;
+        
+        Application_Bank_Account__c b = new Application_Bank_Account__c(Bank_Name__c = 'ACC', Swift_Code__c = '894795', 
+                                                                        IBAN_Number__c = '83473', Application_Debtor__c = d.Id);
+        insert b; 
+        
+        ApprovalPageDebtorController ctrl = new ApprovalPageDebtorController();
+        ctrl.Approve();
+        ctrl.Reject();
+        ctrl.Cancel();
+    }
+}

@@ -1,0 +1,7 @@
+<!--
+ - Created by daniel.nicholson on 16/08/2016.
+ -->
+
+<aura:event type="APPLICATION" description="Event_Close_Modal">
+    <aura:attribute name="refresh" type="Boolean" access="global" description="Specifies whether or not to refresh the list."/>
+</aura:event>

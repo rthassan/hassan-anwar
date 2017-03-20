@@ -1,0 +1,39 @@
+<!--
+ - Created by ansja02 on 10/28/16.
+ -->
+
+<aura:component description="Action_Choose_Record_Action_Inner" extends="s2cor:Base_Component">
+    <aura:attribute name="action" type="s2cor.Sage_COR_Action_DTO"/>
+    <aura:attribute name="parentId" type="string"/>
+    <aura:attribute name="recordId" type="ID"/>
+
+    <aura:registerEvent name="Event_Close_Model_On_Cancel" type="s2cor:Event_Close_Model_On_Cancel"/>
+    <aura:registerEvent name="Event_Record_Action_Chosen" type="s2cor:Event_Record_Action_Chosen"/>
+
+    <li class="slds-item slds-p-around--small" onclick="{!c.select}">
+        <div class="slds-grid">
+            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <aura:if isTrue="{!and(v.action.iconName != null, v.action.iconName != '')}">
+                        <aura:if isTrue="{!v.action.iconName[0] == 'a'}">
+                            <lightning:icon class="sl-record-action-icon" iconName="{!v.action.iconName}"
+                                            size="xx-small"
+                                            alternativeText="{!v.action.title}"/>
+                            <aura:set attribute="else">
+                                <lightning:icon class="sl-record-action-icon sl-record-icon" iconName="{!v.action.iconName}"
+                                                size="small"
+                                                alternativeText="{!v.action.title}"/>
+                            </aura:set>
+                        </aura:if>
+                        <aura:set attribute="else">
+                            <div class="sl-record-action-icon"/>
+                        </aura:set>
+                    </aura:if>
+                </div>
+                <div class="slds-media__body slds-truncate">
+                    <div class="sl-record-action-title slds-truncate">{!v.action.title}</div>
+                </div>
+            </div>
+        </div>
+    </li>
+</aura:component>

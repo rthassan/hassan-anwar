@@ -1,0 +1,7 @@
+<!--
+ - Created by dancolq on 18/08/2016.
+ -->
+
+
+<aura:event type="COMPONENT" description="Event_Edit_Toggle" access="global">
+</aura:event>

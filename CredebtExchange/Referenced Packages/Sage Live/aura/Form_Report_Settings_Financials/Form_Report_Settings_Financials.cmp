@@ -1,0 +1,27 @@
+<!--
+ - Created by daniel.colquhoun on 13/10/2016.
+ -->
+
+<aura:component description="Form_Report_Settings_Financials"  extends="s2cor:Base_Component" controller="s2cor.Sage_COR_Submenu_Controller">
+    <aura:attribute name="companies" type="object" />
+    <aura:attribute name="selectedCompany" type="Object" />
+    <aura:attribute name="financialYear" type="Object" default="2016"/>
+    <aura:attribute name="financialPeriod" type="Object" default="2016"/>
+    <aura:attribute name="retroDate" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <select id="selectCompanies" class="slds-select" onchange="{!c.changeCompany}">
+        <aura:iteration items="{!v.companies}" var="company" >
+            <option id="{!company.Id}"  selected="{!if(v.selectedCompany.Name==company.Name,'selected','')}" >{!company.Name}</option>
+        </aura:iteration>
+    </select>
+
+
+    <lightning:input name="financialYear" value="{!v.financialYear}" label="{!$Label.s2cor.VF_Financials_Reports_FY}" type="number" messageWhenBadInput="You must enter a financial year"  />
+    <lightning:input name="financialYearPeriod" value="{!v.financialPeriod}" label="{!$Label.s2cor.VF_Financials_Reports_Period}" type="number" messageWhenBadInput="You must enter a financial year"  />
+    <lightning:input name="financialRetrostpectiveDate" value="{!v.retroDate}" label="{!$Label.s2cor.VF_Financials_Reports_Retrospective_Date}" type="Date" messageWhenBadInput="You must enter a financial year"  />
+    <lightning:button variant="brand" label="{!$Label.s2cor.VF_Financials_Reports_Update}" onclick="{! c.updateSettings }"  class="top-padding" />
+
+
+</aura:component>

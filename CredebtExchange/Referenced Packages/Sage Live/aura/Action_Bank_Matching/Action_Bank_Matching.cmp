@@ -1,0 +1,29 @@
+<!--
+ - Created by Josh.Hunter on 20/12/2016.
+ -->
+<aura:component description="Action_Bank_Matching" implements="force:lightningQuickActionWithoutHeader" controller="s2cor.Sage_ACC_Feed_Helper" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordId" type="ID"/>
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="feeds" type="object[]"/>
+    <aura:attribute name="selectedFeed" type="ID" default=""/>
+    <aura:attribute name="showFeedSelector" type="boolean" default="false"/>
+
+    <aura:set attribute="buttons" value="InputForm"/>
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Bank_Matching_Accept}"/>
+    <aura:set attribute="acceptEnabled" value="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+
+    <div class="{!v.contentClass}">
+        <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+        <aura:if isTrue="{!and(v.feeds != undefined, v.showFeedSelector == true)}">
+            <lightning:select name="feedSelector" label="{!$Label.s2cor.Select_a_Feed}" aura:id="feedSelector" value="{!v.selectedFeed}" onchange="{!c.changeSelectedFeed}">
+                <option value="">{!$Label.s2cor.Select_an_option}</option>
+                <aura:iteration items="{!v.feeds}" var="feed">
+                    <option value="{!feed.id}" selected="{!if(v.selectedFeed==feed.id,'selected','')}">{!feed.name}</option>
+                </aura:iteration>
+            </lightning:select>
+        </aura:if>
+    </div>
+</aura:component>

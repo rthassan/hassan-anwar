@@ -1,0 +1,9 @@
+<!--
+ - Created by daniel.nicholson on 01/12/2016.
+ -->
+
+<aura:event type="APPLICATION" description="Event_Monitor_Batch">
+    <aura:attribute name="batchId" type="ID" />
+    <aura:attribute name="description" type="String" />
+    <aura:attribute name="userId" type="ID" />
+</aura:event>

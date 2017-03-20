@@ -1,0 +1,10 @@
+<!--
+ - Created by dancolq on 13/08/2016.
+ -->
+
+<design:component label="Card List View">
+    <design:attribute name="ListView" label="ListView" description="Optional, specifc list view to display by default." />
+    <design:attribute name="SObjectType" label="SObjectType" description="sObject for which the list view must be displayed." />
+    <design:attribute name="UID" label="UID" description="UID to filter the data to display." />
+    <design:attribute name="title" label="Title" description="If not defined, the list view name will be used." />
+</design:component>

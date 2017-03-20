@@ -38,7 +38,8 @@ public class SelectOrganizationController {
         update AppCreditors;
         update AppDebtors;
         
-        app.Details_Confirmed__c=true;
+        app.Credebtors__c=true;
+        app.Stage__c='Credebtors';
         update app;
        
         return Page.Verified;

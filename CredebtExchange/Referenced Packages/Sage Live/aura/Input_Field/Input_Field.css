@@ -1,0 +1,45 @@
+/**
+ * Created by dancolq on 18/08/2016.
+ */
+.THIS .regular-text-wrapper{
+
+    color: rgb(22, 50, 92);
+    width: 100%;
+    display: inline-block;
+    padding: 0 0 0 .75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 8));
+}
+
+.THIS .regular-input-wrapper{
+    margin: 0 0rem;
+}
+
+.THIS .label-offset input{
+    margin-left:-1rem;
+}
+
+.THIS .placeholder {
+       width:100%;
+       border-radius: 15rem!important;
+       display: block!important;
+       opacity:0.75;
+}
+
+.THIS .placeholder--label {
+    width:15%;
+    margin-bottom: .9rem!important;
+    background-color: rgb(238, 241, 246)!important;
+    height: .3rem!important;
+    border-radius: 12rem!important;
+    display: block!important;
+}
+
+.THIS .placeholder--text{
+    width:100%;
+    margin-bottom: .9rem!important;
+    background-color: rgb(224, 229, 238)!important;
+    height: .3rem!important;
+    border-radius: 18rem!important;
+    display: block!important;
+}

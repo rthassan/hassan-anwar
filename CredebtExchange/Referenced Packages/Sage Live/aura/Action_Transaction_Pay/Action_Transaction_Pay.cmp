@@ -1,0 +1,117 @@
+<!-- Copyright (c) 2016. Sage Global Services Limited. All rights reserved. -->
+<!--
+ - Created by andrew.fenner on 07/10/2016.
+ -->
+
+<aura:component description="Pay_Transaction" controller="s2cor.Sage_INV_Trade_Document_Helper" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordId" type="ID"/>
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="paymentDTO" type="s2cor.Sage_INV_Trade_Document_Payment_DTO" />
+    <aura:attribute name="dtoHeader" type="s2cor.Sage_ACC_Required_Tags_DTO"/>
+    <aura:attribute name="headerTags" type="List" />
+    <aura:attribute name="allHeaderRequiredTagsSelected" type="Boolean" />
+    <aura:attribute name="dtoItem" type="s2cor.Sage_ACC_Required_Tags_DTO"/>
+    <aura:attribute name="itemTags" type="List" />
+    <aura:attribute name="allItemRequiredTagsSelected" type="Boolean" />
+    <aura:attribute name="tagsHitCount" type="Integer" default="0" />
+
+    <aura:attribute access="private" name="paymentDate" type="Date" />
+    <aura:attribute access="private" name="payJournalType" type="String" />
+    <aura:attribute access="private" name="payJournalTypeId" type="Id" />
+    <aura:attribute access="private" name="payJournalTypeItemDimension" type="String" default=" " />
+    <aura:attribute access="private" name="payJournalTypeItemDimensionTag" type="String" />
+    <aura:attribute access="private" name="payJournalTypeItemDimensionTagId" type="Id" />
+    <aura:attribute access="private" name="journalTypeOptions" type="Map" />
+    <aura:attribute access="private" name="journalTypeItemDimensionOptions" type="Map" />
+    <aura:attribute access="private" name="innerPayments" type="List" />
+    <aura:attribute access="private" name="existingTags" type="s2cor__Sage_ACC_Tag__c[]" />
+    <aura:attribute access="private" name="errors" type="String[]" />
+    <aura:attribute access="private" name="documentLabel" type="String" />
+    <aura:attribute access="private" name="amountLabel" type="String" />
+    <aura:attribute access="private" name="tagsBucket" type="Map" />
+    <aura:attribute access="private" name="paymentChangedTime" type="String" />
+
+    <aura:set attribute="buttons" value="InputForm" />
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Pay}"/>
+    <aura:set attribute="acceptEnabled" value="false"/>
+
+    <aura:handler name="change" value="{!v.allHeaderRequiredTagsSelected}" action="{!c.togglePayButton}" />
+    <aura:handler name="change" value="{!v.allItemRequiredTagsSelected}" action="{!c.togglePayButton}" />
+    <aura:handler name="change" value="{!v.payJournalTypeId}" action="{!c.togglePayButton}" />
+    <aura:handler name="change" value="{!v.payJournalTypeItemDimensionTagId}" action="{!c.togglePayButton}" />
+    <aura:handler name="change" value="{!v.paymentChangedTime}" action="{!c.togglePayButton}" />
+    <aura:handler name="change" value="{!v.headerTags}" action="{!c.tagsChanged}" />
+    <aura:handler name="change" value="{!v.itemTags}" action="{!c.tagsChanged}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <div>
+
+        <aura:if isTrue="{!v.errors.length > 0}">
+            <ui:message title="{!$Label.s2cor.Warning}" severity="warning" closable="false">
+                <aura:iteration items="{!v.errors}" var="error">
+                    <lightning:layoutItem flexibility="auto" size="12">
+                        <ui:outputText value="{!error}" />
+                    </lightning:layoutItem>
+                </aura:iteration>
+            </ui:message>
+        </aura:if>
+
+        <div aura:id="divPayments">
+
+            <lightning:input name="paymentDate" aura:id="paymentDate" type="date" label="{!$Label.s2cor.Payment_Date}" value="{!v.paymentDate}" required="true" />
+
+            <lightning:select aura:id="journalTypes" name="journalTypes" label="{!$Label.s2cor.Payment_Journal_Type}" value="{!v.payJournalTypeId}" onchange="{!c.changeJournalType}" required="true">
+                <aura:iteration items="{!v.journalTypeOptions}" var="option">
+                    <option value="{!option.value}" selected="{!if(v.payJournalTypeId==option.value,'selected','')}">{!option.text}</option>
+                </aura:iteration>
+            </lightning:select>
+
+            <lightning:select aura:id="journalTypeItemSelect" name="journalTypeItemSelect" label="{!v.payJournalTypeItemDimension}" value="{!v.payJournalTypeItemDimensionTagId}" onchange="{!c.changeItemTags}" required="true">
+                <aura:iteration items="{!v.journalTypeItemDimensionOptions}" var="option">
+                    <option value="{!option.value}" selected="{!if(v.payJournalTypeItemDimensionTagId==option.value,'selected','')}">{!option.text}</option>
+                </aura:iteration>
+            </lightning:select>
+
+            <div aura:id="cmpHeaderTags">
+                <s2cor:Required_Tags parameterDTO="{!v.dtoHeader}" tagsToReturn="{!v.headerTags}" allSelected="{!v.allHeaderRequiredTagsSelected}" tagsBucket="{!v.tagsBucket}" tagsHitCount="{!v.tagsHitCount}" />
+            </div>
+
+            <div aura:id="cmpItemTags">
+                <s2cor:Required_Tags parameterDTO="{!v.dtoItem}" tagsToReturn="{!v.itemTags}" allSelected="{!v.allItemRequiredTagsSelected}" tagsBucket="{!v.tagsBucket}" tagsHitCount="{!v.tagsHitCount}" />
+            </div>
+
+            <div aura:id="divInnerPayments">
+
+                <lightning:layout multipleRows="true" class="slds-m-top--large">
+
+                    <lightning:layoutItem size="12">
+                        <lightning:layout class="slds-text-title--caps">
+                            <lightning:layoutItem size="6">
+                                {!v.documentLabel}
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="6">
+                                {!v.amountLabel}
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="12">
+                        <aura:iteration items="{!v.innerPayments}" var="innerPayment">
+                            <s2cor:Action_Transaction_Pay_Inner innerPayment="{!innerPayment}" paymentChangedTime="{!v.paymentChangedTime}" />
+                        </aura:iteration>
+                    </lightning:layoutItem>
+
+                </lightning:layout>
+
+            </div>
+
+        </div>
+
+        <lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/>
+
+    </div>
+
+</aura:component>

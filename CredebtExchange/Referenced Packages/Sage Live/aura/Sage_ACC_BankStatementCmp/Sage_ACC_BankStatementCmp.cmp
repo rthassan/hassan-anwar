@@ -1,0 +1,52 @@
+<aura:component controller="s2cor.Sage_ACC_Bank_Statement_Controller" >
+	<ltng:require styles="/resource/s2cor__SageCarbon112/assets/stylesheets/ui.css"
+                scripts="/resource/s2cor__JQuery1110,/resource/s2cor__SageCarbon112/assets/javascripts/ui.js"
+                afterScriptsLoaded="{!c.doInit}" />
+  <aura:attribute name="sageCarbon" type="String" default="s2cor__SageCarbon112" />
+
+	<aura:attribute name="feedBrokers" type="String[]" />
+	<aura:attribute name="feedNames" type="String[]" />
+	<aura:attribute name="accountTag" type="String[]" />
+	<aura:attribute name="bankStatement" type="s2cor.Sage_ACC_Bank_Statement" />
+
+	<aura:attribute name="feedType" type="String" />
+	<aura:attribute name="feedName" type="String" />
+
+	<aura:attribute name="bankFeedIdParam" type="Id" />
+	<aura:attribute name="bankFeedNameParam" type="String" />
+	<aura:attribute name="feedBrokerIdParam" type="Id" />
+	<aura:attribute name="feedBrokerNameParam" type="String" />
+
+	<aura:registerEvent name="FeedTypeChanged" type="s2cor:Sage_ACC_BankStmnt_FeedTypeChangedEvent" />
+	<aura:handler event="s2cor:Sage_ACC_BankStmnt_FeedTypeChangedEvent" action="{!c.onFeedTypeChanged}"/>
+
+	<aura:registerEvent name="FeedNameChanged" type="s2cor:Sage_ACC_BankStmnt_FeedNameChangedEvent" />
+	<aura:handler event="s2cor:Sage_ACC_BankStmnt_FeedNameChangedEvent" action="{!c.onFeedNameChanged}"/>
+
+	<div style="height:100%;">
+
+    <div style="height:70%;">
+    	<div class="sagelive-slds-grid sagelive-slds-wrap" style="height:100%">
+				<div style="height:100%;" class="sagelive-slds-col sagelive-slds-size--5-of-8 sagelive-slds-p-bottom--x-small" >
+					<div style="overflow: auto;">
+			      <div aura:id="bankFeedType" style="float: left; width: 30%; margin-right: 10px;"></div>
+			      <div aura:id="bankFeedName" style="float: left; width: 30%; margin-right: 10px;"></div>
+			      <div aura:id="bankAccountTag" style="float: left; width: 30%"></div>
+			    </div>
+					<div aura:id="statement-details" class="sagelive-slds-hide">
+						<hr style="margin: 5px 0;"/>
+				    <div aura:id="imported-bank-balance" style="float: left; width: 30%; margin-right: 10px;"></div>
+				    <div aura:id="sage-live-calculated-balance" style="float: left; width: 30%; margin-right: 10px;"></div>
+				    <div aura:id="difference" ></div>
+				    <hr style="margin: 5px 0;"/>
+				    <div aura:id="bank-statement-detail"></div>
+				    <div aura:id="adjusted-cash-balance"></div>
+					</div>
+					<div aura:id="statement-details-no-tag" class="sagelive-slds-hide" style="margin-top: 10px;" role="alert">
+						  {!$Label.s2cor.VF_Bank_Statement_No_Tag_Error}
+					</div>
+				</div>
+    	</div>
+		</div>
+  </div>
+</aura:component>

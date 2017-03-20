@@ -1,0 +1,10 @@
+<!--
+ - Created by marc.albaladejo on 13/08/2016.
+ -->
+
+<aura:event type="APPLICATION" description="Event_Display_Modal" access="global">
+    <aura:attribute name="component" type="String"/>
+    <aura:attribute name="attributes" type="Object"/>
+    <aura:attribute name="parentId" type="string"/>
+    <aura:attribute name="title" type="string"/>
+</aura:event>

@@ -1,0 +1,7 @@
+<!--
+ - Created by dancolq on 15/08/2016.
+ -->
+
+<design:component label="Embedded Submenu">
+    <design:attribute name="areaId" label="Area Id" description="The menu area."/>
+</design:component>

@@ -1,0 +1,77 @@
+<!--
+- Created by ansja02 on 12/6/16.
+-->
+
+<aura:component description="Action_List_Select_Fields" controller="s2cor.Sage_COR_Inner_List_View_Ctl" access="global"
+                extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="SObjectType" type="string" required="true"
+                    description="sObject for which the list view must be displayed"/>
+    <aura:attribute name="UID" type="string"
+                    description="Optional filter for the list view which can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
+    <aura:attribute name="listViewsTitles" type="List"/>
+    <aura:attribute name="listViewFields" type="List" />
+    <aura:attribute name="listViewTitle" type="String"/>
+    <aura:attribute name="listViewUID" type="String"
+                    description="The UID of the list whose definition we will copy for this new list."/>
+    <aura:attribute name="privateList" type="String" default="true"
+                    description="True if the list if private for that user; otherwise it is public - visible to all users."/>
+    <aura:attribute name="availableFields" type="List" />
+    <aura:attribute name="selectedFields" type="List" />
+    <aura:attribute name="loaded" type="boolean" default="false"/>
+    <aura:attribute name="loading" type="boolean" default="true"/>
+    <aura:attribute name="objectDescribe" type="s2cor.Sage_COR_Object_Describe_DTO" description="Optional pre populated metadata info" />
+
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Save}"/>
+    <aura:set attribute="buttons" value="InputForm"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <aura:registerEvent name="Event_List_View_Fields_Changed" type="s2cor:Event_List_View_Fields_Changed"/>
+
+    <div>
+
+        <aura:if isTrue="{!v.loaded == true}">
+            <div class="sl-dueling-lists">
+                <div class="sl-list-container">
+                    <ui:inputSelect aura:id="availableFields" class="duelingSelect" multiple="true"
+                                    label="{!$Label.s2cor.List_View_Available_Fields}">
+                        <aura:iteration items="{!v.availableFields}" var="field">
+                            <ui:inputSelectOption text="{!field.name}" label="{!field.label}"/>
+                        </aura:iteration>
+                    </ui:inputSelect>
+                </div>
+                <div class="sl-actions-container">
+                    <lightning:buttonIcon class="icon" iconName="utility:chevronright" variant="bare"
+                                          alternativeText="{!$Label.s2cor.Add}" size="large"
+                                          onclick="{! c.handleAdd }"/>
+                    <div class="sl-actionSeparator"/>
+                    <lightning:buttonIcon class="icon" iconName="utility:chevronleft" variant="bare"
+                                          alternativeText="{!$Label.s2cor.Delete}" size="large"
+                                          onclick="{! c.handleRemove }"/>
+                </div>
+                <div class="sl-list-container">
+                    <ui:inputSelect aura:id="selectedFields" class="duelingSelect" multiple="true"
+                                    label="{!$Label.s2cor.List_View_Visible_Fields}">
+                        <aura:iteration items="{!v.selectedFields}" var="field">
+                            <ui:inputSelectOption text="{!field.name}" label="{!field.label}"/>
+                        </aura:iteration>
+                    </ui:inputSelect>
+                </div>
+                <div class="sl-actions-container">
+                    <lightning:buttonIcon class="icon" iconName="utility:chevronup" variant="bare"
+                                          alternativeText="{!$Label.s2cor.Move_Up}" size="large"
+                                          onclick="{! c.handleUp }"/>
+                    <div class="sl-actionSeparator"/>
+                    <lightning:buttonIcon class="icon" iconName="utility:chevrondown" variant="bare"
+                                          alternativeText="{!$Label.s2cor.Move_Down}" size="large"
+                                          onclick="{! c.handleDown }"/>
+                </div>
+            </div>
+        </aura:if>
+
+        <lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/>
+    </div>
+
+</aura:component>

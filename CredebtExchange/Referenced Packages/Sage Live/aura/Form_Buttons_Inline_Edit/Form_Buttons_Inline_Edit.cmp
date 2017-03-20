@@ -1,0 +1,51 @@
+<!--
+ - Created by daniel.colquhoun on 02/12/2016.
+ -->
+
+<aura:component description="Form_Buttons_Inline_Edit">
+    <aura:attribute name="scope" type="object" />
+    <aura:attribute name="rendered" type="boolean" />
+    <aura:attribute name="onCancel" type="Aura.Action"/>
+    <aura:attribute name="onSaveInlineEdit" type="Aura.Action"/>
+    <!--<aura:handler name="change" value="{!v.scope}" action="{!c.dataChange}"/>-->
+
+    <div>
+
+        <aura:if isTrue="{!v.rendered}">
+            <div>
+                <div  class="forceRecordEditActions" data-aura-class="forceRecordEditActions">
+                    <div class="actionsContainer" >
+                        <div class="pageError hideEl" >
+                            <div class="pageErrorIcon" >
+                                <button class="slds-button slds-button--neutral pageErrorIconButton uiButton" type="button" title="Error"  data-aura-class="uiButton">
+                                    <span class="icon-fallback-text forceIcon" aria-hidden="true" data-icon="" data-key="warning"  data-aura-class="forceIcon">
+                                        <span class="icon icon-key" ></span>
+                                    </span>
+                                    <span class="newAssistiveText forceIcon" data-aura-class="forceIcon">
+                                        Error
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="slds-button slds-button--neutral uiButton--neutral uiButton forceActionButton" type="button" title="Cancel"  data-aura-class="uiButton forceActionButton" onclick="{!v.onCancel}">
+                            <!--render facet: 52:11487;a-->
+                                    <span class=" label bBody truncate" dir="ltr" >
+                                        Cancel
+                                    </span>
+                            <!--render facet: 49:11487;a-->
+                        </button>
+                        <button class="slds-button slds-button--neutral uiButton--brand uiButton forceActionButton" type="button" title="Save"  data-aura-class="uiButton forceActionButton" onclick="{!v.onSaveInlineEdit}">
+                            <!--render facet: 65:11487;a-->
+                                    <span class=" label bBody truncate" dir="ltr" >
+                                        Save
+                                    </span>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+
+    </div>
+
+</aura:component>

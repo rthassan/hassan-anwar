@@ -1,57 +1,117 @@
 <apex:component controller="VisualforceEmailController" access="global">
     
     <apex:attribute name="ContactId" type="Id" Description="Id of the Contact" assignTo="{!CId}" />
+    <style>
+    	.bank_list{
+        	padding-left:100px;
+        }
+        .bank_list li{
+        	list-style:none;
+        }
+        .bank_list li span{
+        	width:200px;
+        }
+    </style>
+    <div style="width:100%;">
+        <p align="center">  
+            <img src="{!LogoId}" alt="Logo" style="width:200px;height:87px;"/> 
+        </p>
+    </div>  
+    <div style="float:left;">
+        From:
+        {!Originator.Name}<br/> 
+        {!Originator.BillingCity}<br/> 
+        {!Originator.BillingCountry}
+    </div>  
     
+    <div style="float:right;">
+        To:
+        {!Debtor.FirstName} {!Debtor.LastName}<br/> 
+        {!DebtorOrganisation.Name}<br/> 
+        {!Debtor.MailingCity}<br/> 
+        {!Debtor.MailingCountry}
+    </div>  
     
-   <center> <apex:image url="{!LogoId}"  style="display:block;text-align: center;" alt="Logo" title="Logo" width="200" height="87" /> </center>
-    <p>Dear Sir,</p>
-    
-    <p>We hereby give you notice that pursuant to the Deed of Assignment dated [  ] 20 [ ] made
-        between the Originator and Credebt Exchange®, the Originator has assigned absolutely to
-        Credebt Exchange all of its rights, title, interest and benefit in all and any debts and invoices
-        now or in the future to be issued by the Originator and payable by or addressed to [you] (the
-        “Invoices”).</p>
-    
-    <p>
-        Unless Credebt Exchange® otherwise directs, you shall treat the Assignee as being entitled to
-        all of the Assignor’s rights, title, interest and benefit in the Invoices. All obligations you now
-        owe or may owe in the future to the Originator to make payments under the Invoices shall
-        henceforth be owed to Credebt Exchange and shall be payable to the following account of the
-        Assignee:
-    </p>
-    
-    
-    <form>
-       Name                : <apex:outputText label="Name                :"  value="{!BankAccount.name}" /><br/>
-       Sort Code           : <apex:outputText label="Sort Code           :" value="{!BankAccount.Sort_Code__c}" /><br/>
-       Bank Account Number : <apex:outputText label="Bank Account Number :" value="{!BankAccount.Bank_Account_Number__c}" /><br/>
-       IBAN                : <apex:outputText label="IBAN                :" value="{!BankAccount.IBAN_Number__c}" /><br/>
-       SWIFTBIC Address    : <apex:outputText label="SWIFTBIC Address    :" value="{!BankAccount.Swift_Code__c}" />   <br/>     
-    </form>
-     
-    
-    <p>  We approve that under no circumstances shall you:</p>
-    <p>  1. be liable to pay to Credebt Exchange® any greater amount; or      </p>
-    <p>  2. be subject to any greater obligation or liability to Credebt Exchange®, </p>
-    
-    <p>
-        than that to which it would have otherwise been liable, or subject to, had the Originator not
-assigned its rights, title, interest and benefit in the Invoices.
-    </p>
-    
-    <p>
-        This notice and the instructions contained herein are irrevocable. This notice is governed by
-Irish law.
-    </p>
-    
-    <a href="http://rtdev2-credebt-exchange.cs88.force.com/ApproveBankDetails?id={!CId}">Click on this Link to approve Changed Bank Details </a>
-    <p>Yours faithfully</p>
-    
-    <apex:image url="{!LogoId}"  style="display:block;" alt="Logo" title="Logo" width="200" height="87" />
-    <p>For and on behalf of</p> 
-    
-    
-    
-    
+    <br/> <br/><br/><br/>
+   
+    <div>
+        <p>
+            <b>
+                Re: Assignment of all invoices present and future issued or to be issued by the
+                Originator and addressed to {!DebtorOrganisation.Name}
+            </b>
+        </p>	
+        
+        <p>
+            Dear Sir,</p>
+        
+        <p>We hereby give you notice that pursuant to the Deed of Assignment dated &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+    <apex:param value="{!Today()}" /> 
+</apex:outputText> made
+            between the Originator and Credebt Exchange®, the Originator has assigned absolutely to
+            Credebt Exchange all of its rights, title, interest and benefit in all and any debts and invoices
+            now or in the future to be issued by the Originator and payable by or addressed to you (the
+            “Invoices”).</p>
+        
+        <p>
+            Unless Credebt Exchange® otherwise directs, you shall treat the Assignee as being entitled to
+            all of the Assignor’s rights, title, interest and benefit in the Invoices. All obligations you now
+            owe or may owe in the future to the Originator to make payments under the Invoices shall
+            henceforth be owed to Credebt Exchange and shall be payable to the following account of the
+            Assignee:
+        </p>
+        
+        
+        
+            <!--<form>
+            
+            Bank Name           : <apex:outputText label="Name                :" value="{!BankAccount.name}" /><br/>
+            Sort Code           : <apex:outputText label="Sort Code           :" value="{!BankAccount.Sort_Code__c}" /><br/>
+            Bank Account Number : <apex:outputText label="Bank Account Number :" value="{!BankAccount.Bank_Account_Number__c}" /><br/>
+            IBAN                : <apex:outputText label="IBAN                :" value="{!BankAccount.IBAN_Number__c}" /><br/>
+            SWIFTBIC Address    : <apex:outputText label="SWIFTBIC Address    :" value="{!BankAccount.Swift_Code__c}" />   <br/></form> -->
+        <div>
+            <ul class="bank_list">
+                <li><span >Barclays Bank Ireland Plc, Two Park Place, Hatch Street, Dublin, D02 NP94, Ireland</span></li>
+                <li><span >Sort Code</span>    &nbsp; &nbsp;   &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  : 99-02-12</li>
+                <li><span >Bank Account Number</span> &nbsp;        : 4451 3404</li>
+                <li><span >IBAN  </span>     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;: IE05 BARC 9902 1244 5134 04</li>
+                <li><span >SWIFTBIC Address</span> &nbsp; &nbsp; &nbsp;           : BARCIE2D</li>
+            </ul>
+        </div>
+            
+        <p>  We approve that under no circumstances shall you:<br/><br/>
+             &nbsp; &nbsp; 1. &nbsp; &nbsp;Be liable to pay to Credebt Exchange® any greater amount.      <br/>
+             &nbsp; &nbsp; 2. &nbsp; &nbsp;Be subject to any greater obligation or liability to Credebt Exchange®. <br/><br/>
+        
+            than that to which it would have otherwise been liable, or subject to, had the Originator not
+            assigned its rights, title, interest and benefit in the Invoices.
+        </p>
+        
+        <p>
+            This notice and the instructions contained herein are irrevocable. This notice is governed by
+            Irish law.
+        </p>
+        
+        
+        <div style="float:left">
+            Yours faithfully,<br/> 
+            <apex:image url="{!SignatureId}" alt="Logo" title="Logo" width="200" height="87" />
+            <p> ____________________<br/>
+                For and on behalf of<br/>
+                {!Originator.Name} <br/> 
+                Director
+            </p>
+        </div>
+        
+        <div style="float:right">
+            <br/>
+            <apex:image url="{!DirectorSignatureId}"  alt="Logo" title="Logo" width="200" height="87" /><br/>
+            <p> ____________________<br/>
+                For and on behalf of<br/>
+                Credebt Exchange®<br/>
+                Secretary General</p> 
+        </div>
+    </div>
     
 </apex:component>

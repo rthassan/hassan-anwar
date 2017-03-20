@@ -1,0 +1,105 @@
+<!--
+ - Created by daniel.colquhoun on 16/11/2016.
+ -->
+
+<aura:component controller="s2cor.Sage_COR_Form_Helper" description="Form_Lookup" extends="s2cor:Base_Component">
+
+    <aura:attribute name="objectName" type="string" />
+    <aura:attribute name="value" type="object" access="public"  />
+    <aura:attribute name="label" type="string" default=" " />
+    <aura:attribute name="sobjects" type="List" />
+
+    <aura:attribute name="loaded" type="boolean" default="false" />
+
+    <div class="slds-form-element slds-lookup " data-select="single">
+        <label class="slds-form-element__label" for="lookup-357" >{!v.label}</label>
+        <div class="slds-form-element__control">
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+
+                <input id="lookup-357" class="slds-lookup__search-input slds-input" type="search" value="{!v.value}" placeholder="{!'Search ' + v.label + 's'}" aria-owns="lookup-357" role="combobox" aria-activedescendent="" aria-expanded="true" aria-autocomplete="list" onfocus="{!c.onfocus}" onblur="{!c.onblur}" />
+                <div class="slds-float--right overlay-search"  >
+                    <lightning:icon iconName="utility:search"  size="x-small" alternativeText="Indicates approval" class="forceSearchInputDesktop searchIcon forceSearchInputDesktop clearIcon" />
+                </div>
+            </div>
+        </div>
+        <div class="slds-lookup__menu dropdown " id="lookup-357"  aura:id="searchListPanel" >
+            <div class="slds-lookup__item--label slds-text-body--small">{!'Recent ' + v.label + 's'}</div>
+            <aura:if isTrue="{!v.loaded==true}" >
+                <ul class="slds-lookup__list" role="listbox">
+                    <aura:iteration items="{!v.sobjects}" var="sobject">
+                        <li role="presentation">
+                            <span class="slds-lookup__item-action slds-media slds-media--center" id="lookup-option-359" role="option">
+
+                                <lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon--small slds-media__figure" />
+                              <div class="slds-media__body">
+                                <div class="slds-lookup__result-text">{!sobject.Name}</div>
+                                <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • Boston</span>-->
+                                  <!--<c:Input_Field edit="false" type="text" label="#hide#" value="{!sobject.Name}"   />-->
+                              </div>
+                            </span>
+                        </li>
+                    </aura:iteration>
+                    <li role="presentation">
+                        <span class="slds-lookup__item-action slds-lookup__item-action--label" id="lookup-option-406" role="option">
+                            <lightning:icon iconName="utility:add" size="x-small" alternativeText="Indicates approval" class="slds-icon slds-icon--x-small slds-icon-text-default" />
+                          <span class="slds-truncate" title="{! v.label}">New {!v.label }</span>
+                        </span>
+                    </li>
+                </ul>
+            </aura:if>
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-media slds-media&#45;&#45;center" id="lookup-option-360" role="option">-->
+                      <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<div class="slds-media__body">-->
+                        <!--<div class="slds-lookup__result-text">Acuity</div>-->
+                        <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • Sheboygan</span>-->
+                      <!--</div>-->
+                    <!--</span>-->
+                <!--</li>-->
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-media slds-media&#45;&#45;center" id="lookup-option-361" role="option">-->
+                      <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<div class="slds-media__body">-->
+                        <!--<div class="slds-lookup__result-text">SAS Insistute</div>-->
+                        <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • Cary</span>-->
+                      <!--</div>-->
+                    <!--</span>-->
+                <!--</li>-->
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-media slds-media&#45;&#45;center" id="lookup-option-362" role="option">-->
+                      <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<div class="slds-media__body">-->
+                        <!--<div class="slds-lookup__result-text">Genentech</div>-->
+                        <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • South San Francisco</span>-->
+                      <!--</div>-->
+                    <!--</span>-->
+                <!--</li>-->
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-media slds-media&#45;&#45;center" id="lookup-option-363" role="option">-->
+                      <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<div class="slds-media__body">-->
+                        <!--<div class="slds-lookup__result-text">Camden Property Trust</div>-->
+                        <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • Houston</span>-->
+                      <!--</div>-->
+                    <!--</span>-->
+                <!--</li>-->
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-media slds-media&#45;&#45;center" id="lookup-option-364" role="option">-->
+                     <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<div class="slds-media__body">-->
+                        <!--<div class="slds-lookup__result-text">Salesforce.com, Inc.</div>-->
+                        <!--<span class="slds-lookup__result-meta slds-text-body&#45;&#45;small">Account • San Francisco</span>-->
+                      <!--</div>-->
+                    <!--</span>-->
+                <!--</li>-->
+                <!--<li role="presentation">-->
+                    <!--<span class="slds-lookup__item-action slds-lookup__item-action&#45;&#45;label" id="lookup-option-365" role="option">-->
+                      <!--<lightning:icon iconName="standard:account" size="small" alternativeText="Indicates approval" class="slds-icon-standard-account slds-icon&#45;&#45;small slds-media__figure" />-->
+                      <!--<span class="slds-truncate" title="{ props.text || &#x27;New Account&#x27; }">New Account</span>-->
+                    <!--</span>-->
+                <!--</li>-->
+
+        </div>
+    </div>
+
+</aura:component>

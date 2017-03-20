@@ -1,0 +1,95 @@
+<!--
+ - Created by dancolq on 17/08/2016.
+ -->
+
+<aura:component description="Input_Field">
+
+
+    <aura:registerEvent name="Event_Edit_Toggle" type="s2cor:Event_Edit_Toggle" />
+    <aura:attribute name="name" type="string" default="Input_Field"/>
+    <aura:attribute name="edit" type="boolean" default="false"/>
+    <aura:attribute name="editable" type="boolean" default="true"/>
+    <aura:attribute name="type" type="string" default="text"/>
+    <aura:attribute name="label" type="string" />
+    <aura:attribute name="value" type="object" access="public" />
+    <aura:attribute name="field" type="s2cor.Sage_COR_Field_DTO" access="public" />
+    <aura:attribute name="loaded" type="boolean" default="true"/>
+    <aura:attribute name="doneRendering" type="boolean" default="false" />
+
+
+    <aura:handler name="change" value="{!v.value}" action="{!c.dirtyfield}"/>
+    <aura:handler name="change" value="{!v.loaded}" action="{!c.doInit}"/>
+
+    <div>   
+        <aura:if isTrue="{!!v.loaded}">
+            <div class="placeholder">
+                <div  class="placeholder--label" ></div>
+                <div  class="placeholder--text" ></div>
+            </div>
+            <aura:set attribute="else" >
+                <aura:if isTrue="{!!!v.edit}">
+                    <div class="slds-form-element slds-has-divider--bottom">
+                        <label class="slds-form-element__label">{!v.label}</label>
+                        <div class="regular-text-wrapper slds-text-body--regular" ondblclick="{!c.raiseToggleEditEvent}">
+                            <aura:if isTrue="{!v.field.action == null}">
+                                <div class="" ondblclick="{!c.raiseToggleEditEvent}"><s2cor:Output_Field type="{!v.type}"  value="{!v.value}"  prefix="{!v.field.prefix != null ? v.field.prefix : ''}"/></div>
+                                <aura:set attribute="else">
+                                    <s2cor:Output_Action_Link action="{!v.field.action}" >
+                                        <span class="slds-truncate">{!v.field.value}</span>
+                                    </s2cor:Output_Action_Link>
+                                </aura:set>
+                            </aura:if>
+                            <!--<div class="" ondblclick="{!c.raiseToggleEditEvent}"><c:Output type="{!v.type}"  value="{!v.value}"/></div>-->
+                        </div>
+                    </div>
+
+                    <aura:set attribute="else">
+                        <div class="input-offset">
+                            <aura:if isTrue="{!v.type == 'currency'}">
+                                <lightning:input name="{!v.name}" label="{!v.label}" type="number" value="{!v.value}"  formatter="currency"  disabled="{!!v.editable}"/>
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{!v.type == 'date'}">
+                                        <lightning:input name="{!v.name}" label="{!v.label}" value="{!v.value}" disabled="{!!v.editable}"/>
+                                        <aura:set attribute="else">
+
+                                            <aura:if isTrue="{!v.type == 'text'}">
+                                                <lightning:input name="{!v.name}" label="{!v.label}" value="{!v.value}" disabled="{!!v.editable}"/>
+                                                <aura:set attribute="else">
+
+                                                    <aura:if isTrue="{!v.type == 'boolean'}">
+                                                        <lightning:input name="{!v.name}" label="{!v.label}" type="checkbox" value="{!v.value}"  disabled="{!!v.editable}"/>
+                                                        <aura:set attribute="else">
+
+                                                            <aura:if isTrue="{!v.type == 'datetime'}">
+                                                                <lightning:input name="{!v.name}" label="{!v.label}" value="{!v.value}" disabled="{!!v.editable}"/>
+                                                                <aura:set attribute="else">
+
+                                                                    <aura:if isTrue="{!v.type == 'number'}">
+                                                                        <lightning:input name="{!v.name}" label="{!v.label}" type="number" value="{!v.value}" disabled="{!!v.editable}"/>
+                                                                        <aura:set attribute="else">
+
+                                                                            <aura:if isTrue="{!v.type == 'percentage'}">
+                                                                                <lightning:input name="{!v.name}" label="{!v.label}" type="number" value="{!v.value}" disabled="{!!v.editable}"/>
+                                                                            </aura:if>
+
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </aura:set>
+                                                            </aura:if>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                </aura:set>
+                            </aura:if>
+                        </div>
+
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
+    </div>
+
+</aura:component>

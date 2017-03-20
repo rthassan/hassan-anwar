@@ -1,0 +1,11 @@
+<!--
+ - Created by dancolq on 12/08/2016.
+ -->
+
+<aura:component description="Context_Area_Id"  controller="s2cor.Sage_COR_Submenu_Controller"  extends="s2cor:Base_Component" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="Id" type="string" access="global" />
+    <aura:registerEvent name="Event_Context_Area_Change" type="s2cor:Event_Context_Area_Change" />
+    <aura:handler event="s2cor:Event_Context_Area_Ping" action="{!c.areaIdPing}" description="Handles changing Area context."/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+</aura:component>

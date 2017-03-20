@@ -1,0 +1,24 @@
+<!--
+ - Created by marc.albaladejo on 13/08/2016.
+ -->
+
+<aura:component description="Modal">
+
+    <aura:attribute name="modalComponent" type="string"/>
+    <aura:attribute name="modalAttributes" type="object"/>
+    <aura:attribute name="title" type="string"/>
+    <aura:attribute name="parentId" type="string" />
+    <aura:attribute name="innerListViewId" type="string"/>
+
+    <!--EVENT LISTENER -->
+    <aura:handler event="s2cor:Event_Display_Modal" action="{!c.openModal}" />
+    <aura:handler event="s2cor:Event_Close_Modal" action="{!c.closeModal}" />
+    <aura:handler event="s2cor:Event_Close_Model_On_Cancel" action="{!c.closeModalOnCancel}" />
+
+    <div role="dialog" aria-hidden="true" aria-labelledby="header43" aura:id="modaldialog">
+            {!v.body}
+    </div>
+
+    <div class="slds-backdrop" aura:id="backdrop"></div>
+
+</aura:component>

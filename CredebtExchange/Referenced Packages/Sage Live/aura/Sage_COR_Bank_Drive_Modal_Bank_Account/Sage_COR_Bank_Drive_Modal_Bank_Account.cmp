@@ -1,0 +1,86 @@
+<aura:component extends="s2cor:Sage_COR_Bank_Drive_Modal_Base" controller="s2cor.Sage_COR_Bank_Drive_Enrollment_Ctrl">
+    
+    <aura:set attribute="title" value="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Enrollment}" />
+    <aura:set attribute="closeModalAction" value="{!c.handleFormClear}" />
+    <aura:method name="init" action="{!c.handleFormLoad}" />
+    <aura:attribute name="show_content" type="boolean" default="false" />
+    
+    <aura:attribute name="attachment_id" type="string" default="" />
+    
+    <div class="slds-modal__content slds-p-around--medium">
+        
+        <div class="slds-p-top--medium">
+            
+            <s2cor:Sage_COR_Bank_Drive_Spinner aura:id="spinner" />
+            
+	        <fieldset class="{!v.show_content == false ? 'slds-form--compound slds-hidden' : 'slds-form--compound'}">
+                
+                <legend class="slds-text-heading--medium">{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Information}</legend>
+                <img src="" />
+                
+                <div class="form-element__group">
+                    
+                    <div class="slds-form-element__row slds-p-top--small">
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="text" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Account_Number}" aura:id="accountIdentifier"  />
+                                  
+                        </div>
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="text" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_BIC}" aura:id="bankIdentifier"  />
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="slds-form-element__row slds-p-top--small">
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="select" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Type}" aura:id="accountType" options="[ { 'value': 'CHECKING', 'label': 'Checking Account' }, { 'value': 'SAVINGS', 'label': 'Savings Account' } ]"  />
+                            
+                        </div>
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="select" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Currency}" aura:id="defaultCurrency" options="[ { 'value': 'USD', 'label': 'US Dollar' }, { 'value': 'EUR', 'label': 'Euro' } ]"  />
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="slds-form-element__row slds-p-top--small">
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="text" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Auth_Code}" aura:id="clientAuthorisationToken"  />
+                            
+                        </div>
+                        
+                        <div class="slds-form-element slds-size--1-of-2">
+                            
+                            <s2cor:Sage_COR_Bank_Drive_InputField type="text" label="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Name}" aura:id="name" validation="{ isMandatoryOnCreate: true }"  />
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </fieldset>
+            
+        </div>
+        
+    </div>
+    
+    <div class="slds-modal__footer">
+        
+        <button class="slds-button slds-button--neutral" onclick="{!c.handleFormClear}">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Cancel}</button>
+        <button class="slds-button slds-button--brand" onclick="{!c.handleFormSubmit}">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Save}</button>
+        
+    </div>
+    
+</aura:component>

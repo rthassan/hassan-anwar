@@ -1,0 +1,99 @@
+<aura:component controller="echosign_dev1.AgreementComponentController"
+     implements="force:appHostable"
+     description="Represents a form field template selector."
+     extensible="true">
+    <aura:registerEvent name="notifyTemplatesSelected" type="echosign_dev1:FormFieldTemplateSelectedEvent"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute name="isLoading" type="Boolean" default="true" />
+    <aura:attribute name="libraryDocumentWrappers" type="echosign_dev1.LibraryDocumentFileWrapper[]" default="true" />
+    <aura:attribute name="templateSearchTerm" type="String" />
+    <aura:attribute name="selectedDocumentId" type="String" />
+    
+    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+        <div class="esign-document-select-modal slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading--medium">{! $Label.echosign_dev1.Form_Selector_Add_Templates }</h2>
+                <button onclick="{!c.onCancelAddFiles}" class="slds-button slds-modal__close">
+                    <echosign_dev1:svgIcon class="slds-button__icon slds-button__icon--inverse slds-button__icon--large esign-icon-markup" svgPath="/resource/echosign_dev1__SLDS/SLDS/assets/icons/action-sprite/svg/symbols.svg#close" category="action" size="small" name="close" />
+                    <span class="slds-assistive-text"></span>
+                </button>
+            </div>
+            <div class="slds-modal__content">
+                <aura:if isTrue="{! v.isLoading }">
+                    <div class="slds-grid slds-grid--align-center">
+                        <div class="slds-spinner--large">
+                            <img src="/resource/echosign_dev1__SLDS/SLDS/assets/images/spinners/slds_spinner_brand.gif" alt="" />
+                        </div>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{! !v.isLoading }">
+                    <div class="slds-tabs--scoped">
+                        <ul class="slds-tabs--scoped__nav" role="tablist">
+                            <li id="tab-content-item" class="slds-tabs__item slds-text-heading--label slds-active" title="{! $Label.echosign_dev1.Form_Selector_Header }" role="presentation"><a onclick="{! c.openTab }" role="tab" data-order="1" tabindex="1" aria-selected="true" aria-controls="tab-content">{! $Label.echosign_dev1.Form_Selector_Tab_Header }</a></li>
+                        </ul>
+						<div id="tab-library" class="slds-tabs__content" role="tabpanel">
+                            	<div class="slds-grid slds-grid--align-left">
+                                    <div class="slds-form-element slds-size--1-of-1 slds-p-bottom--large">
+  										<div class="slds-form-element__control">
+    										<ui:inputText value="{!v.templateSearchTerm}" class="slds-input" placeholder="{! $Label.echosign_dev1.Form_Selector_Search_Placeholder }" />
+                                            <div class="slds-p-right--medium esign-doc-search-icon">
+                                                <button onclick="{!c.onSearchTemplate}" class="slds-button slds-button--icon-bare slds-button-space-left slds-shrink-none">
+                                                    <echosign_dev1:svgIcon otherClasses="esign-small-icon" class="slds-button__icon esign-invert-full-icon" svgPath="/resource/echosign_dev1__SLDS/SLDS/assets/icons/utility-sprite/svg/symbols.svg#search" category="utility" size="small" name="search" />
+                                                    <span class="slds-assistive-text"></span>
+                                                </button>
+                                            </div>
+  										</div>
+									</div>
+                                </div>
+                                <table class="slds-table slds-table--bordered">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th class="slds-cell-shrink" scope="col">
+                                            </th>
+                                            <th class="slds-is-sortable" scope="col">
+                                                <span class="slds-truncate">{! $Label.echosign_dev1.Form_Selector_File_Name_Tab_Title }</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">{! $Label.echosign_dev1.Form_Selector_Last_Modified_Tab_Title }</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!v.libraryDocumentWrappers}" var="libraryDocumentWrapper">
+                                            <tr class="slds-hint-parent">
+                                                <td class="slds-row-select">
+                                                    <label class="slds-checkbox">
+                                                        <ui:inputCheckbox change="{!c.onTemplateSelect}" value="{! libraryDocumentWrapper.isSelected }" />
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        <span class="slds-form-element__label slds-assistive-text"></span>
+                                                    </label>
+                                                </td>
+                                                <th data-label="template-name" role="row">
+                                                    <div class="slds-media__figure">
+                                                		<echosign_dev1:svgIcon svgPath="/resource/echosign_dev1__SLDS/SLDS/assets/icons/doctype-sprite/svg/symbols.svg#overlay" category="standard" size="small" name="overlay" />
+                                                    	<span class="esign-document-title">{! libraryDocumentWrapper.title }</span>
+                                                    </div>
+                                                </th>
+                                                <td data-label="template-modified">
+                                                    <span class="slds-truncate">{! libraryDocumentWrapper.lastModifiedFormatted }</span>
+                                                </td>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </aura:if>
+            </div>                
+            <aura:if isTrue="{! !v.isLoading }">
+                <div class="slds-modal__footer">
+                    <button onclick="{!c.onCancelAddFiles}" class="slds-button slds-button--neutral slds-float--left">{! $Label.echosign_dev1.Cancel_Button_Label }</button>
+                    <button onclick="{!c.onAddTemplates}" class="slds-m-left--small slds-button slds-button--neutral slds-button--brand slds-float--right">{! $Label.echosign_dev1.Add_Templates_Button_Label }</button>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+</aura:component>

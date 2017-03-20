@@ -1,0 +1,28 @@
+<aura:component description="Required_Tags" controller="s2cor.Sage_ACC_Required_Tags_Ctrl" extends="s2cor:Base_Component">
+
+    <aura:attribute name="parameterDTO" type="s2cor.Sage_ACC_Required_Tags_DTO" required="true" description="This is Sage_ACC_Required_Tags_DTO - type AND postingRuleType must be set"/>
+    <aura:attribute name="tagsToReturn" type="List" description="This is the output variable that parent component will use as selected tags, when using this component supply an empty list"/>
+    <aura:attribute name="allSelected" type="Boolean" description="This is to pass back to the parent controller if all of the required dimensions have been fulfilled"  />
+    <aura:attribute name="tagsBucket" type="Map" description="Tags passed in from other instances of Required_Tags" />
+    <aura:attribute name="tagsHitCount" type="Integer" default="0" description="A count of how many times the component has been hit" />
+
+    <aura:attribute name="tagIds" type="Id[]" access="private" description="A list of the selected tags to be used in SOQL"/>
+    <aura:attribute name="requiredDimsCount" access="private" type="Integer" default="0" description="This holds the number of drop downs that need to be completed"/>
+    <aura:attribute name="loaded" access="private" type="Boolean" default="false"/>
+    <aura:attribute name="error" access="public" type="Boolean" default="false" description="If an error occurs within the component"/>
+    <aura:attribute name="theErrorMessage" access="public" type="String" description="The error message"/>
+
+    <aura:handler name="change" value="{!v.parameterDTO}" action="{!c.validateAttributes}" />
+    <aura:handler name="change" value="{!v.tagIds}" action="{!c.buildTagList}" />
+    <aura:handler name="change" value="{!v.tagsBucket}" action="{!c.validateAttributes}" />
+
+    <aura:if isTrue="{!v.loaded}">
+        <!--v.body is populated with the required tags select/inputs from Required_TagsController.js-->
+        {!v.body}
+    <aura:set attribute="else">
+            <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+    </aura:set>
+
+    </aura:if>
+
+</aura:component>

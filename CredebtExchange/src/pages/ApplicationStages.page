@@ -21,26 +21,82 @@
                         <div>
                             <apex:pageBlock >
                                 <apex:pageBlockSection columns="2" >
-                                    <apex:outputField value="{! Application__c.RPA_Confirmed__c }"/>
-                                    <apex:outputField value="{! Application__c.Debtors_Received__c }"/>
-                                    <apex:outputField value="{! Application__c.Creditors_Received__c }"/>
-                                    <apex:outputField value="{! Application__c.Directors_AML_KYC__c }"/>
-                                    <apex:outputField value="{! Application__c.Trade_Desk_Approved__c }"/>
-                                    <apex:outputField value="{! Application__c.Signature_Scan__c }"/>
-                                    <apex:outputField value="{! Application__c.Logged_in__c }"/>
-                                    <apex:outputField value="{! Application__c.Company_Bank_Statement__c }"/>
-                                    <apex:outputField value="{! Application__c.Refer_A_Friend__c }"/>
-                                    <apex:outputField value="{! Application__c.NoA_Issued__c }"/>
-                                    <apex:outputField value="{! Application__c.Details_Confirmed__c }"/>
-                                    <apex:outputField value="{! Application__c.Sector_and_Providers__c }"/>
-                                    <apex:outputField value="{! Application__c.Verification_Approved__c }"/>
-                                    <apex:outputField value="{! Application__c.Bank_Changed__c }"/>
-                                    <apex:outputField value="{! Application__c.Fast_Trading__c }"/>
-                                    <apex:outputField value="{! Application__c.Practices_and_Software__c }"/>
-                                    <apex:outputField value="{! Application__c.Organisation_Details__c }"/>
-                                    <apex:outputField value="{! Application__c.Traded__c }"/>
-                                    <apex:outputField value="{! Application__c.Bank_Accounts__c }"/>
-                                    <apex:outputField value="{! Application__c.Directors__c }"/>
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.RPA_Confirmed__c }"/>
+                                         <b><apex:outputText value="RPA Confirmed"/></b>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Logged_in__c }"/>
+                                         <b><apex:outputText value="Login"/></b>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Refer_A_Friend__c }"/>
+                                         <b><apex:outputText value="Refer-a-Friend"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Credebtors__c}"/>
+                                         <b><apex:outputText value="Credebtors"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Verification_Approved__c }"/>
+                                         <b><apex:outputText value="Verified"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Fast_Trading__c }"/>
+                                         <b><apex:outputText value="Fast-Trading"/></b>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Organisation_Details__c }"/>
+                                         <b><apex:outputText value="Organisation & Practises"/></b>
+                                    </apex:outputPanel>
+                                   
+                                   <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Directors__c }"/>
+                                         <b><apex:outputText value="Directors"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Bank_Accounts__c }"/>
+                                         <b><apex:outputText value="Bank"/></b>
+                                    </apex:outputPanel>                                    
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Debtors_Received__c }"/>
+                                         <b><apex:outputText value="Debtors"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Creditors_Received__c }"/>
+                                         <b><apex:outputText value="Creditors"/></b>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Upload_Stage__c }"/>
+                                         <b><apex:outputText value="Submitted"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.NoA_Issued__c }"/>
+                                         <b><apex:outputText value="NoA Issued"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Bank_Changed__c }"/>
+                                         <b><apex:outputText value="Bank Changed"/></b>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel >
+                                         <apex:outputField value="{! Application__c.Traded__c }"/>
+                                         <b><apex:outputText value="Traded"/></b>
+                                    </apex:outputPanel>
+                                    
                                 </apex:pageBlockSection>
                             </apex:pageBlock>
                         </div>

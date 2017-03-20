@@ -1,0 +1,98 @@
+/**
+ * Created by daniel.colquhoun on 07/12/2016.
+ */
+.THIS {
+}
+
+.THIS .list-item
+{
+    border-bottom: 1px solid rgb(216, 221, 230);
+    border-top: none;
+    overflow: hidden;
+
+    color:rgb(22, 50, 92);
+    display:block;
+    font-size:13px;
+    height:58px;
+    line-height:19.5px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:16px;
+    margin-top:0px;
+
+    padding-bottom:4px;
+    padding-right:8px;
+    padding-top:8px;
+    text-size-adjust:100%;
+    vertical-align:top;
+    word-wrap:break-word;
+}
+
+.THIS .list-item-edit
+{
+
+    border-top: none;
+    border-bottom: none;
+    overflow: hidden;
+
+    color:rgb(22, 50, 92);
+    display:block;
+    font-size:13px;
+    height:58px;
+    line-height:19.5px;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:16px;
+    margin-top:0px;
+
+    padding-bottom:4px;
+    padding-right:8px;
+    padding-top:8px;
+    text-size-adjust:100%;
+    vertical-align:top;
+    word-wrap:break-word;
+}
+
+.THIS .list-item-label
+{
+    font-size: .75rem;
+    color: rgb(84, 105, 141);
+}
+
+.THIS .list-item-body
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+.THIS .list-item-data
+{
+    font-size: .8125rem;
+    color: rgb(22, 50, 92);
+    max-width: 100%;
+    word-wrap: break-word;
+    width: 100%;
+    min-width: 0;
+}
+.THIS .list-item-inline-button-a
+{
+    display: block;
+    color: rgb(224, 229, 238);
+    flex: none;
+    margin-left: 8px;
+}
+.THIS .list-item-inline-button-svg
+{
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1;
+    color:rgb(224, 229, 238);
+
+}
+.THIS .list-item-inline-button-svg svg{
+    fill:rgb(224, 229, 238)!important;
+}
+
+.THIS .list-item-inline-button-svg svg:hover{
+    fill:rgb(84, 105, 141)!important;
+}

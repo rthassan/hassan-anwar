@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event fired when Bank Feed Type dropdown selection is changed." >
+  <aura:attribute name="feedType" type="Id"/>
+</aura:event>

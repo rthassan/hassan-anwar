@@ -1,0 +1,92 @@
+<aura:component implements="force:appHostable" extends="s2cor:Sage_COR_Bank_Drive_Base" controller="s2cor.Sage_COR_Bank_Drive_Enrollment_Ctrl">
+
+    <aura:set attribute="refreshAction" value="{!c.handleFormLoad}" />
+
+    <aura:registerEvent name="bubblingEventModal" type="s2cor:Sage_COR_Bank_Drive_Modal_Event" />
+    <aura:handler name="init" value="{!this}" action="{!c.handleFormLoad}" />
+
+    <aura:attribute name="id" type="id" default="" />
+
+    <aura:attribute name="name" type="string" default="" />
+    <aura:attribute name="last_run" type="string" default="" />
+    <aura:attribute name="last_error" type="string" default="" />
+    <aura:attribute name="schedule_id" type="string" default="" />
+    <aura:attribute name="schedule_name" type="string" default="" />
+    <aura:attribute name="output_journal_type_id" type="string" default="" />
+    <aura:attribute name="output_journal_type_name" type="string" default="" />
+    <aura:attribute name="feed_items" type="string" default="" />
+    <aura:attribute name="feed_execution_id" type="string" default="" />
+    <aura:attribute name="feed_execution_name" type="string" default="" />
+
+    <aura:set attribute="refreshAction" value="{!c.handleFormLoad}" />
+
+    <div class="slds" style="margin: 20px; height:100%;">
+
+        <div class="slds-grid slds-wrap">
+
+            <div class="slds-col slds-size--1-of-1">
+
+                <div class="slds-box slds-box--small">
+
+                    <!-- Start Page Header -->
+                    <div class="slds-page-header" role="banner">
+
+                        <div class="slds-grid">
+
+                            <!-- ICON -->
+                            <s2cor:Sage_COR_Bank_Drive_Page_Icon title="PAYMENT TRANSACTIONS" subtitle="{!v.name}" icon="feed" icon_category="utility" icon_color="default" icon_size="large" />
+
+                            <!-- BUTTONS -->
+                            <div class="slds-col slds-no-flex slds-grid slds-align-bottom">
+
+                                <div class="slds-col slds-no-flex slds-grid slds-align-bottom">
+                                    <button class="slds-button slds-button--brand" onclick="{!c.handleProcess}">Download</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <ul class="slds-grid slds-page-header__detail-row">
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="Last Run">Last Run</p>
+                                <p class="slds-text-body--regular" title="Last Run"><ui:outputDateTime value="{!v.last_run}" /></p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="Last Error">Last Error</p>
+                                <p class="slds-text-body--regular slds-truncate" title="N/A">{!v.last_error}</p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="Schedule">Schedule</p>
+                                <p class="slds-text-body--regular" title="Daily"><ui:outputurl target="_blank" label="{!v.schedule_name}" value="{! '/' + v.schedule_id}" /></p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="Output Journal Type">Output Journal Type</p>
+                                <p class="slds-text-body--regular" title="Bank Takings"><ui:outputurl target="_blank" label="{!v.output_journal_type_name}" value="{! '/' + v.output_journal_type_id}" /></p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="Last Execution">Last Execution</p>
+                                <p class="slds-text-body--regular" title="Bank Takings"><ui:outputurl target="_blank" label="{!v.feed_execution_name}" value="{! '/' + v.feed_execution_id}" /></p>
+                            </li>
+                            <li class="slds-page-header__detail-block">
+                                <p class="slds-text-heading--label-normal slds-m-bottom--xx-small" title="# Transactions"># Transactions</p>
+                                <p class="slds-text-body--regular slds-truncate" title="N/A">{!v.feed_items}</p>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- End Page Header -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        {!v.body}
+
+    <div aura:id="optionalModalDialog" />
+
+</aura:component>

@@ -1,0 +1,9 @@
+<!--
+ - Created by ansja02 on 10/28/16.
+ -->
+
+<aura:documentation>
+    <aura:description>
+        <p>The Action_Choose_Record_Action is a modal dialog used in mobile to show a list of record-level actions.</p>
+    </aura:description>
+</aura:documentation>

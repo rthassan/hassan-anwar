@@ -1,0 +1,107 @@
+<aura:component controller="s2cor.Sage_COR_MenuTabServerController" access="global">
+    
+    <aura:attribute name="area" type="string" default="Sales" description="Area to render"/>
+    <aura:attribute name="areaDescription" type="String" access="public" default="Manage all you sales activites here." />
+    <aura:attribute name="useIcon" type="Boolean" default="true" description="The icon for the type of area"/>
+    <aura:attribute name="icon" type="String" default="contact" description="The icon for the type of area"/>
+    <aura:attribute name="areaTitle" type="string" default="" description="Description about the area"/>  
+   
+    <aura:attribute name="dtosC1" type="s2cor.Sage_COR_MenuCardDTO[]" access="private"/>
+    <aura:attribute name="dtosC2" type="s2cor.Sage_COR_MenuCardDTO[]" access="private"/>
+    <aura:attribute name="dtosC3" type="s2cor.Sage_COR_MenuCardDTO[]" access="private"/>
+    <aura:attribute name="dtosC4" type="s2cor.Sage_COR_MenuCardDTO[]" access="private"/>
+    <aura:attribute name="hasError" type="boolean" default="false" access="private"/>
+    <aura:attribute name="errorList" type="List" default="false" access="private"/>
+    <aura:attribute name="errorTitle" type="string"  access="private"/>
+    <aura:attribute name="errorAccept" type="string"  access="private"/>
+    <aura:attribute name="companyName" type="String" access="private" default="&nbsp;"/>
+    <aura:attribute name="theme" type="string" access="private" />
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	    
+    <ltng:require styles="/resource/s2cor__SLDS104/assets/styles/salesforce-lightning-design-system-ltng.css"/>
+    
+    <div class="slds">                        
+
+        <aura:if isTrue="{!v.hasError}">
+            <div>
+                <div aria-hidden="false" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" role="alertdialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+                    <div class="slds-modal__container slds-modal--prompt" role="document" id="prompt-message-wrapper" tabindex="0">
+                        <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                            <h2 class="slds-text-heading--medium" id="prompt-heading-id">{!v.errorTitle}</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <div>
+                                <aura:iteration items="{!v.errorList}" var="error">
+                                    <p>{!error}</p>
+                                </aura:iteration>
+                            </div>
+                        </div>
+                        <div class="slds-modal__footer slds-theme--default">
+                            <button class="slds-button slds-button--neutral" onclick="{!c.action}">{!v.errorAccept}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </div>
+
+
+            <aura:set attribute="else">
+            <div class="slds-p-left--x-large slds-p-right--xx-large slds-p-top--small">
+                <div class="slds-grid--vertical slds-grid--pull-padded">
+                    <div class="slds-col">
+                        <div class="slds-p-bottom--large">
+                            <s2cor:Sage_COR_PageLayout companyName="{!v.companyName}" area="{!v.area}" areaTitle="{!v.areaTitle}" areaDescription="{!v.areaDescription}" useIcon="{!v.useIcon}" icon="{!v.icon}"/>
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-grid  slds-wrap  slds-grid--pull-padded ">
+
+
+                            <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-4 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-4 ">
+                                <div class="slds-grid  slds-wrap  slds-grid--pull-padded ">
+                                    <aura:iteration items="{!v.dtosC1}" var="dtos1">
+                                        <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1 ">
+                                            <s2cor:Sage_COR_MenuCard dto="{!dtos1}" theme="{!v.theme}"/>
+                                        </div>
+                                    </aura:iteration>
+                                </div>
+                            </div>
+
+                            <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-4 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-4 ">
+                                <div class="slds-grid  slds-wrap  slds-grid--pull-padded ">
+                                    <aura:iteration items="{!v.dtosC2}" var="dtos2">
+                                        <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1 ">
+                                            <s2cor:Sage_COR_MenuCard dto="{!dtos2}" theme="{!v.theme}"/>
+                                        </div>
+                                    </aura:iteration>
+                                </div>
+                            </div>
+
+                             <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-4 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-4 ">
+                                <div class="slds-grid  slds-wrap  slds-grid--pull-padded ">
+                                    <aura:iteration items="{!v.dtosC3}" var="dtos3">
+                                        <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1 ">
+                                            <s2cor:Sage_COR_MenuCard dto="{!dtos3}" theme="{!v.theme}"/>
+                                        </div>
+                                    </aura:iteration>
+                                </div>
+                            </div>
+                             <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-4 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-4 ">
+                                <div class="slds-grid  slds-wrap  slds-grid--pull-padded ">
+                                    <aura:iteration items="{!v.dtosC4}" var="dtos4">
+                                        <div class="slds-p-bottom--large slds-col--padded slds-shrink-none slds-size--1-of-1 slds-small-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1 ">
+                                            <s2cor:Sage_COR_MenuCard dto="{!dtos4}" theme="{!v.theme}"/>
+                                        </div>
+                                    </aura:iteration>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

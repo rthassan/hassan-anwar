@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event fired when the dimension type of a journal item is changed." >
+    <aura:attribute name="item" type="s2cor.Sage_ACC_Rec_JournalItem"/>
+</aura:event>

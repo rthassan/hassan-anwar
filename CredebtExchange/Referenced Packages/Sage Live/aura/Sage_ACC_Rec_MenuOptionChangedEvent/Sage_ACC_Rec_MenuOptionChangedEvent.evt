@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event fired when the bank reconciliation available tags menu options is changed." >
+    <aura:attribute name="dimensionId" type="String"/>
+    <aura:attribute name="dimensionName" type="String"/>
+    <aura:attribute name="sort" type="String"/>
+ </aura:event>

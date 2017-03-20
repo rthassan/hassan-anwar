@@ -1,0 +1,63 @@
+/**
+ * Created by daniel.colquhoun on 11/10/2016.
+ */
+.THIS .slds-tabs--scoped__content {
+  padding: 0rem;
+}
+
+.THIS .placeholder {
+       width:100%;
+       display: block!important;
+       opacity:0.75;
+       light-height:19.5px;
+
+       border-radius: .25rem .25rem 0 0!important;
+       padding:.1rem!important;
+}
+
+.THIS .placeholder--label {
+    width:9%;
+    margin-bottom: .9rem!important;
+    background-color: rgb(238, 241, 246)!important;
+    height: .3rem!important;
+
+    display: block!important;
+}
+
+.THIS .placeholder--tab{
+    width:9%;
+    margin-bottom: .1rem!important;
+    margin-right: .9rem!important;
+    background-color: rgb(238, 241, 246)!important;
+    height: 2rem!important;
+    border-radius: 0.1rem!important;
+    display: inline-block;
+}
+.THIS .placeholder--tab-last{
+    margin-bottom: .1rem!important;
+    margin-right: .9rem!important;
+    background-color: rgb(238, 241, 246)!important;
+    height: 2rem!important;
+    border-radius: 0.1rem!important;
+    display: inline-block;
+}
+.THIS .placeholder--tab-page{
+    width:100%;
+    margin-bottom: .1rem!important;
+    margin-right: .9rem!important;
+    background-color: rgb(238, 241, 246)!important;
+    height: 18rem!important;
+    border-radius: 0.6rem!important;
+    display: block;
+
+}
+
+.THIS .spinner-wrapper {
+    position: relative;
+    top : -24px;
+}
+
+.THIS .link_Element
+{
+    padding-bottom:0.6rem;
+}

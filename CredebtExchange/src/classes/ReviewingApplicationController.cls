@@ -7,10 +7,10 @@ public class ReviewingApplicationController {
         this.app=obj.app;
     }
     
-    
     public void SubmitForApproval()
     {
         app.Upload_Stage__c=true;
+        app.Stage__c='Submitted';
         update app;
     }
 

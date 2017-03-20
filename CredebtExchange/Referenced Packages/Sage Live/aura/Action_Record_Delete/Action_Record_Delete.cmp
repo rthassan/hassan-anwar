@@ -1,0 +1,41 @@
+<!-- Copyright (c) 2016. Sage Global Services Limited. All rights reserved. -->
+
+<aura:component description="Action_Record_Delete" controller="s2cor.Sage_COR_Delete_Record_Ctl" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordId" type="ID"/>
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="message" type="string" default=""/>
+    <aura:attribute name="error" type="boolean" default="false" access="private"/>
+
+    <aura:set attribute="buttons" value="Confirmation" />
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Delete}"/>
+    <aura:set attribute="acceptDestructive" value="true"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <div>
+        <center><lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/></center>
+
+        <div aura:id="confirmation">
+            <aura:if isTrue="{!v.mobile == true}">
+                <div class="slds-text-heading--small slds-p-bottom--small slds-text-align--center">{!v.title}</div>
+            </aura:if>
+            <aura:if isTrue="{!v.recordIds.length > 0}">
+                <div class="slds-text-heading--small">{!$Label.s2cor.Delete_Records_Confirmation}</div>
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!v.recordId != null}">
+                        <div class="slds-text-heading--small">{!$Label.s2cor.Delete_Record_Confirmation}</div>
+                        <aura:set attribute="else">
+                            <div class="slds-text-heading--small">{!$Label.s2cor.Generic_Records_None_Selected}</div>
+                        </aura:set>
+                    </aura:if>
+                </aura:set>
+            </aura:if>
+        </div>
+
+        <div class="slds-hide" aura:id="error">
+            <div class="slds-text-heading--small">{!v.message}</div>
+        </div>
+    </div>
+</aura:component>

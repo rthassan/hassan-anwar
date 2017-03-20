@@ -1,0 +1,104 @@
+<!--
+ - Created by dancolq on 16/08/2016.
+ -->
+
+<aura:component controller="s2cor.Sage_COR_Form_Helper" description="Action_Transaction_New" extends="s2cor:Base_Component" access="global">
+
+    <aura:attribute name="saving" type="boolean" default="false"/>
+    <aura:attribute name="row" type="s2cor.Sage_COR_Row_DTO" />
+    <aura:attribute name="edit" type="boolean" default="true" access="global"/>
+    <aura:attribute name="loaded" type="boolean" default="false" />
+    <aura:attribute name="dirtyfieldlist" type="list" />
+    <aura:handler name="Event_Edit_Toggle" event="s2cor:Event_Edit_Toggle" action="{!c.toggleEditEvent}" description="Handles changing Area context."/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+
+    <div class="{!if(v.saving==true,'overlay','')}">
+
+            <fieldset class="slds-form--compound">
+                    <legend class="slds-form-element__label slds-text-title--caps"></legend>
+                    <div class="form-element__group">
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Trade_Document_Type__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Currency__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Company__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Exchange_Rate__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Account__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Legislation__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Contact__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Tax_Treatment__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Date__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Payment_Terms_Tag__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Due_Date__c}" loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Price_Book__c}"  loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Description__c}"  loaded="{!v.loaded}"/>
+                            </div>
+                            <div class="slds-form-element slds-size--1-of-2 ">
+                                <s2cor:Input_Field edit="{!v.edit}" field="{!v.row.fieldsMap.Is_Email_Sent__c}" loaded="{!v.loaded}"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </fieldset>
+
+
+            <aura:if isTrue="{!!v.loaded}">
+                <div class="placeholder">
+                    <div class="placeholder-button-group">
+                        <div class="placeholder-button"></div>
+                        <div class="placeholder-button"></div>
+                        <div class="placeholder-button"></div>
+                    </div>
+                </div>
+                <aura:set attribute="else">
+                    <aura:if isTrue="{!!v.saving}">
+                        <div class="slds-button-group" role="group">
+                            <button class="slds-button slds-button--neutral">Cancel</button>
+                            <button class="slds-button slds-button--neutral" onclick="{!c.toggleEditEvent}">Edit</button>
+                            <button class="slds-button slds-button--neutral" onclick="{!c.saveRecord}">Save</button>
+                        </div>
+                    </aura:if>
+                </aura:set>
+
+        </aura:if>
+    </div>
+</aura:component>

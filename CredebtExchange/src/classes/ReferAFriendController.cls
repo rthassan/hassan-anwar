@@ -20,14 +20,21 @@ public class ReferAFriendController {
     }
    
     public PageReference step2() {
+        
+        RecordType rectype = [Select id,name from RecordType where SobjectType='Lead' and name='Originator'];
+        lead.RecordTypeId = rectype.id;
         lead.CurrencyIsoCode='EUR';
         lead.IDF_Provider__c='None';
         lead.Status='Unused';
-        insert lead;
+        lead.Originator_Name__c	= originator.id;
+       // lead.PartnerAccount = new Account();
+       // lead.PartnerAccount.id = originator.id;
+        upsert lead;
         
         update originator;
         
         app.Refer_A_Friend__c=true;
+        app.Stage__c = 'Refer-a-Friend';
         update app;
         
         return Page.SelectOrganisations;
@@ -37,25 +44,4 @@ public class ReferAFriendController {
         return Page.SelectOrganisations;
     }
     
-    
-    /*public PageReference save() {
-        
-        account.phone = contact.phone;
-        insert account;
-       
-        contact.accountId = account.id;
-        insert contact;
-   
-        opportunity.accountId = account.id;
-        
-        insert opportunity;
-       
-        role.opportunityId = opportunity.id;
-        role.contactId = contact.id;
-        insert role;
-        
-        PageReference opptyPage = new ApexPages.StandardController(opportunity).view();
-        opptyPage.setRedirect(true);
-        return opptyPage;
-    }*/
 }

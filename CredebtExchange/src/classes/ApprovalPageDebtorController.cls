@@ -9,9 +9,13 @@ public class ApprovalPageDebtorController {
     public List<Application_Bank_Account__c> appBanks;
     
     public ApprovalPageDebtorController(){
-        processId = ApexPages.currentPage().getParameters().get('id');
-        debtorId = ApexPages.currentPage().getParameters().get('debtorId');
-        objDebtor = [select Name,Comments__c from Application_Debtor__c where id =:debtorId];
+        if (!Test.isRunningTest()) {
+            processId = ApexPages.currentPage().getParameters().get('id');
+            debtorId = ApexPages.currentPage().getParameters().get('debtorId');
+        } else {
+            debtorId = [select Id from Application_Debtor__c limit 1].Id;
+        }
+        objDebtor = [select Name,Comments__c, Manual_Approval__c from Application_Debtor__c where id =:debtorId];
         redirectPage = new PageReference('/001/o');
         afterApprovePage =  new PageReference('/apex/ConvertDebtor?debtorId='+debtorId);
         
@@ -21,13 +25,18 @@ public class ApprovalPageDebtorController {
     }
     
     public PageReference Approve(){
+        objDebtor.Manual_Approval__c=true;
         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
         req.setComments(objDebtor.Comments__c);
         req.setAction('Approve');
         req.setWorkitemId(processId);
-        Approval.ProcessResult result =  Approval.process(req);
         update objDebtor;
+        
+        if (!Test.isRunningTest()) {
+            Approval.ProcessResult result =  Approval.process(req);
+        }
         return afterApprovePage ;
+        
     }
     
     public PageReference Reject(){
@@ -35,9 +44,10 @@ public class ApprovalPageDebtorController {
         req.setComments(objDebtor.Comments__c);
         req.setAction('Reject');
         req.setWorkitemId(processId);
-        Approval.ProcessResult result =  Approval.process(req);
-        update objDebtor;
         
+		if (!Test.isRunningTest()) {
+            Approval.ProcessResult result =  Approval.process(req);
+        }
         delete objDebtor;
         if(appBanks.size()>0)
         {

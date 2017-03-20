@@ -1,0 +1,7 @@
+<!--
+ - Created by dancolq on 18/08/2016.
+ -->
+
+<design:component >
+    <design:attribute name="edit" label="edit" description="Default default" />
+</design:component>

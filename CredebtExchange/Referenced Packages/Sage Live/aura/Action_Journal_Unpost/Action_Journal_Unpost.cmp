@@ -1,0 +1,28 @@
+<aura:component description="Action_Journal_Unpost" implements="force:lightningQuickActionWithoutHeader" controller="s2cor.Sage_ACC_Journal_Helper" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="recordId" type="ID"/>
+    <aura:attribute name="jobId" type="ID" />
+
+    <aura:set attribute="buttons" value="Progress" />
+
+    <aura:handler name="change" value="{!v.jobId}" action="{!c.getJobStatus}" />
+    <aura:handler name="init" value="{!this}" action="{!c.unpostJournal}" />
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+
+    <aura:registerEvent name="Event_Close_Modal" type="s2cor:Event_Close_Modal"/>
+
+    <div>
+        <aura:if isTrue="{!v.mobile == true}">
+            <div class="slds-grid slds-grid--align-center slds-grid--vertical-align-center">
+                <div class="slds-is-relative">
+                    <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+                </div>
+                <div class="slds-text-heading--small slds-p-left--large">{!$Label.s2cor.Unposting}</div>
+            </div>
+            <aura:set attribute="else" >
+                <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+            </aura:set>
+        </aura:if>
+    </div>
+
+</aura:component>

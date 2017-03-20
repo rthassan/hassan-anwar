@@ -1,0 +1,37 @@
+<!--
+ - Created by marc.albaladejo on 13/08/2016.
+ -->
+
+<aura:component description="Action_Transaction_Post" implements="force:lightningQuickActionWithoutHeader" controller="s2cor.Sage_INV_Trade_Document_Helper" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="recordId" type="string"/>
+    <aura:attribute name="recordIds" type="ID[]"/>
+    <aura:attribute name="jobId" type="ID" />
+
+    <aura:set attribute="buttons" value="Progress" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.postTransaction}" />
+    <aura:handler name="change" value="{!v.jobId}" action="{!c.getJobStatus}" />
+
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+
+    <aura:registerEvent name="Event_Close_Modal" type="s2cor:Event_Close_Modal"/>
+
+    <div>
+        <aura:if isTrue="{!v.mobile == true}">
+            <div class="slds-grid slds-grid--align-center slds-grid--vertical-align-center">
+                <div class="slds-is-relative">
+                    <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+                </div>
+                <div class="slds-text-heading--small slds-p-left--large">{!$Label.s2cor.Posting}</div>
+            </div>
+            <aura:set attribute="else" >
+                <center><lightning:spinner aura:id="spinner" size="small" variant="brand"/></center>
+            </aura:set>
+        </aura:if>
+
+        <div class="slds-hide" aura:id="error">
+            <div class="slds-text-heading--small">{!v.message}</div>
+        </div>
+    </div>
+
+</aura:component>

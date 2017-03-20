@@ -1,0 +1,35 @@
+<apex:component controller="VisualforceEmailController" access="global">
+    
+    <apex:attribute name="ContactId" type="Id" Description="Id of the Contact" assignTo="{!CId}" />
+    
+    <p>Hi {!Debtor.firstname},</p>
+    
+    <p>As per the letter attached and to support our continued growth and prosperity, we are now
+        using Convertibill® Trade Finance from Credebt Exchange®.</p>
+    <p>
+        On receipt of this email, I would appreciate it if you could approve that the notice attached is
+        acceptable to you and that you agree to make all payments to Credebt Exchange® until further
+        notice.
+    </p>
+    <p>
+        When approving your agreement, I would appreciate it if you could reply-all or include
+        tradedesk@credebtexchange.com in your reply to me. <br/>
+    </p>
+    
+    <a href="http://rtdev2-credebt-exchange.cs88.force.com/ApproveBankDetails?id={!CId}">Click to approve Changed Bank Details.</a>
+    
+    <p>
+        Any queries, please feel free to give me a call to discuss.
+    </p>
+    
+    <p>
+        Kind Regards,<br/><br/>
+        
+        {!originator.name}<br/>
+        {!originator.Email__c} <br/>
+        {!originator.Mobile__c}<br/>
+        {!originator.phone}<br/>
+    </p>
+    
+   
+</apex:component>

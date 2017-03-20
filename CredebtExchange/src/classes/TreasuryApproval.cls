@@ -3,8 +3,13 @@ public with sharing class TreasuryApproval {
     public Boolean isSubmitted { set; get; }
     public Application__c app { set; get; }
 
-    public TreasuryApproval(ApexPages.StandardController controller) {      
-      app = [select id from Application__c where id = :ApexPages.currentPage().getParameters().get('id')];
+    public TreasuryApproval(ApexPages.StandardController controller) {  
+        if (!Test.isRunningTest()) {
+        	app = [select id from Application__c where id = :ApexPages.currentPage().getParameters().get('id')];
+        } else {
+            app = [select id from Application__c limit 1];
+        }
+
     }
     public void SubmitApproval() {
         //called by application trigger

@@ -1,0 +1,63 @@
+<aura:documentation>
+    <aura:description>This component is used to display a selection of required or optional Tags for a journal/transaction type, posting rule type and item type as defined in Posting Rules</aura:description>
+    <aura:example name="Required_Tags_Simple" ref="c:Required_Tags" label="Simple Single Usage">
+
+        <code>
+            <p>&lt;c:Required_Tags parameterDTO="{!v.yourParameterDTO}" tagsToReturn="{!v.tagsThatAreReturned}" allSelected="{!v.areAllRequiredTagsSelected}"&gt;</p>
+        </code>
+
+        <p></p>
+        <p><b>parameterDTO</b></p>
+
+        <p>An outer component needs to create the a parameter DTO (Sage_ACC_Required_Tags_DTO) to specify data required</p>
+        <p>The attribute suppliedTags within Sage_ACC_Required_Tags_DTO can be created using the following APEX code</p>
+
+        <code>
+            <p>Map&lt;String,Map&lt;String,String&gt;&gt; tagMap = Sage_INV_Trade_Document_Helper.getExistingDocumentTags(documentId, alwaysHideTheseDims, null);</p>
+            <p>return JSON.serialize(tagMap);</p>
+        </code>
+
+        <p></p>
+        <p><i>getExistingDocumentTags</i></p>
+        <code>Sage_INV_Trade_Document_Helper.getExistingDocumentTags(Id documentId, List&lt;String&gt; hideTheseDimensionUids, List&lt;String&gt; readOnlyTheseDimensionUids)</code>
+        <p>This APEX helper method returns a <code>Map&lt;String,Map&lt;String,String&gt;&gt;</code> that is serialized as shown above</p>
+        <ul>
+            <li><strong><code>Id documentId</code></strong> - This is the Id of the Sage_INV_Trade_Document__c to lookup tags for</li>
+            <li><strong><code>List&lt;String&gt; hideTheseDimensionUids</code></strong> - A list of Dimension Uids to hide in The UI of the component Required_Tags. Any required/optional tags found in the component are hidden for selection. These are usually system generated tags such as "Sales Credit Note Number".</li>
+            <li><strong><code>List&lt;String&gt; readOnlyTheseDimensionUids</code></strong> - A list of Dimension Uids to display is read only mode. This will display the tag in a select list but they will not be able to change it. </li>
+        </ul>
+        <p></p>
+
+        <p><b>tagsToReturn</b></p>
+        <p>This is attribute Object of List&lt;Map&lt;String, Object&gt;&gt; of all the tags that have been set in the Required_Tags.</p>
+        <p>Each item in the collection represents a Sage_ACC_Tag__c, each map key value pair is a field and value e.g. (Note the s2cor__ name space is removed from the Key String)</p>
+        <p>All user accessible fields within the Sage_ACC_Tag__c are mapped.</p>
+
+        <p>Tag1</p>
+        <ul>
+            <li> Key: Id - Value: 0013600000mFDs3AAG</li>
+            <li> Key: Name - Value: "A Tag Name"</li>
+            <li>....</li>
+        </ul>
+
+        <p>If the parent component supplies tags within Sage_ACC_Required_Tags_DTO.suppliedTags these will be returned here when the component renders</p>
+        <p>When a user changes a Tag in select list this attribute will be populated with the latest tags selected</p>
+
+        <p><b>allSelected</b></p>
+
+        <p>This boolean indicates if all of the <strong>required</strong> Tags have been selected (or already supplied via Sage_ACC_Required_Tags_DTO.suppliedTags).</p>
+        <p>This is useful in for the parent component to know if the user is ready to move onto a next step</p>
+        <p>Each time a user makes a change to a Tag select list this re-populated</p>
+
+
+    </aura:example>
+
+    <aura:example name="Required_Tags_Complex" ref="c:Required_Tags" label="Complex Multiple Usage">
+
+
+        <p>TODO - document when using Required_Tags multiple times in a parent component (such as Action_Transaction_Pay.cmp) and how attribute "tagsBucket" is used</p>
+
+    </aura:example>
+
+
+</aura:documentation>

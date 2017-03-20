@@ -1,8 +1,8 @@
 <apex:page >
     
-    <apex:pageBlock title="Thank You!!!">
+    <apex:pageBlock title="Thank You">
         <br/><br/><br/>
-        Thank you!!!!!!
+        Thank you for confirmation!
         <br/><br/><br/>
     </apex:pageBlock>
         

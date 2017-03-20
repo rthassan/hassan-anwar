@@ -1,0 +1,7 @@
+<!--
+ - Created by john.hulme on 13/08/2016.
+ -->
+
+<aura:event type="APPLICATION" description="Event_Refresh_Data_Tables">
+    <aura:attribute name="innerListViewId" type="string" access="global"/>
+</aura:event>

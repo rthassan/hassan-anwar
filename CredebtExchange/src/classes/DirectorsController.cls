@@ -7,6 +7,9 @@ public class DirectorsController {
     Boolean isLoaded;
     Boolean isDataFilled;
     
+    public String name{get;set;}
+    public List<UploadWrapper> upload{get;set;}
+    
     public DirectorsController(ApplicationProcess obj)
     {
         this.originator=obj.originator;
@@ -21,7 +24,6 @@ public class DirectorsController {
     {  
         
         Integer numOfDirectors=Integer.valueOf(originator.Number_of_Directors__c);
-        
         List<Contact> existingDirectors=[Select FirstName, MailingStreet, LastName, OtherStreet, Email, MailingCity, MobilePhone,
                                          MailingPostalCode, MailingCountry from Contact where AccountId=:originator.Id and Director__c=true];
         
@@ -44,14 +46,14 @@ public class DirectorsController {
         
     }
     
+    
     public PageReference step8() {
         
         upsert dirList;
         
         for(Contact dir:dirList)
         {
-            if(dir.FirstName==null || dir.MailingStreet==null || dir.LastName==null || dir.OtherStreet==null || dir.Email==null || dir.MailingCity==null || dir.MobilePhone==null
-               || dir.MailingPostalCode==null || dir.MailingCountry==null )
+            if(dir.FirstName==null || dir.MailingStreet==null || dir.LastName==null || dir.OtherStreet==null || dir.Email==null || dir.MailingCity==null || dir.MobilePhone==null || dir.MailingPostalCode==null || dir.MailingCountry==null )
             {
                 isDataFilled=false;
                 break;
@@ -62,10 +64,16 @@ public class DirectorsController {
         {
             app.Director_Information__c = true;
             update app;
-            return Page.DirectorsPractices;
+            return Page.DirectorDocuments;
         }
-        isDataFilled=true;
-        return ApexPages.currentPage();
+        else
+        {
+            isDataFilled=true;
+        	//return ApexPages.currentPage();
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Provide all Information'));
+            return null;
+        }
+        
       
     }
     

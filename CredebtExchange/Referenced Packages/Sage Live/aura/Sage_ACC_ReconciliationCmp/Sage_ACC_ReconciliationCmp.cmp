@@ -1,0 +1,94 @@
+<aura:component controller="s2cor.Sage_ACC_Rec_Ctrl_M" >
+  <!--Update the SageCarbon version in the ltng:require and sageCarbon attribute below whenever the library contents change-->
+  <ltng:require styles="/resource/s2cor__SageCarbon112/assets/stylesheets/ui.css"
+                scripts="/resource/s2cor__JQuery1110,/resource/s2cor__SageCarbon112/assets/javascripts/ui.js"
+                afterScriptsLoaded="{!c.doInit}" />
+  <aura:attribute name="sageCarbon" type="String" default="s2cor__SageCarbon112" />
+
+  <aura:attribute name="classifications" type="String[]" />
+  <aura:attribute name="journalTypes" type="s2cor__Sage_ACC_Journal_Type__c[]" />
+  <aura:attribute name="journalList" type="s2cor__Sage_ACC_Journal__c[]" />
+  <aura:attribute name="journalItems" type="s2cor.Sage_ACC_Rec_JournalItem" />
+  <aura:attribute name="selectedJournals" type="s2cor__Sage_ACC_Journal__c[]" />
+  <aura:attribute name="selectedJournalItem" type="s2cor.Sage_ACC_Rec_JournalItem" />
+  <aura:attribute name="availableTags" type="s2cor.Sage_ACC_Rec_AvailableTag" />
+  <aura:attribute name="cancelledJournalItemId" type="s2cor.Sage_ACC_Rec_JournalItem" />
+
+  <aura:attribute name="journalItemsTotal" type="String" />
+  <aura:attribute name="paginationOffset" type="String" />
+  <aura:attribute name="paginationLimit" type="String" />
+
+  <aura:attribute name="classification" type="Object" />
+  <aura:attribute name="journalType" type="s2cor__Sage_ACC_Journal_Type__c" />
+  <aura:attribute name="journals" type="s2cor__Sage_ACC_Journal__c[]" />
+  <aura:attribute name="startDate" type="String" />
+  <aura:attribute name="endDate" type="String" />
+  <aura:attribute name="firstTabSelected" type="Boolean" />
+  <aura:attribute name="searchCriteria" type="String" />
+  <aura:attribute name="dimensionSort" type="String" />
+  <aura:attribute name="dimensionId" type="String"/>
+  <aura:attribute name="dimensionName" type="String"/>
+  <aura:attribute name="journalSearchValue" type="String" />
+
+  <aura:attribute name="classificationParam" type="String" />
+  <aura:attribute name="typeIdParam" type="String" />
+  <aura:attribute name="journalIdParam" type="String" />
+  <aura:attribute name="startDateParam" type="String" />
+  <aura:attribute name="endDateParam" type="String" />
+
+  <aura:registerEvent name="JournalItemSelected" type="s2cor:Sage_ACC_Rec_JournalItemSelectedEvent"/>
+  <aura:registerEvent name="JournalItemDimensionTypeChanged" type="s2cor:Sage_ACC_Rec_JournalItemDimTypeChangedEvent"/>
+  <aura:registerEvent name="AvailableTagSelected" type="s2cor:Sage_ACC_Rec_AvailableTagSelectedEvent"/>
+  <aura:registerEvent name="TagRemovedFromJournalItem" type="s2cor:Sage_ACC_Rec_TagRemovedFromJournalItemEvent"/>
+  <aura:registerEvent name="ValidateJournalItem" type="s2cor:Sage_ACC_Rec_ValidateJournalItemEvent"/>
+  <aura:registerEvent name="CancelJournalItem" type="s2cor:Sage_ACC_Rec_CancelJournalItem" />
+  <aura:registerEvent name="ChangeFilter" type="s2cor:Sage_ACC_Rec_ChangeFilter"/>
+  <aura:registerEvent name="DoneClickedFilter" type="s2cor:Sage_ACC_Rec_DoneClickedFilter"/>
+  <aura:registerEvent name="ClearClickedFilter" type="s2cor:Sage_ACC_Rec_ClearClickedFilter"/>
+  <aura:registerEvent name="MenuOptionChanged" type="s2cor:Sage_ACC_Rec_MenuOptionChangedEvent" />
+  <aura:registerEvent name="TransactionTabChanged" type="s2cor:Sage_ACC_Rec_TransactionTabChanged"/>
+  <aura:registerEvent name="SearchCriteriaChanged" type="s2cor:Sage_ACC_Rec_SearchCriteriaChanged" />
+  <aura:registerEvent name="CardListIconsChanged" type="s2cor:Sage_ACC_Rec_CardListIconsChanged" />
+  <aura:registerEvent name="SearchJournal" type="s2cor:Sage_ACC_Rec_SearchJournalEvent" />
+  <aura:registerEvent name="SelectLookupMenuItem" type="s2cor:Sage_ACC_Rec_SelectLookupMenuItemEvent" />
+  <aura:registerEvent name="OffsetChanged" type="s2cor:Sage_ACC_Rec_OffsetChangedEvent" />
+
+  <aura:handler event="s2cor:Sage_ACC_Rec_JournalItemSelectedEvent" action="{!c.onJournalItemSelected}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_JournalItemDimTypeChangedEvent" action="{!c.onJournalItemDimensionTypeChanged}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_AvailableTagSelectedEvent" action="{!c.onAvailableTagSelected}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_TagRemovedFromJournalItemEvent" action="{!c.onTagRemovedFromJournalItem}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_ValidateJournalItemEvent" action="{!c.onValidateJournalItem}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_CancelJournalItem" action="{!c.onCancelJournalItem}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_ChangeFilter" action="{!c.onChangeFilter}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_DoneClickedFilter" action="{!c.onDoneClickedFilter}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_ClearClickedFilter" action="{!c.onClearClickedFilter}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_MenuOptionChangedEvent" action="{!c.onMenuOptionChanged}"/>
+  <aura:handler event="s2cor:Sage_ACC_Rec_TransactionTabChanged" action="{!c.onTransactionTabChanged}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_SearchCriteriaChanged" action="{!c.onSearchCriteriaChanged}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_CardListIconsChanged" action="{!c.onCardListIconsChanged}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_SearchJournalEvent" action="{!c.onSearchJournal}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_SelectLookupMenuItemEvent" action="{!c.onSelectLookupMenuItem}" />
+  <aura:handler event="s2cor:Sage_ACC_Rec_OffsetChangedEvent" action="{!c.onOffsetChanged}" />
+
+  <div style="height:100%;">
+  	<div aura:id="filterWrapper"></div>
+  	<br/>
+    <div aura:id="tabsWrapper"></div>
+  	<br/>
+    <div style="height:70%;">
+        <div aura:id="journalItemsSpinner" class="sagelive-slds-spinner--small sagelive-slds-hide" style="width:32px; height: 32px; position: fixed; top: 50%; left: 50%; z-index: 8000;">
+            <img src="/assets/images/spinners/slds_spinner.gif" alt="Loading..." />
+        </div>
+    	<div class="sagelive-slds-grid sagelive-slds-wrap" style="height:100%">
+        	<div style="height:100%;" class="sagelive-slds-col sagelive-slds-size--5-of-8 sagelive-slds-p-bottom--x-small" >
+				<div aura:id="cardListWrapper" style="height:100%;"></div>
+                <div aura:id="pagination"></div>
+        	</div>
+			<div style="height:100%;" class="sagelive-slds-col--padded sagelive-slds-size--1-of-2 sagelive-slds-medium-size--1-of-4 sagelive-slds-large-size--1-of-5" >
+				<div aura:id="tagsTable" style="height:100%;"> </div>
+       		</div>
+    	</div>
+	</div>
+  </div>
+
+</aura:component>

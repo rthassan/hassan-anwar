@@ -1,0 +1,48 @@
+<!--
+ - Created by ansja02 on 12/5/16.
+ -->
+
+<aura:component description="Action_List_Delete" controller="s2cor.Sage_COR_Inner_List_View_Ctl" access="global"
+                extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="SObjectType" type="string" required="true" description="sObject for which the list view must be displayed"/>
+    <aura:attribute name="UID" type="string" description="Optional filter for the list view which can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
+    <aura:attribute name="listViewsTitles" type="List" />
+    <aura:attribute name="listViewTitle" type="String" />
+    <aura:attribute name="listViewUID" type="String"
+                    description="The UID of the list whose definition we will copy for this new list."/>
+    <aura:attribute name="privateList" type="String" default="true"
+                    description="True if the list if private for that user; otherwise it is public - visible to all users."/>
+
+    <aura:set attribute="buttons" value="Confirmation" />
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Delete}"/>
+    <aura:set attribute="acceptDestructive" value="true"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <aura:registerEvent name="Event_Header_Option_Selected" type="s2cor:Event_Header_Option_Selected"/>
+
+    <div >
+        <center><lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/></center>
+
+        <div aura:id="confirmation">
+            <aura:if isTrue="{!v.mobile == true}">
+                <div class="slds-text-heading--small slds-p-bottom--small slds-text-align--center">{!v.title}</div>
+            </aura:if>
+            <aura:if isTrue="{!v.listViewUID != null}">
+                <aura:if isTrue="{!v.privateList == 'true'}" >
+                    <div>{!$Label.s2cor.Delete_List_View_Private_Confirmation}</div>
+                    <aura:set attribute="else">
+                        <div>{!$Label.s2cor.Delete_List_View_Public_Confirmation}</div>
+                    </aura:set>
+                </aura:if>
+                <aura:set attribute="else">
+                    <div>{!$Label.s2cor.Generic_Records_None_Selected}</div>
+                </aura:set>
+            </aura:if>
+        </div>
+    </div>
+
+
+</aura:component>

@@ -31,12 +31,7 @@ public  class UploadWrapper {
     public boolean passport_attachment_visibility{get;set;}
     public boolean bank_attachment_visibility{get;set;}
     public boolean director_signature_visibility{get;set;}
-    public boolean PBlockVisibility{
-    	get
-    	{ return true;
-    	}
-    	set;
-    }
+    public boolean PBlockVisibility{get;set;}
     
     public UploadWrapper(string name)
     {
@@ -53,6 +48,10 @@ public  class UploadWrapper {
     	{
     		this.PBlockVisibility = false;
     	}
+        else
+        {
+            this.PBlockVisibility = true;
+        }
     }
     
     public boolean saveFAttachments(String AppId,String DirectorId)
@@ -66,7 +65,8 @@ public  class UploadWrapper {
 				passport_attachment.OwnerId = UserInfo.getUserId();
 	            passport_attachment.ParentId = AppId;
 	            Attachment att1 = new Attachment();
-	            att1.name = passport_attachment.name;
+                passport_attachment.name=this.name+'-Passport/DrivingLisence';
+	            att1.name = 'Passport/DrivingLisence';//passport_attachment.name;
 	            att1.body = passport_attachment.body;
 	            att1.ownerId = UserInfo.getUserId();
 	            att1.parentId = DirectorId;
@@ -79,7 +79,8 @@ public  class UploadWrapper {
 	            bill_bankattachment.OwnerId = UserInfo.getUserId();
 	            bill_bankattachment.ParentId = AppId;
 	            Attachment att2 = new Attachment();
-	            att2.name = bill_bankattachment.name;
+                bill_bankattachment.name=this.name+'-UtilityBill';
+	            att2.name = 'UtilityBill';//bill_bankattachment.name;
 	            att2.body = bill_bankattachment.body;
 	            att2.ownerId = UserInfo.getUserId();
 	            att2.parentId = DirectorId;
@@ -92,7 +93,8 @@ public  class UploadWrapper {
 		        company_bankattachment.OwnerId = UserInfo.getUserId();
 		        company_bankattachment.ParentId = AppId;
 		        Attachment att3 = new Attachment();
-		        att3.name = company_bankattachment.name;
+                company_bankattachment.name=this.name+'-Signature';
+		        att3.name = 'Signature';//company_bankattachment.name;
 		        att3.body = company_bankattachment.body;
 		        att3.ownerId = UserInfo.getUserId();
 		        att3.parentId = DirectorId;
@@ -112,7 +114,8 @@ public  class UploadWrapper {
 			passport_attachment.OwnerId = UserInfo.getUserId();
             passport_attachment.ParentId = AppId;
             Attachment att1 = new Attachment();
-            att1.name = passport_attachment.name;
+            passport_attachment.name=this.name+'-Passport/DrivingLisence';
+	        att1.name = 'Passport/DrivingLisence';//passport_attachment.name;
             att1.body = passport_attachment.body;
             att1.ownerId = UserInfo.getUserId();
             att1.parentId = DirectorId;
@@ -125,7 +128,8 @@ public  class UploadWrapper {
             bill_bankattachment.OwnerId = UserInfo.getUserId();
             bill_bankattachment.ParentId = AppId;
             Attachment att2 = new Attachment();
-            att2.name = bill_bankattachment.name;
+            bill_bankattachment.name=this.name+'-UtilityBill';
+	        att2.name = 'UtilityBill';//bill_bankattachment.name;
             att2.body = bill_bankattachment.body;
             att2.ownerId = UserInfo.getUserId();
             att2.parentId = DirectorId;
@@ -139,18 +143,13 @@ public  class UploadWrapper {
             company_bankattachment.OwnerId = UserInfo.getUserId();
             company_bankattachment.ParentId = AppId;
             Attachment att3 = new Attachment();
-            att3.name = company_bankattachment.name;
+            company_bankattachment.name=this.name+'-Signature';
+		    att3.name = 'Signature';//company_bankattachment.name;
             att3.body = company_bankattachment.body;
             att3.ownerId = UserInfo.getUserId();
             att3.parentId = DirectorId;
 			insert company_bankattachment;
 			insert att3;
-		}
-		
-    }
-    
-    
-    
-    
-    
+        }	
+    }   
 }

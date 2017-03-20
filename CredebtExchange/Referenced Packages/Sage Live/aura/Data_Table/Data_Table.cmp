@@ -1,0 +1,45 @@
+<!-- Copyright (c) 2016. Sage Global Services Limited. All rights reserved. -->
+
+<aura:component description="Data_Table"
+                controller="s2cor.Sage_COR_Generic_Table_Ctrl"
+                extends="s2cor:Base_Component">
+
+    <aura:attribute name="displayWhenEmpty" type="Boolean" default="true" access="global"/>
+    <aura:attribute name="objectName" type="String" required="true" />
+    <aura:attribute name="fields" type="String" required="true"/>
+    <aura:attribute name="filter" type="String"/>
+    <aura:attribute name="order" type="String"/>
+    <aura:attribute name="columnWidths" type="Map"/>
+    <aura:attribute name="recordsLimit" type="Integer"/>
+    <aura:attribute name="columnsLimit" type="Integer"/>
+    <aura:attribute name="paginate" type="boolean" description="Allow pagination controls on this table?"/>
+    <aura:attribute name="paginationOffset" type="integer" default="0" description="Page number"/>
+    <aura:attribute name="paginationLimit" type="integer" default="2" description="Max records to display on a page"/>
+    <aura:attribute name="rowsDisplayed" type="Integer" default="0" description="Number of records displayed on this page"/>
+    <aura:attribute name="rowCount" type="Integer" default="0" description="Total number of records, ignoring pagination limits"/>
+    <aura:attribute name="filterByCompany" type="boolean" default="false"/>
+    <aura:attribute name="table" type="s2cor.Sage_COR_Table_DTO" access="private"/>
+    <aura:attribute name="actions" type="s2cor.Sage_COR_Action_DTO[]" access="private"/>
+    <aura:attribute name="UID" type="string"/>
+    <aura:attribute name="recordId" type="string" description="If set, this refers to the ID of the parent record context."/>
+    <aura:attribute name="innerListViewId" type="string"/>
+    <aura:attribute name="mobile" type="boolean" default="false" description="True if the UI is being run in Salesforce1."/>
+    <aura:attribute name="loaded" type="boolean" default="false"/>
+    <aura:attribute name="loading" type="boolean" default="true" />
+    <aura:attribute name="selectedRows" type="ID[]" description="List of rows currently selected by user" />
+    <aura:attribute name="objectDescribe" type="s2cor.Sage_COR_Object_Describe_DTO" description="Optional pre populated metadata info" />
+
+    <aura:handler event="s2cor:Event_Refresh_Data_Tables" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.paginationOffset}" action="{!c.changePage}"/>
+
+    <div>
+        <aura:if isTrue="{! v.displayWhenEmpty==true || v.rowCount > 0 }">
+                <s2cor:Table table="{!v.table}" actions="{!v.actions}" columnsLimit="{!v.columnsLimit}" mobile="{!v.mobile}" loaded="{!v.loaded}" selectedRows="{!v.selectedRows}"
+                         paginationOffset="{!v.paginationOffset}"
+                         paginationLimit="{!v.paginationLimit}"
+                         rowsDisplayed="{!v.rowsDisplayed}"
+                         rowCount="{!v.rowCount}"/>
+        </aura:if>
+    </div>
+
+</aura:component>

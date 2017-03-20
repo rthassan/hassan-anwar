@@ -1,0 +1,7 @@
+<!--
+ - Created by daniel.nicholson on 12/08/2016.
+ -->
+
+<aura:event type="APPLICATION" description="Event_Table_Unselect_Rows" access="global">
+    <aura:attribute name="IDs" type="ID[]" />
+</aura:event>

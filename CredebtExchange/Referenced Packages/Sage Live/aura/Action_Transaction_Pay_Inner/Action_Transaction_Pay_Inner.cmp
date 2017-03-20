@@ -1,0 +1,33 @@
+<!--
+ - Created by andrew.fenner on 20/10/2016.
+ -->
+
+<aura:component description="Action_Transaction_Pay_Inner" controller="s2cor.Sage_INV_Trade_Document_Helper" extends="s2cor:Base_Component">
+
+    <aura:attribute name="innerPayment" type="Map"/>
+    <aura:attribute name="paymentChangedTime" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:layout multipleRows="false" class="slds-m-top--small">
+
+        <lightning:layoutItem size="6">
+                {!v.innerPayment.documentNumber}
+        </lightning:layoutItem>
+
+        <lightning:layoutItem size="6">
+            <lightning:input type="number"
+                             label="{!$Label.s2cor.VF_Generic_Amount}"
+                             value="{!v.innerPayment.paymentAmount}"
+                             step="0.01"
+                             required="true"
+                             min="0.01"
+                             max="{!v.innerPayment.maxOutstanding}"
+                             aura:id="paymentAmount"
+                             name="paymentAmount"
+                             onchange="{!c.amountChanged}" />
+        </lightning:layoutItem>
+
+    </lightning:layout>
+
+</aura:component>

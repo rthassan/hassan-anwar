@@ -1,0 +1,11 @@
+/**
+ * Created by daniel.nicholson on 18/08/2016.
+ */
+.THIS .paginationText{
+    color: rgb(22, 50, 92);
+    margin: 0 4px;
+    padding: 5px 10px;
+}
+.THIS .sl-rowSelect label, .THIS .sl-rowSelect div{
+    display: inline-block;
+}

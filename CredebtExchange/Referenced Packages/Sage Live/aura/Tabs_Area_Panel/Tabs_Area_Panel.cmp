@@ -1,0 +1,49 @@
+<!--
+ - Created by daniel.colquhoun on 10/10/2016.
+ -->
+
+<aura:component description="Tabs_Area_Panel" controller="s2cor.Sage_COR_Submenu_Controller" extends="s2cor:Base_Component">
+    <aura:attribute name="area" type="string" default="Sales"/>
+    <aura:attribute name="type" type="String" default="vf" access="private"/>
+    <aura:attribute name="active" type="Boolean" default="false"/>
+    <aura:attribute name="hasbeenActive" type="Boolean" default="false" access="private"/>
+    <aura:attribute name="actionDTO" type="object"/>
+    <aura:attribute name="domain" type="object"/>
+    <aura:attribute name="postdomain" type="string"/>
+    <aura:attribute name="url" type="string"/>
+    <aura:attribute name="initalised" type="boolean" default="false" access="private"/>
+    <aura:attribute name="mobile" type="boolean" default="False"
+                    description="True if the UI is being run in Salesforce1."/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.active}" action="{!c.tabSelectionChanged}"/>
+
+    <div>
+        <aura:if isTrue="{!and(v.mobile == true, v.active == false)}">
+            <div class="slds-media slds-media--center slds-has-flexi-truncate sl-list-item">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="utility:list" size="x-small"/>
+                </div>
+                <div class="slds-media__body slds-truncate sl-list-title">{!v.actionDTO.title}</div>
+            </div>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!and(v.type=='VFPage', or(v.hasbeenActive==true, v.active==true))}">
+                    <div class="visualforce_page">
+                        <s2cor:VisualForce_Page url="{! v.url}" height="800"/>
+                        <!--<c:VisualForce_Page url="{! v.domain.url + '&#45;&#45;' + v.domain.namespace + '.gus.visual.force.com' +  v.url}" height="800" />-->
+                    </div>
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!and(v.type=='Component', or(v.hasbeenActive==true, v.active==true))}">
+                                {!v.body}
+                        </aura:if>
+                        <aura:if isTrue="{!and(v.actionDTO.tabType=='Report', or(v.hasbeenActive==true, v.active==true))}">
+                            <s2cor:Tabs_Area_Reports actionDTOs="{!v.actionDTO.target}"/>
+                        </aura:if>
+                    </aura:set>
+                </aura:if>
+            </aura:set>
+        </aura:if>
+    </div>
+
+
+</aura:component>

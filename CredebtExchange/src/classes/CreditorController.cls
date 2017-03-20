@@ -21,7 +21,7 @@ public class CreditorController {
                        	Direct_Dial_Phone__c, Email__c, Counterparty_Since__c, Total_Historic_Value__c,
                        Average_Cycle_Payment__c, Credit_Notes_Issued__c, Invoices_Predicted_Per_Annum__c,
                        Predicted_Annual_Revenue__c, isFilled__c
-                       from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false];
+                       from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false And Mandatory__c=true];
         
         if(creditorsList.size()>0)
         {
@@ -61,7 +61,7 @@ public class CreditorController {
         creditor.isFilled__c=true;
         update creditor;
         
-        creditorsList=[SELECT Id, Name from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false];
+        creditorsList=[SELECT Id, Name from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false AND Mandatory__c=true];
         if(creditorsList.size()>0)
         {
             PageReference p = new PageReference('/apex/Creditor');
@@ -71,22 +71,24 @@ public class CreditorController {
         else
         {
             this.app.Creditors_Received__c = true;
+            this.app.Stage__c='Creditors';
             update app;
-            return Page.Debtor;
+            return Page.UploadAttachments;
+           
         }
         
     }
     
     public PageReference isCreditorsFilled()
     {
-        creditorsList=[SELECT Id, Name from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false];
+        creditorsList=[SELECT Id, Name from Application_Creditor__c where Originator__c=:originator.Id AND isFilled__c=false AND Mandatory__c=true];
         if(!(creditorsList.size()>0))
         {
-             return Page.Debtor;
+            this.app.Creditors_Received__c = true;
+            this.app.Stage__c='Creditors';
+            update app;
+            return Page.UploadAttachments;
         }
         return null;
     }
-    
-    //credContact.RecordTypeId= [Select Id,SobjectType,Name From RecordType where Name ='Creditor' and SobjectType ='Contact' limit 1].Id;
-    
 }

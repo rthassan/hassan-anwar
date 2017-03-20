@@ -44,6 +44,7 @@
     
     </script>
     <apex:sectionHeader title="Credebtors Information" subtitle="Step 8"/>
+    <apex:messages style="color:red"/>
     <apex:form id="form">
         
         <apex:pageBlock title="Debtor Information" id="mainblock" >
@@ -80,9 +81,9 @@
                 <apex:inputField value="{!AppBankAccount.Bank_Name__c}" label="Bank Name" required="true"/>
                 <apex:inputField value="{!AppBankAccount.IBAN_Number__c}" label="IBAN Number" required="true"/>
                 <apex:inputField value="{!AppBankAccount.Bank_Account_Number__c}" label="Account Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code"/>
-                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code"/>
-                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency"/>
+                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code" required="true"/>
+                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code" required="true"/>
+                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency" required="true"/>
             </apex:pageBlockSection>
             
             
@@ -129,7 +130,7 @@
                 
             </apex:pageBlockSection>
             
-            <apex:pageBlockSection title="Experience" columns="1">
+            <apex:pageBlockSection title="Experience*" columns="1">
                  
                 <span style="text-align:center;font-size: 15px; ">Upload the Experience File (also called statement, or account history) in XLS, XLSX or CSV file format. Download the Experience File XLSX Template using the link provided below. 
                                             Read the instructions carefully on how to complete this important file otherwise you will not be able to create this account</span>
@@ -138,7 +139,7 @@
                     <apex:outputlabel value="Experience File"/>
                     <apex:inputfile filename="{!attachment.name}" value="{!attachment.body}" required="true"/>
                 </apex:pageBlockSectionItem>
-                <apex:Pagemessages />
+                
                 
             </apex:pageBlockSection>
         </apex:pageBlock>

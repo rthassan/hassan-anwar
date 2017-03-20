@@ -1,0 +1,157 @@
+<aura:component >
+    
+    <aura:attribute name="type" type="string" default="Text" />
+    <aura:attribute name="value" type="object" default="" />
+    <aura:attribute name="disabled" type="boolean" default="" />
+    <aura:attribute name="is_edit" type="boolean" default="true" />
+    <aura:attribute name="label" type="string" default="" />
+    <aura:attribute name="options" type="Map[]" default="" />
+    
+    <aura:attribute name="info" type="Aura.Component[]" default="" />
+    <aura:attribute name="label_content" type="Aura.Component[]" default="" />
+    
+    <aura:attribute name="validation" type="map" default="" />
+    <aura:attribute name="has_error" type="boolean" default="false" />
+
+    <aura:attribute name="error_message" type="string" default="" />
+    
+    <aura:method name="checkValue" action="{!c.handleCheckValue}" />
+    <aura:method name="setInvalid" action="{!c.handleSetInvalid}" />
+    <aura:method name="setValid" action="{!c.handleSetValid}" />
+    
+    <form aura:id="field-form" id="field-form">
+        
+        <div class="slds-form-element" aura:id="form_element">
+            
+            <aura:if isTrue="{!v.type != 'checkbox'}">
+                <aura:if isTrue="{!v.label_content.length > 0}">
+                    {!v.label_content}
+                </aura:if>
+            </aura:if>
+            <aura:if isTrue="{!v.label_content.length == 0}">
+				<aura:if isTrue="{!v.label != ''}">
+	                <label class="slds-form-element__label" for="field">{!v.label}</label>
+                </aura:if>
+            </aura:if>
+              
+            <aura:if isTrue="{!v.info.length > 0}">
+                <div class="slds-form-element__icon">
+                    <a href="javascript:void(0);">
+                        <s2cor:svg ariahidden="true" class="slds-icon slds-icon--x-small slds-icon-text-default" xlinkhref="$Resource.SLDS201 + '/assets/icons/utility-sprite/svg/symbols.svg#info'" />
+                        <span class="slds-assistive-text">Help</span>
+                    </a>
+                </div>
+            </aura:if>
+            
+            <div class="slds-form-element__control">
+                
+                <aura:if isTrue="{!v.is_edit == true}">
+                
+                    <aura:if isTrue="{!v.type == 'text'}">
+                        <ui:inputtext aura:id="text" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'date'}">
+                        <ui:inputdate aura:id="date" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'email'}">
+                        <ui:inputemail aura:id="email" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}"  />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'number'}">
+                        <ui:inputnumber aura:id="number" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'phone'}">
+                        <ui:inputphone aura:id="phone" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'currency'}">
+                        <ui:inputcurrency aura:id="currency" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'checkbox'}">
+                        <label class="slds-checkbox">
+                            <input type="checkbox" aura:id="checkbox" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" disabled="{!v.disabled}" />
+                            <span class="slds-checkbox--faux"></span>
+                            <aura:if isTrue="{!v.label_content.length > 0}">
+                                {!v.label_content}
+                            </aura:if>
+                            <aura:if isTrue="{!v.label_content.length == 0}">
+                                <aura:if isTrue="{!v.label != ''}">
+                                    <span class="slds-form-element__label slds-p-left--xx-small">{!v.label}</span>
+                                </aura:if>
+                            </aura:if>
+                        </label>
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'textarea'}">
+                        <ui:inputtextarea aura:id="textarea" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'url'}">
+                        <ui:inputurl aura:id="url" placeholder="{!v.label}" value="{!v.value}" class="slds-input" required="{!v.validation.isMandatoryOnCreate}" maxlength="{!v.validation.length}" disabled="{!v.disabled}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'select'}">
+                        
+                        <ui:inputSelect aura:id="select" options="{!v.options}" multiple="false" value="{!v.value}" required="{!v.validation.isMandatoryOnCreate}" class="slds-select" disabled="{!v.disabled}" />
+                        
+                    </aura:if>
+                        
+                </aura:if>
+                
+                <aura:if isTrue="{!v.is_edit == false}">
+                    
+                    <aura:if isTrue="{!v.type == 'text'}">
+                        <ui:outputtext aura:id="text" value="{!v.value}" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'date'}">
+                        <ui:outputdate aura:id="date" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'email'}">
+                        <ui:outputemail aura:id="email" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'number'}">
+                        <ui:outputnumber aura:id="number" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'phone'}">
+                        <ui:outputphone aura:id="phone" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'currency'}">
+                        <ui:outputcurrency aura:id="currency" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'textarea'}">
+                        <ui:outputtextarea aura:id="textarea" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.type == 'url'}">
+                        <ui:outputurl aura:id="url" value="{!v.value}" class="slds-input" />
+                    </aura:if>
+                    
+                </aura:if>
+                
+            </div>
+
+            <aura:if isTrue="{!v.error_message != ''}">
+                <div id="error-message" class="slds-form-element__help">{!v.error_message}</div>
+            </aura:if>
+            
+            <div id="help" class="slds-popover slds-popover--tooltip slds-nubbin--bottom-left slds-hidden" role="tooltip" aria-live="polite" style="position:absolute;top:0px;left:0px;">
+                <div class="slds-popover__body slds-text-longform">
+                    {!v.info}
+                </div>
+            </div>
+            
+        </div>
+        
+    </form>
+    
+</aura:component>

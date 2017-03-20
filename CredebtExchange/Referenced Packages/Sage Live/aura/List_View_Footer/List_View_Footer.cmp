@@ -1,0 +1,62 @@
+<!--
+ - Created by daniel.nicholson on 18/08/2016.
+ -->
+
+<aura:component description="List_View_Footer">
+    <aura:attribute name="listViewRecordsLimit" type="Integer" />
+    <aura:attribute name="viewAll" type="s2cor.Sage_COR_Action_DTO" />
+    <aura:attribute name="paginate" type="boolean" />
+    <aura:attribute name="paginationOffset" type="integer" description="Page number"/>
+    <aura:attribute name="paginationLimit" type="integer" description="Max records to display on a page"/>
+    <aura:attribute name="rowsDisplayed" type="Integer" description="Number of records displayed on this page"/>
+    <aura:attribute name="rowCount" type="Integer" description="Total number of records, ignoring pagination limits"/>
+    <aura:attribute name="counterText" type="String" default=""/>
+    <aura:attribute name="mobile" type="boolean" default="false" description="True if the UI is being run in Salesforce1."/>
+    <aura:attribute name="paginationOptions" type="Map[]" default="[{ id: 10, label: '10' },{ id: 20, label: '20' },{ id: 50, label: '50' },{ id: 100, label: '100' },{ id: 200, label: '200' }]" description="Page limit options" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.paginationOffset}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.rowCount}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.rowsDisplayed}" action="{!c.doInit}"/>
+
+    <aura:registerEvent name="Event_Table_PageLimit_Changed" type="s2cor:Event_Table_PageLimit_Changed" />
+
+    <div>
+        <div class="{!v.mobile == true ? 'slds-m-around--medium' : 'slds-m-around--small'}">
+
+        <aura:if isTrue="{! and(greaterthan(v.listViewRecordsLimit, 0), notequals(v.viewAll, undefined))}">
+            <div class="slds-grid">
+                <div><s2cor:Output_Action_Link action="{!v.viewAll}" /></div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{! and(v.paginate, greaterthan(v.rowsDisplayed, 0))}">
+
+            <div class="slds-grid">
+                <div class="slds-grid--align-start slds-size--1-of-2">
+                    <lightning:select aura:id="paginationLimit" name="paginationLimit" value="{!v.paginationLimit}" label="{!$Label.s2cor.Num_Items_Per_Page}" onchange="{!c.setPaginationLimit}" class="sl-rowSelect">
+                        <aura:iteration items="{!v.paginationOptions}" var="option">
+                            <option value="{!option.id}">{!option.label}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+                <div class="slds-size--1-of-2">
+                    <div class="slds-grid slds-grid--align-end">
+                        <lightning:buttonIcon iconName="utility:left" variant="border-filled" alternativeText="{!$Label.s2cor.First_Page}" onclick="{! c.firstPage }" disabled="{!v.paginationOffset == 0}"/>
+                        <lightning:buttonIcon iconName="utility:chevronleft" variant="border-filled" alternativeText="{!$Label.s2cor.Previous_Page}" onclick="{! c.previousPage }" disabled="{!v.paginationOffset == 0}"/>
+                        <div class="slds-box slds-box--x-small paginationText">{!v.counterText}</div>
+
+                        <lightning:buttonIcon iconName="utility:chevronright" variant="border-filled" alternativeText="{!$Label.s2cor.Next_Page}"
+                                              onclick="{! c.nextPage }"
+                                              disabled="{! lessthanorequal(v.rowCount, (v.paginationOffset * v.paginationLimit + v.rowsDisplayed))}"
+                                              />
+                        <lightning:buttonIcon iconName="utility:right" variant="border-filled" alternativeText="{!$Label.s2cor.Last_Page}"
+                                              onclick="{! c.lastPage }"
+                                              disabled="{! lessthanorequal(v.rowCount, (v.paginationOffset * v.paginationLimit + v.rowsDisplayed))}"
+                                              />
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event fired when a tag is selected for a journal item from the available tags list." >
+    <aura:attribute name="item" type="s2cor.Sage_ACC_Rec_JournalItem"/>
+    <aura:attribute name="tag" type="s2cor.Sage_ACC_Rec_JournalItemDim"/>
+</aura:event>

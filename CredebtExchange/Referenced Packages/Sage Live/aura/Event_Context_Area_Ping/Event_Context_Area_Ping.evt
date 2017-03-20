@@ -1,0 +1,7 @@
+<!--
+ - Created by dancolq on 15/08/2016.
+ As the component may not have been initialsed when a area changed event has been sent, this event is used to ping  AreaId component to send out
+ -->
+
+<aura:event type="APPLICATION" description="Event_Context_Area_Ping" access="global">
+</aura:event>

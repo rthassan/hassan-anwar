@@ -1,0 +1,7 @@
+<!--
+ - Created by dancolq on 12/08/2016.
+ -->
+
+<aura:event type="APPLICATION" description="This event hasnet" >
+    <aura:attribute name="Id" type="string" access="global" />
+</aura:event>

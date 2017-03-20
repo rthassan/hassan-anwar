@@ -1,0 +1,19 @@
+<aura:component description="Action_Table_Export" controller="s2cor.Sage_COR_Table_Export" extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="title" type="String"/>
+    <aura:attribute name="fileName" type="String"/>
+    <aura:attribute name="header" type="String" />
+    <aura:attribute name="rows" type="String" />
+
+    <aura:set attribute="buttons" value="InputForm" />
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.VF_Generic_Export}" />
+    <aura:set attribute="acceptEnabled" value="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.fileName}" action="{!c.handleChangeFileName}" />
+
+    <div >
+        <lightning:input name="File Name" aura:id="fileNameInput" label="{!$Label.s2cor.File_Name}" value="{!v.fileName}" required="true" minlength="1" placeholder="{!$Label.s2cor.File_Name_Please}"/>
+
+        <p>{!$Label.s2cor.Export_Table_CSV_Storage}</p>
+    </div>
+</aura:component>

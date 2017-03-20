@@ -7,7 +7,8 @@ public class UploadController {
    public Integer num{get;set;}
    public boolean company_logo{get;set;}
    public boolean obank_statement{get;set;}
-   public Attachment LogoAttachment{
+  
+    public Attachment LogoAttachment{
         get {
             if (LogoAttachment == null)
                 LogoAttachment = new Attachment();
@@ -99,7 +100,7 @@ public class UploadController {
    	 {
 	   	 try{
 	   	 	
-	   	    for(INteger i=0; i < upload.size() ; i++)
+	   	    for(Integer i=0; i < upload.size() ; i++)
 		   	{
 		   	 	boolean flag = upload[i].saveFAttachments(this.App.Id,this.no_directors[i].id);
 		   	 	if(flag == true)
@@ -122,6 +123,8 @@ public class UploadController {
                  LogoAttachment.OwnerId = UserInfo.getUserId();
 	             LogoAttachment.ParentId = this.App.Id;
                  insert LogoAttachment;
+                 originator.OrgLogoId__c = LogoAttachment.id;
+	             update originator;
             }
             if(BankStatementAttachment.body != null)
             {
@@ -132,7 +135,7 @@ public class UploadController {
 		   	
             if(LogoAttachment.body != null)
             {
-                document = new Document();
+                /*document = new Document();
                 document.authorId = Userinfo.getUserId();
                 document.folderId = '0059E000000Jbdz'; //personal Documents ID
                 document.body = LogoAttachment.body;
@@ -140,7 +143,7 @@ public class UploadController {
                 document.isPublic = true;
                 insert document;
                 originator.OrgLogoId__c = document.id;
-	            update originator;
+	            update originator;*/
             }
              this.app.BankStatement__c = true;
              this.app.CompanyLogo__c = true;

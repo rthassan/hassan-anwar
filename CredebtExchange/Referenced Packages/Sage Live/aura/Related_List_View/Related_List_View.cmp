@@ -1,0 +1,38 @@
+<aura:component description="Related_List_View"
+                extends="s2cor:Base_Component"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId"
+                controller="s2cor.Sage_COR_Related_List_View_Ctrl"
+                access="global">
+
+    <aura:attribute name="SObjectType" type="string" required="true" description="sObject for which the list view must be displayed" access="global"/>
+    <aura:attribute name="UID" type="string" description="Optional filter for the list view, it can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals." access="global"/>
+    <aura:attribute name="listView" type="string" access="global" />
+    <aura:attribute name="title" type="string" access="global" />
+    <aura:attribute name="dimensions" type="string" access="global" />
+    <aura:attribute name="showForThisParent" type="Boolean" default="false"/>
+    <aura:attribute name="displayWhenEmpty" type="Boolean" default="true" access="global"/>
+    <aura:attribute name="rowCount" type="Integer" description="Total number of records, ignoring pagination limits" access="private"/>
+    <aura:attribute name="cardClass" type="string" default="slds-card" />
+    <aura:attribute name="cardBodyClass" type="string" default="slds-card" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.rowCount}" action="{!c.calcCardClass}" />
+
+    <article class="{!v.cardClass}" >
+        <div class="{!v.cardBodyClass}" >
+            <s2cor:List_View SObjectType="{!v.SObjectType}"
+                         title="{!v.title}"
+                         UID="{!v.UID}"
+                         listView="{!v.listView}"
+                         recordId="{!v.recordId}"
+                         headerStyle="narrow"
+                         listViewRecordsLimit="5"
+                         buttonsLimit="1"
+                         paginate="false"
+                         displayWhenEmpty="{!v.displayWhenEmpty}"
+                         rowCount="{!v.rowCount}" />
+        </div>
+    </article>
+
+
+</aura:component>

@@ -1,0 +1,99 @@
+<aura:component >
+
+    <aura:registerEvent name="bubblingEventModal" type="s2cor:Sage_COR_Bank_Drive_Modal_Event" />
+    <aura:attribute name="bank_account" type="Map" default="" />
+    
+    <div class="slds-tile slds-media slds-card__tile slds-col--padded slds-grow-none slds-size--1-of-3 slds-small-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-hint-parent">
+        
+        <div class="slds-media__figure">
+            
+            <s2cor:Sage_COR_Bank_Drive_Status_Icon status="{!v.bank_account.status}" />
+            
+        </div>
+        
+        <div class="slds-media__body">
+            
+            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                
+                <p class="slds-truncate" title="{!v.bank_account.name}">
+                    <a href="javascript:void(0);">{!v.bank_account.name}</a>
+                </p>
+                
+                <div>
+                    
+                    <aura:if isTrue="true">
+                        
+                        <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none" onclick="{!c.handleToggleButtons}">
+                            <s2cor:svg ariahidden="true" class="slds-button__icon slds-button__icon--hint slds-button__icon--small" xlinkhref="{!$Resource.s2cor__SLDS202 + '/assets/icons/utility-sprite/svg/symbols.svg#down'}" />
+                            <span class="slds-assistive-text">Show More</span>
+                        </button>
+                        
+                        <div class="slds-dropdown slds-dropdown--right slds-hidden" aura:id="more-buttons">
+                            
+                            <ul class="dropdown__list" role="menu">
+                                <aura:if isTrue="{!v.bank_account.status != 'active'}">
+                                    <li class="slds-dropdown__item">
+                                        <a href="javascript:void(0);" role="menuitem" onclick="{!c.handleEditModal}">
+                                            <p class="slds-truncate">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Edit}</p>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                                <li class="slds-dropdown__item">
+                                    <a href="javascript:void(0);" role="menuitem" onclick="{!c.handleDeleteModal}">
+                                        <p class="slds-truncate">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Delete}</p>
+                                    </a>
+                                </li>
+                                <aura:if isTrue="{!v.bank_account.status == 'active'}">
+                                    <li class="slds-dropdown__item">
+                                        <a href="javascript:void(0);" role="menuitem" onclick="{!c.handleResetModal}">
+                                            <p class="slds-truncate">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Reset}</p>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                            </ul>
+                            
+                        </div>
+                        
+                    </aura:if>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="slds-tile__detail slds-text-body--small">
+                
+                <dl class="slds-dl--horizontal">
+                    <dt class="slds-dl--horizontal__label">
+                        <p class="slds-truncate" title="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Account_Number}">{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Account_Number}:</p>
+                    </dt>
+                    <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                        <p class="slds-truncate" title="{!v.bank_account.accountIdentifer}">{!v.bank_account.accountIdentifer}</p>
+                    </dd>
+                    <dt class="slds-dl--horizontal__label">
+                        <p class="slds-truncate" title="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_BIC}">{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_BIC}:</p>
+                    </dt>
+                    <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                        <p class="slds-truncate" title="{!v.bank_account.bankIdentifier}">{!v.bank_account.bankIdentifier}</p>
+                    </dd>
+                    <dt class="slds-dl--horizontal__label">
+                        <p class="slds-truncate" title="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Type}">{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Type}:</p>
+                    </dt>
+                    <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                        <p class="slds-truncate" title="{!v.bank_account.type}">{!v.bank_account.type}</p>
+                    </dd>
+                    <dt class="slds-dl--horizontal__label">
+                        <p class="slds-truncate" title="{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Currency}">{!$Label.s2cor.Sage_COR_Bank_Drive_Bank_Account_Currency}:</p>
+                    </dt>
+                    <dd class="slds-dl--horizontal__detail slds-tile__meta">
+                        <p class="slds-truncate" title="{!v.bank_account.defaultCurrency}">{!v.bank_account.defaultCurrency}</p>
+                    </dd>
+                </dl>
+                
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    
+</aura:component>

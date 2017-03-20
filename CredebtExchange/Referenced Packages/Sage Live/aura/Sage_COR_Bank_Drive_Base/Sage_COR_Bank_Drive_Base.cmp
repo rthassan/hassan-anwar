@@ -1,0 +1,29 @@
+<aura:component extensible="true">
+	
+    <ltng:require styles="{!$Resource.s2cor__SLDS202 + '/assets/styles/salesforce-lightning-design-system.css'}" />
+    
+    <s2cor:Sage_COR_Bank_Drive_Scripts />
+    
+    <aura:attribute name="refreshAction" type="Aura.Action" default=""  />
+    
+    <aura:registerEvent name="bubblingEventModal" type="s2cor:Sage_COR_Bank_Drive_Modal_Event" />
+    <aura:registerEvent name="bubblingEventToast" type="s2cor:Sage_COR_Bank_Drive_Notification_Event" />
+	<aura:registerEvent name="refreshEvent" type="s2cor:Sage_COR_Bank_Drive_Refresh_Event" />
+    
+    <aura:handler name="refreshEvent" event="s2cor:Sage_COR_Bank_Drive_Refresh_Event" action="{!v.refreshAction}"/>
+    <aura:handler name="bubblingEventToast" event="s2cor:Sage_COR_Bank_Drive_Notification_Event" action="{!c.handleToast}"/>
+    <aura:handler name="bubblingEventModal" event="s2cor:Sage_COR_Bank_Drive_Modal_Event" action="{!c.handleModal}"/>
+    
+    {!v.body}
+    
+    <div aura:id="optionalModalDialog" />
+    
+    <s2cor:Sage_COR_Bank_Drive_Modal_Bank_Account aura:id="bank_account_modal" />
+    <s2cor:Sage_COR_Bank_Drive_Modal_Account_Delete aura:id="bank_account_delete_modal" />
+    <s2cor:Sage_COR_Bank_Drive_Process_Modal aura:id="process_modal" />
+    <s2cor:Sage_COR_Bank_Drive_Reset_Modal aura:id="reset_modal" />
+    <s2cor:Sage_COR_Bank_Drive_Modal_CAF aura:id="CAF_modal" />
+
+    <s2cor:Sage_ACC_N43_Process_Modal aura:id="n43_process_modal" />
+    
+</aura:component>

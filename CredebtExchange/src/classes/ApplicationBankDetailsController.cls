@@ -44,6 +44,7 @@ public class ApplicationBankDetailsController {
     
     public PageReference save()
     {
+        attachment.Name='BankLogo';
         attachment.OwnerId = UserInfo.getUserId();
         attachment.ParentId = this.App.Id;// the record the file is attached to
        // attachment.IsPrivate = true;
@@ -64,9 +65,10 @@ public class ApplicationBankDetailsController {
         upsert BankAccount;
        
         app.Bank_Accounts__c=true;
+        app.Stage__c='Bank';
         update app;
         
-        return Page.Directors;
+        return Page.Debtor;
         
     }
     

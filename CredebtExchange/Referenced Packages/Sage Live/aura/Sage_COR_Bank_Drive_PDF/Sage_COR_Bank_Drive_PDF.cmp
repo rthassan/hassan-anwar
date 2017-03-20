@@ -1,0 +1,40 @@
+<aura:component implements="force:appHostable" >
+	
+    <aura:set attribute="title" value="Customer Authorization Form" />
+    <aura:set attribute="closeModalAction" value="" />
+    <aura:method name="init" action="" />
+    <aura:attribute name="show_content" type="boolean" default="true" />
+    
+    <div class="slds-modal__content slds-p-around--medium">
+        
+        <div class="slds-p-top--medium">
+            
+            <s2cor:Sage_COR_Bank_Drive_Spinner aura:id="spinner" />
+            
+
+                <div>
+                    
+
+                    
+                    	<iframe src="/servlet/servlet.FileDownload?file=00P0Y000000faCOUAY" ></iframe>
+                    
+
+                        
+                </div>
+
+           
+            
+        </div>
+        
+    </div>
+    
+    <div class="slds-modal__footer">
+        
+        <button class="slds-button slds-button--neutral" onclick="">{!$Label.s2cor.Sage_COR_Bank_Drive_Button_Cancel}</button>
+        <button class="slds-button slds-button--neutral" onclick="">Download</button>
+        <button class="slds-button slds-button--neutral" onclick="">Print</button>
+
+        
+    </div>
+    
+</aura:component>

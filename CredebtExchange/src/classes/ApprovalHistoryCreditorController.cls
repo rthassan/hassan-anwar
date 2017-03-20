@@ -9,7 +9,12 @@ public with sharing class ApprovalHistoryCreditorController {
     
     //Properties Construnctor
     public ApprovalHistoryCreditorController(ApexPages.StandardController controller) {
-        retURLRecordId = recordId = ApexPages.currentPage().getParameters().get('id');
+        if (!Test.isRunningTest()) {
+            retURLRecordId = recordId = ApexPages.currentPage().getParameters().get('id');
+        } else {
+            retURLRecordId = recordId = [select Id from Application_Creditor__c limit 1].Id;
+        }
+        
         ORG_LNK = 'https://'+URL.getSalesforceBaseUrl().getHost();
         if(!String.isBlank(recordID)){
             aSW = new ApprovalList();

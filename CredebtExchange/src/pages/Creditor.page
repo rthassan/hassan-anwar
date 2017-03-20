@@ -81,9 +81,9 @@
                  <apex:inputField value="{!AppBankAccount.Bank_Name__c}" label="Bank Name" required="true"/>
                 <apex:inputField value="{!AppBankAccount.IBAN_Number__c}" label="IBAN Number" required="true"/>
                 <apex:inputField value="{!AppBankAccount.Bank_Account_Number__c}" label="Account Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code"/>
-                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code"/>
-                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency"/>
+                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code" required="true"/>
+                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code" required="true"/>
+                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency" required="true"/>
                 
             </apex:pageBlockSection>
             

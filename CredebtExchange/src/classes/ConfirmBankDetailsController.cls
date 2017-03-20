@@ -15,7 +15,8 @@ public class ConfirmBankDetailsController {
     	if(DebtorAccount.size() > 0)
     	{
     		 Account da = DebtorAccount[0];
-    		 BankAccount = [Select Name,Sort_Code__c,Bank_Account_Number__c,IBAN_Number__c,Swift_Code__c from Bank_Account__c where Account__c =: da.id];
+    		 BankAccount = [Select Name,Sort_Code__c,Bank_Account_Number__c,IBAN_Number__c,Swift_Code__c 
+                            from Bank_Account__c where Account__c =: da.id];
     		 if(BankAccount.size() > 0)
     		 {
     		 	return BankAccount[0];
@@ -28,6 +29,7 @@ public class ConfirmBankDetailsController {
     public PageReference Confirm()
     {
         DebtorAccount[0].Bank_Details_Changed__c = true;
+        DebtorAccount[0].Bank_Details_Changed_Time__c = System.now();
         update DebtorAccount;
         update BankAccount;
         return new PageReference('/apex/ThankuPage');

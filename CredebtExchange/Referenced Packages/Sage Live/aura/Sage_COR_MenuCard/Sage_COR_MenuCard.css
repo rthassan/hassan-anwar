@@ -1,0 +1,28 @@
+.THIS a{
+    color:#255bc7!important;
+}
+
+.THIS {
+    color:#255bc7!important;
+    
+}
+
+.THIS .slds-card
+{
+   min-height:97.274px;
+}
+
+.THIS .slds-card--expand
+{
+     min-height:200.274px;
+}
+
+
+.THIS .icon {
+    /*background-color:#255bc7 !important;*/
+}
+
+.THIS .slds-text-heading--small
+{
+   /*font-weight:400!important;*/
+}

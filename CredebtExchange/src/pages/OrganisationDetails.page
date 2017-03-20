@@ -1,13 +1,13 @@
 <apex:page controller="ApplicationProcess" extensions="OrganisationDetailsController"  tabStyle="Application__tab">
     
     <script>
-		function confirmCancel()
-		{
-			var isCancel = confirm("Are you sure you wish to cancel?");
-            if (isCancel) return true;
-            return false;
-		}
-	</script>
+    function confirmCancel()
+    {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
     
     <style>
         #col1{float:left; width:49%;}
@@ -16,8 +16,11 @@
     <apex:sectionHeader title="Organisation Details" subtitle="Step 5"/>
     
     <apex:form >
-        <apex:pageBlock title="Organisation Details">    
-            <apex:pageBlockSection columns="2">
+        <apex:pageBlock title="Organisation Details"> 
+            
+        
+            
+            <apex:pageBlockSection columns="2" title="Details">
                 <apex:inputField value="{!originator.Credit_Insurer__c}" label="Our current credit Insurance provider is:"/>
                 <apex:inputField value="{!originator.website}" label="Website:"/>
                 <apex:inputField value="{!originator.IDF_Provider__c}" label="Our current invoice discounting provider is:"/>
@@ -29,15 +32,33 @@
                 <apex:inputField value="{!originator.NumberOfEmployees}" label="Total Employees:"/>
                 <apex:inputField value="{!originator.Number_of_Directors__c}" label="Number of Directors:" required="true"/>
                 <apex:inputField value="{!originator.Country_of_Registration__c}" label="Country of Registration:"/> 
-                 <apex:pageBlockSectionItem >
-                     <apex:outputLabel value="Upload Logo" for="Upload Logo"/>
-                     <apex:inputFile value="{!Attachment.body}" filename="{!Attachment.name}" id="file"/>
+                <apex:inputField value="{!originator.PPSN_Tax_Reference_Number__c}" label="PPSN ot Tax Reference Number:"/> 
+                <apex:inputField value="{!originator.Revenue_Access_Number__c}" label="Revenue Access Number:"/> 
+                <apex:inputField label="Fiscal Year End Date (MM-DD):" value="{!originator.Fiscal_Year_End__c}" required="true"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Upload Logo" for="Upload Logo"/>
+                    <apex:inputFile value="{!Attachment.body}" filename="{!Attachment.name}" id="file" accept="image/*"/>
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
+            
              
+            <apex:pageBlockSection columns="2" title="Billing Practices">
+                <apex:inputField label="Do you offer any rebates, discounts or other incentives to customers?" 
+                                 value="{!originator.Rebates_Discounts_or_other_Incentives__c}" required="true"/>
+                
+                <apex:inputField label="Do your customers pay for percentage of work contracted as opposed 
+                                        to actual work completed / delivered?" value="{!originator.Customers_pay_Percentage__c}" required="true"/>
+                
+                <apex:inputField label="Are you using any Accounting Software?" value="{!originator.Accounting_Software__c}" required="true"/>
+                <apex:inputField label="Do you ever invoice on consignment?" value="{!originator.Invoice_on_Consignment__c}" required="true"/>
+                <apex:inputField label="Do your offer any warranties?" value="{!originator.Offer_Warranties__c}" required="true"/>
+                <apex:inputField label="Do your offer any return rights?" value="{!originator.Offer_Return_Rights__c}" required="true"/>
+            </apex:pageBlockSection>
+            
+            
             <apex:pageBlockButtons >
                 <apex:commandButton action="{!cancel}" value="Cancel"
-			                                    onclick="return confirmCancel()" immediate="true"/>
+                                    onclick="return confirmCancel()" immediate="true"/>
                 <apex:commandButton value="Save & Continue" action="{!save}"/>
             </apex:pageBlockButtons>       
         </apex:pageBlock>

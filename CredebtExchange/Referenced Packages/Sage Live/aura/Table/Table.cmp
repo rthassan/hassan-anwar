@@ -1,0 +1,299 @@
+<!-- Copyright (c) 2016. Sage Global Services Limited. All rights reserved. -->
+
+<aura:component description="Table" controller="s2cor.Sage_COR_Inner_Table_Ctl" extends="s2cor:Base_Component">
+
+    <aura:attribute name="table" type="s2cor.Sage_COR_Table_DTO" required="true" description="Table DTO containing column, row and field DTOs"/>
+    <aura:attribute name="columnsLimit" type="Integer"  description="If specified, limit the number of columns shown in the table."/>
+    <aura:attribute name="paginate" type="boolean" description="Allow pagination of table data"/>
+    <aura:attribute name="viewAll" type="boolean" description="Display all rows"/>
+    <aura:attribute name="actions" type="s2cor.Sage_COR_Action_DTO[]" description="List of available action DTOs"/>
+    <aura:attribute name="multiselect" type="boolean" default="true" description="Render multiselect checkboxes on table including select all"/>
+    <aura:attribute name="mobile" type="boolean" default="false" description="True if the UI is being run in Salesforce1."/>
+    <aura:attribute name="loaded" type="boolean" default="false"/>
+    <aura:attribute name="selectedRows" type="ID[]" description="List of rows currently selected by user" />
+    <aura:attribute name="tableChanging" type="boolean" default="false" access="private" description="Never use outside this specific purpose.  This is used to incombination with the table change handler, to only change the check boxes after the full table has been rendered-  "/>
+    <aura:attribute name="paginationOffset" type="integer" description="Page number"/>
+    <aura:attribute name="paginationLimit" type="integer" description="Max records to display on a page"/>
+    <aura:attribute name="rowsDisplayed" type="Integer" description="Number of records displayed on this page"/>
+    <aura:attribute name="rowCount" type="Integer" description="Total number of records, ignoring pagination limits"/>
+    <aura:attribute name="colBeingResized" type="boolean" default="false" />
+    <aura:attribute name="colResize" type="s2cor.Sage_COR_Column_DTO"  />
+    <aura:attribute name="colResizingStartX" type="integer" default="0" />
+    <aura:attribute name="colResizingStartWidth" type="integer" default="0" />
+
+    <!--This is recomendend to reduce requests to the server when dynamically creating components-->
+    <aura:dependency resource="markup://lightning:formattedDateTime" />
+    <aura:dependency resource="markup://lightning:formattedNumber" />
+    <aura:dependency resource="markup://ui:outputText" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:doneRendering" action="{!c.donRendering}"/>
+    <aura:handler name="change" value="{!v.table}" action="{!c.tableChanging}" />
+    <aura:handler name="Event_Table_Column_Resizing" event="s2cor:Event_Table_Column_Resizing" action="{!c.handleResizingEvent}"/>
+
+    <aura:registerEvent name="Event_Table_Column_Resized" type="s2cor:Event_Table_Column_Resized"/>
+
+    <div>
+        <aura:if isTrue="{!v.mobile==true}">
+                <aura:if isTrue="{!and(v.loaded == true, and(v.table != null,v.table.rows.length == 0))}">
+                    <div class="slds-align--absolute-center slds-p-around--large slds-theme--default" >
+                            {!$Label.s2cor.No_Items_to_Display}
+                    </div>
+                    <aura:set attribute="else">
+                        <s2cor:Table_TouchScroll parentId="{!globalId}" table="{!v.table}" actions="{!v.actions}" rowCount="{!v.rowCount}" paginationOffset="{!v.paginationOffset}"
+                                             paginationLimit="{!v.paginationLimit}"
+                                             rowsDisplayed="{!v.rowsDisplayed}"
+                                             loaded="{!v.loaded}" />
+                    </aura:set>
+                </aura:if>
+                    <aura:set attribute="else">
+                        <aura:if isTrue="{!v.loaded==true}">
+                            <aura:if isTrue="{!and(v.table != null,v.table.rows.length != 0)}">
+                                <div  onmousemove="{!c.handleMouseMove}" onmouseup="{!c.handleMouseUp}">
+
+                                <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--fixed-layout slds-max-medium-table--stacked-horizontal">
+                                    <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <aura:if isTrue="{!v.multiselect}">
+                                            <th class="slds-cell-shrink">
+                                                <label class="slds-checkbox">
+                                                    <input aura:id="multiselectCheckboxAll" type="checkbox" name="selectAll" onclick="{!c.selectAll}"/>
+                                                    <span class="slds-checkbox--faux"></span>
+                                                    <span class="slds-assistive-text">{!$Label.s2cor.Select_All}</span>
+                                                </label>
+                                            </th>
+                                        </aura:if>
+                                        <aura:iteration items="{!v.table.columns}" end="{!v.columnsLimit == null ? 99 : v.columnsLimit}" var="col">
+                                            <s2cor:Table_Column column="{!col}" />
+                                        </aura:iteration>
+                                        <aura:if isTrue="{!and(v.actions != null, v.actions.length > 0)}">
+                                            <th class="slds-cell-shrink">
+                                                &nbsp;
+                                            </th>
+                                        </aura:if>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <aura:iteration items="{!v.table.rows}" var="row">
+                                        <tr class="slds-hint-parent">
+                                            <aura:if isTrue="{!v.multiselect}">
+                                                <td data-label="{!$Label.s2cor.Select_Row}" onclick="{!c.selectRowClickedEvent}">
+                                                    <label class="slds-checkbox">
+                                                        <input aura:id="multiselectCheckbox" type="checkbox" name="options" onclick="{!c.selectEvent}" id="{!row.recordId}"/>
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        <span class="slds-assistive-text">{!$Label.s2cor.Select_Row}</span>
+                                                    </label>
+                                                </td>
+                                            </aura:if>
+                                            <aura:iteration items="{!row.fields}" end="{!v.columnsLimit == null ? 99 : v.columnsLimit}"
+                                                            var="field">
+                                                <td class="{!'slds-text-align--'  + (field.align == null ? 'left' : field.align) + ' slds-truncate '}"
+                                                    scope="row" data-label="{!field.label}" title="{!field.value}">
+                                                    <aura:if isTrue="{!field.action == null}">
+                                                        <s2cor:Output_Field value="{!field.value}" type="{!field.type}"
+                                                                  decimalPlaces="{!field.decimalPlaces}"
+                                                                  prefix="{!field.prefix != null ? field.prefix : ''}"/>
+                                                        <aura:set attribute="else">
+                                                            <s2cor:Output_Action_Link action="{!field.action}">
+                                                                <span class="slds-truncate">{!field.value}</span>
+                                                            </s2cor:Output_Action_Link>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </td>
+                                            </aura:iteration>
+                                            <aura:if isTrue="{!and(v.actions != null, v.actions.length > 0)}">
+                                                <td role="gridcell" class="slds-cell-shrink" data-label="{!$Label.s2cor.Actions}">
+                                                    <div data-id="{!row.recordId}">
+                                                        <lightning:buttonMenu aura:id="{!'actionMenu' + row.recordId}" alternativeText="Show menu" onselect="{! c.handleButtonSelect }"  iconSize="small" menuAlignment="right">
+                                                            <aura:iteration items="{!v.actions}" var="item" indexVar="index">
+                                                                <lightning:menuItem class="{!item.class}" value="{!item}" label="{!item.title}" />
+                                                            </aura:iteration>
+                                                        </lightning:buttonMenu>
+                                                    </div>
+                                                </td>
+                                            </aura:if>
+                                        </tr>
+                                    </aura:iteration>
+                                    </tbody>
+                                </table>
+                                </div>
+                                <aura:set attribute="else">
+                                    <div class="slds-align--absolute-center slds-p-around--large sl-whitebg">
+                                            {!$Label.s2cor.No_Items_to_Display}
+                                    </div>
+                                </aura:set>
+                            </aura:if>
+                            <aura:set attribute="else">
+                                <!--<div class="slds-align&#45;&#45;absolute-center slds-p-around&#45;&#45;large sl-whitebg">-->
+                                        <!--Not loaded-->
+                                <!--</div>-->
+                                <div>
+                                    <div class="spinner-wrapper">
+                                        <lightning:spinner />
+                                    </div>
+                                    <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--fixed-layout slds-max-medium-table--stacked-horizontal">
+                                        <tr class="opacity90">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity80">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity70">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity60">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity50">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity40">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity30">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity20">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_text"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="opacity10">
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_blank"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_blank"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_blank"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_blank"/>
+                                            </td>
+                                            <td class="table_list_line_item">
+                                                <div class="table_list_blank"/>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </aura:set>
+            </aura:if>
+
+        <s2cor:Modal parentId="{!globalId}" />
+    </div>
+</aura:component>

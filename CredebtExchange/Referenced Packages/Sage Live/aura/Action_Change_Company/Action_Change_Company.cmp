@@ -1,0 +1,26 @@
+<!--
+ - Created by ansja02 on 10/13/16.
+ -->
+
+<aura:component description="Action_Change_Company" controller="s2cor.Sage_COR_Submenu_Controller" extends="s2cor:Base_Modal_Content" implements="force:lightningQuickActionWithoutHeader">
+    <aura:attribute name="companies" type="object[]" description="List of available companies for the user."/>
+    <aura:attribute name="selectedCompany" type="object" default="" description="Current selected object [id,name]" />
+    <aura:attribute name="selectedCompanyId" type="string" default="" description="Current selected company id." />
+
+    <aura:set attribute="buttons" value="InputForm" />
+    <aura:set attribute="title" value="{!$Label.s2cor.Change_Company}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+    <div>
+        <lightning:select name="select1" label="{!$Label.s2cor.Select_Company}" aura:id="selectCompanies" value="{!v.selectedCompanyId}" onchange="{!c.changeCompany}">
+            <aura:iteration items="{!v.companies}" var="company">
+                <option value="{!company.Id}" selected="{!if(v.selectedCompanyId==company.Id,'selected','')}">{!company.Name}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+
+
+
+</aura:component>

@@ -7,16 +7,27 @@ global class InboundEmailService implements Messaging.InboundEmailHandler {
 		String body = email.plainTextBody;
 		body = body.toLowerCase();
 		
-		List<Contact> contacts = [Select id,Account.id,name,email from contact where email =: email.FromAddress and recordtypeid =: r.id and isdeleted=false];
+		List<Contact> contacts = [Select id,Account.id,name,email from contact where email =: email.FromAddress 
+                                  and recordtypeid =: r.id 
+                                  and isdeleted=false
+                                 ];
 		if(contacts.size() > 0)
 		{
 			Contact c = contacts[0];
-			List<Account> DebtorAccount = [Select id,Trading_Name__c,name,Bank_Details_Changed__c from Account where id =: c.AccountId];
+			List<Account> DebtorAccount = [Select id,Originator__c,Trading_Name__c,name,Bank_Details_Changed__c from Account where id =: c.AccountId];
+            
 			if(DebtorAccount.size() > 0)
 			{
+                List<Application__c> app = [Select id,bank_changed__c from APplication__c where Originator__c =: DebtorAccount[0].Originator__c Limit 1];
 				if(body.contains('confirm') == true)
 				{
+                    if(app.size() > 0)
+                    {
+                        app[0].bank_changed__c = true;
+                        update app;
+                    }
 					DebtorAccount[0].Bank_Details_Changed__c = true;
+                    DebtorAccount[0].Bank_Details_Changed_Time__c = System.now();
 					update DebtorAccount;
 				}
                 
@@ -25,8 +36,9 @@ global class InboundEmailService implements Messaging.InboundEmailHandler {
                 note.ParentId = c.id;
                 note.OwnerId = userinfo.getUserId();
                 note.title = 'ert';
-                insert note;
+                //insert note;
 			}
+            
 		}
 		return null;
 	}

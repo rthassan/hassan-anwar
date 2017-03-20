@@ -1,0 +1,45 @@
+/**
+ * Created by ansja02 on 10/25/16.
+ */
+.THIS  {
+     background-color: #eef1f6;
+     border-bottom: 1px solid rgb(244, 246, 249);
+}
+
+.THIS .sl-cell-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.THIS .sl-cell-main {
+    background-color: white;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    transform: translate3d(0%, 0px, 0px);
+}
+
+.THIS .sl-cell-actions {
+    align-self: center;
+    position: absolute;
+    width: 80%;
+    margin-left: 20%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.THIS .sl-cell-actions-grid {
+    position: relative;
+    top: 39%;
+}
+
+.THIS .sl-cell-action-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    padding:.35rem;
+    text-align: center;
+    border-radius: 1.25rem;
+}

@@ -1,0 +1,9 @@
+<!--
+ - Created by ansja02 on 10/17/16.
+ -->
+
+<aura:documentation>
+	<aura:description>
+        <p>The Tabs_Area_Panel_Link wraps around the Tabs_Area_Panel when the Tabs_Area is displayed in mobile, and navigates to the corresponding Lightning component or VF Page when clicked.</p>
+	</aura:description>
+</aura:documentation>

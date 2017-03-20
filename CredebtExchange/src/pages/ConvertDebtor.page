@@ -1,7 +1,29 @@
 <apex:page controller="ConvertDebtorController"  >
     
     <apex:form >
-        <apex:pageBlock title="Convert Approved Debtor" >
+        
+        <apex:pageBlock title="Existing Master Credebtors" rendered="{!isDebtorExist}" >
+            <div style="text-align:center;font-size: 15px;">
+                <apex:outputText value="Master Credebtor with same Company Name and Company Registeration Number already exists in the system." />
+            </div>
+            <br/>
+            <apex:pageBlockTable value="{!ExistingDebtor}" var="exdeb" title="Existing Master Credebtors">
+                <apex:column headerValue="Name">
+                    <apex:commandLink value="{!exdeb.Name}" action="/{!exdeb.Id}" target="blank" />
+                </apex:column>
+                <apex:column value="{!exdeb.Company_Registration_Number__c}"/>
+                
+                <apex:column headerValue="Action">
+                    <apex:commandLink value="Link & Convert Debtor" action="{!convertDebtor}">
+                        <apex:param name="accIdParam" value="{!exdeb.Id}" assignTo="{!accIdChosen}"/>
+                        <apex:param name="linkDebtorwithMaster" value="true" assignTo="{!linkDebtorwithMaster}"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        
+         <apex:pageBlock title="Convert Approved Debtor" >
             
             <apex:pageBlockButtons >
                 <apex:commandButton action="{!convertDebtor}" value="Convert Debtor"/>
@@ -22,28 +44,7 @@
             
         </apex:pageBlock>
         
-        <apex:pageBlock title="Existing Credebtors" rendered="{!isDebtorExist}" >
-            <div style="text-align:center;font-size: 15px;">
-                <apex:outputText value="Master Credebtor with same Company Name and Company Registeration Number already exists in the system." />
-            </div>
-            <br/>
-             <apex:pageBlockTable value="{!ExistingDebtor}" var="exdeb" title="Existing Master Credebtors">
-                    <apex:column headerValue="Name">
-                        <apex:commandLink value="{!exdeb.Name}" action="/{!exdeb.Id}" target="blank" />
-                    </apex:column>
-                    <apex:column value="{!exdeb.Company_Registration_Number__c}"/>
-                    
-                  <apex:column headerValue="Action">
-                        <apex:commandLink value="Link & Convert Debtor" action="{!convertDebtor}">
-                        	<apex:param name="accIdParam" value="{!exdeb.Id}" assignTo="{!accIdChosen}"/>
-                            <apex:param name="linkDebtorwithMaster" value="true" assignTo="{!linkDebtorwithMaster}"/>
-                    	</apex:commandLink>
-                    </apex:column>
-                </apex:pageBlockTable>
-            
-            
-           
-        </apex:pageBlock>
+        
         
         
     </apex:form>

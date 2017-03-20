@@ -1,0 +1,71 @@
+<!--
+ Description:   Component to create new list based on existing list definition
+ Copyright: © Sage Global Services Limited 2016. All rights reserved.
+ -->
+<aura:component description="Action_List_New" controller="s2cor.Sage_COR_Inner_List_View_Ctl" access="global"
+                extends="s2cor:Base_Modal_Content">
+    <aura:attribute name="SObjectType" type="string" required="true" description="sObject for which the list view must be displayed"/>
+    <aura:attribute name="UID" type="string" description="Optional filter for the list view which can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
+    <aura:attribute name="listViewsTitles" type="List" />
+    <aura:attribute name="listViewUID" type="String"
+                    description="The UID of the list whose definition we will copy for this new list."/>
+    <aura:attribute name="canBePublic" type="String" default="false"
+                    description="Specifies whether or not this new list can be saved as a public list."/>
+    <aura:attribute name="name" type="String" description="The name of the new list"/>
+    <aura:attribute name="privateList" type="Boolean" default="true"
+                    description="True if the new list if private for that user; otherwise it is public - visible to all users."/>
+
+    <aura:set attribute="title" value="{!$Label.s2cor.New_List_View}"/>
+    <aura:set attribute="acceptCaption" value="{!$Label.s2cor.Save}"/>
+    <aura:set attribute="buttons" value="InputForm"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.name}" action="{!c.handleChangeName}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <aura:registerEvent name="Event_Header_Option_Selected" type="s2cor:Event_Header_Option_Selected"/>
+
+    <div >
+        <div>
+            <fieldset class="slds-form--compound">
+                <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                        <div aura:id="name-form" class="slds-form-element slds-size--1-of-1">
+                            <lightning:input name="name" aura:id="name" type="text" label="{!$Label.s2cor.List_Name}" maxlength="50"
+                                             value="{!v.name}" required="true" />
+                            <div aura:id="error-message" class="slds-form-element__help slds-hide">{!$Label.s2cor.Error_List_Already_Exists}</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <aura:if isTrue="{!v.canBePublic == 'true'}">
+            <div aura:id="listOptions" class="slds-m-top--x-large">
+                <fieldset class="slds-form-element">
+                    <legend class="slds-form-element__legend slds-form-element__label slds-m-bottom--x-small">{!$Label.s2cor.Who_Sees_This_List_View}</legend>
+                    <div class="slds-form-element__control">
+                        <span class="slds-radio slds-m-bottom--x-small">
+                            <input type="radio" id="radioPrivate" name="options" checked="{!v.privateList == true ? 'true' : 'false'}" onchange="{!c.handlePrivateOption}"/>
+                            <label class="slds-radio__label" for="radioPrivate">
+                                <span class="slds-radio--faux"></span>
+                                <span class="slds-form-element__label">{!$Label.s2cor.Only_I_can_see_this_list_view}</span>
+                            </label>
+                        </span>
+                        <span class="slds-radio slds-m-bottom--x-small">
+                            <input type="radio" id="radioPublic" name="options" checked="{!v.privateList == true ? 'false' : 'true'}" onchange="{!c.handlePublicOption}" />
+                            <label class="slds-radio__label" for="radioPublic">
+                                <span class="slds-radio--faux"></span>
+                                <span class="slds-form-element__label">{!$Label.s2cor.All_users_can_see_this_list_view}</span>
+                            </label>
+                        </span>
+                    </div>
+                </fieldset>
+            </div>
+        </aura:if>
+
+        <lightning:spinner class="slds-hide" aura:id="spinner" size="small" variant="brand"/>
+    </div>
+
+</aura:component>

@@ -1,0 +1,10 @@
+<!--
+ - Created by ansja02 on 10/21/16.
+ -->
+
+
+<aura:documentation>
+    <aura:description>
+        <p>The List_View_Titles displays the list options for a table.  The user can click on an item in the list in order to display the results for that list.</p>
+    </aura:description>
+</aura:documentation>
