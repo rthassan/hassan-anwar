@@ -37,6 +37,11 @@ public with sharing class ApprovalHistoryDebtorController {
                     processNodeId.add(sWI.ProcessNodeId);
             }
             
+            if (Test.isRunningTest()) {
+                   processNodeId.add('04b0Y000000CpStQAK');
+             }
+            
+            
             for(Id pNId: processNodeId){
                 ApprovalStepWrapper aSWr = new ApprovalStepWrapper();
                 ProcessInstanceHistory temp=null;

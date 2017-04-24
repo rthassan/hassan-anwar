@@ -42,10 +42,10 @@
                                          <b><apex:outputText value="Credebtors"/></b>
                                     </apex:outputPanel>
 
-                                    <apex:outputPanel >
+                                    <!--<apex:outputPanel >
                                          <apex:outputField value="{! Application__c.Verification_Approved__c }"/>
                                          <b><apex:outputText value="Verified"/></b>
-                                    </apex:outputPanel>
+                                    </apex:outputPanel>-->
 
                                     <apex:outputPanel >
                                          <apex:outputField value="{! Application__c.Fast_Trading__c }"/>

@@ -8,7 +8,8 @@ public class Test_ApplicationBankDetailsCtrl {
         Contact c = new Contact(LastName = 'testname', AccountId = a.Id);
         insert c;
         
-        Bank_Account__c b = new Bank_Account__c(Bank__c = 'ACC', Swift_Code__c = '894795', IBAN_Number__c = '83473', Account__c = a.Id);
+        Bank_Account__c b = new Bank_Account__c(Bank__c = 'ACC', Swift_Code__c = 'ABCDEF12',
+                                                                       IBAN_Number__c = 'IE02BOFI90008413113207', Account__c = a.Id);
         insert b; 
         
         User u = new User(
@@ -33,18 +34,21 @@ public class Test_ApplicationBankDetailsCtrl {
         system.debug(u1);
         Account a1 = [Select Name, Id from Account where Id=:a.Id];
         system.debug(a1);
-        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Upload_Stage__c = true);
+        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Bank_Accounts__c = true);
         insert app;
         
+        Test.setCurrentPage(new pagereference('/apex/ApplicationBankDetails?origid='+a.id));
         ApplicationProcess applprocess = new ApplicationProcess();
         //appprocess.cancel();
         //appprocess.LandingPage();
         ApplicationBankDetailsController abdc = new ApplicationBankDetailsController(applprocess);
         abdc.GetBankAccountInformation();
+        abdc.attachment.body = Blob.valueOf('123');
         abdc.save();
         
         delete b;
         ApplicationBankDetailsController abdc1 = new ApplicationBankDetailsController(applprocess);
         abdc1.GetBankAccountInformation();
+        abdc1.isBankDetails();
     }
 }

@@ -10,15 +10,15 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         req1.setSubmitterId(TCred.createdby.id);
         
         /*List<User> u=[SELECT Id from User where Originator_Id__c=:c.Originator__c];
-        if(u.size()>0)
-        {
-            req1.setSubmitterId(u[0].id);
-        }
-        else
-        {
-            req1.setSubmitterId('0059E000000Jbdz');//UserInfo.getUserId());
-        }*/
-       
+if(u.size()>0)
+{
+req1.setSubmitterId(u[0].id);
+}
+else
+{
+req1.setSubmitterId('0059E000000Jbdz');//UserInfo.getUserId());
+}*/
+        
         req1.setProcessDefinitionNameOrId('Application_Creditor_Treasury_Approved');
         
         //Group[] g = [select Id, Name from Group where Type = 'Queue' and Name = 'Treasury Managers Queue'];
@@ -33,7 +33,8 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         RecordType rec =  [Select Id,SobjectType,Name From RecordType where Name ='Master Credebtor' and 
                            SobjectType ='Account' limit 1];
         
-        Account[] existingMasterCreds = [SELECT Id, Name, CurrencyIsoCode, Average_Cycle_Payment__c, BillingCity, BillingCountry,
+        Account[] existingMasterCreds = [SELECT Id, Name, CurrencyIsoCode, Average_Cycle_Payment__c,
+                                         BillingCity, BillingCountry,
                                          BillingPostalCode, BillingState, BillingStreet, Company_Registration_Number__c,
                                          Counterparty_Since__c, Credit_Notes_Issued__c, Invoices_Predicted_Per_Annum__c,
                                          Phone, Predicted_Annual_Revenue__c, Previous_Name__c, Total_Historic_Value__c, 
@@ -55,16 +56,16 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         a.ShippingStreet = c.Street__c;
         a.ShippingCity = c.City__c;
         a.ShippingCountry = c.Country__c;
+        a.ShippingState=c.State_Province__c;
         a.ShippingPostalCode = c.Zip_Postal_Code__c;
         a.ShippingState = c.State_Province__c;
         
         a.BillingStreet = c.Street_Bill__c;
         a.BillingCity = c.City_Bill__c;
         a.BillingCountry = c.Country_Bill__c;
+        a.BillingState=c.State_Province_Bill__c;
         a.BillingPostalCode = c.Zip_Postal_Code_Bill__c;
         
-        a.Email__c=c.Email_Address__c;
-        a.Email_Bill__c=c.Email_Address_Bill__c;
         
         a.Company_Registration_Number__c = c.Company_Number__c;
         a.Counterparty_Since__c = c.Counterparty_Since__c;
@@ -83,11 +84,11 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         } else {
             Account master = new Account();
             master.Name = c.Name;
-            master.BillingCity = c.City__c;
-            master.BillingCountry = c.Country__c;
-            master.BillingPostalCode = c.Zip_Postal_Code__c;
-            master.BillingState = c.State_Province__c;
-            master.BillingStreet = c.Street__c;
+            /*master.BillingCity = c.City__c;
+master.BillingCountry = c.Country__c;
+master.BillingPostalCode = c.Zip_Postal_Code__c;
+master.BillingState = c.State_Province__c;
+master.BillingStreet = c.Street__c;*/
             master.Company_Registration_Number__c = c.Company_Number__c;
             master.RecordTypeId = [Select Id,SobjectType,Name From RecordType 
                                    where Name ='Master Credebtor' and SobjectType ='Account' limit 1].Id;
@@ -119,6 +120,9 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         cont.LastName = c.Last_Name__c;
         cont.Email = c.Email__c;
         cont.AccountId = a.Id;
+        cont.phone=c.Direct_Dial_Phone__c;
+        cont.MobilePhone=c.Mobile__c;
+        cont.ETR_Delivery__c=true;
         
         cont.MailingStreet=c.Street__c;
         cont.MailingPostalCode=c.Zip_Postal_Code__c;
@@ -128,11 +132,11 @@ trigger ApplicationCreditorTrigger on Application_Creditor__c (after update) {
         if (!Test.isRunningTest()) {
             
             cont.RecordTypeId = [Select Id,SobjectType,Name From RecordType where Name ='Creditor' 
-                                and SobjectType ='Contact' limit 1].Id;
+                                 and SobjectType ='Contact' limit 1].Id;
         }
         insert cont;
         
-       
+        
         //Delete Temporary Debtors
         if(appBanks.size() > 0) {
             delete appBanks;

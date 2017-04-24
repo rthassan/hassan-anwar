@@ -1,0 +1,67 @@
+<apex:page controller="ApplicationProcess">
+    
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    <script>
+        jQuery('button').click(function(){
+   jQuery(this).toggleClass('active');
+});
+    </script>
+    
+    <apex:slds />
+        <!-- BEGIN Page Header -->
+    
+            <div class="inner-wrapper" style="margin-left:25px;">
+                <div class="row clear">
+                    <div class="col col-span-8" style="text-align:left">
+                        <br/>
+                        <a href="https://www.convertibill.com/" rel="home">
+                        	<img style="margin-top:5px;margin-bottom:24px" class="site-logo" src="{!URLFOR($Resource.visco_app_resources, 'visco_app_resources/convertibill.png')}" alt="Convertibill"/>
+                        </a>
+                        
+                        <br/> <br/> 
+                        <h3 style="color:rgb(7,9,12);font: 700 normal 1.6em/1.6 'Libre Franklin', Helvetica, sans-serif;">There's a better way to finance your business</h3>
+                    </div>
+                    
+                    <div class="col col-span-4">
+                        <img style="position:absolute;top:0px;right:280px;" class="site-logo" src="{!$Resource.better_way_to_finance_your_business}" alt="Better way to finance your business"/>
+                        
+                   		<div style="background-color: rgb(255,220,40) !importrant; float:right;position:absolute;top:0px;right:0px;" class="header-refer">
+                            <a href="https://www.convertibill.com/customers/refer/">
+                                <div class="refer-a-friend" style="width:320px;height:73px">
+                                    <img class="icon" src="{!$Resource.convertibill_refer}" alt="Refer a friend to Convertibill and be in with a chance to share in EUR 100,000"/>
+                                    <h3 style="font: 700 normal 1.6em/1.6 'Libre Franklin', Helvetica, sans-serif;line-height:20px;"><span>Refer A Friend</span><br/> EUR 100,000 Giveaway</h3>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <apex:outputPanel rendered="{!$CurrentPage.parameters.origid}">
+                        <apex:outputLink styleClass="logoutlink" value="{!$Site.Prefix}/secur/logout.jsp" rendered="{!NOT(ISPICKVAL($User.UserType,'Guest'))}"><img style="padding-right:5px;" src="{!$Resource.Logouticon}"/>{!$Label.site.logout}</apex:outputLink>
+                        
+                        </apex:outputPanel>
+                    </div>
+                    
+                </div>
+            </div>
+        <!-- END Page Header -->
+    
+        <!-- BEGIN Page Title -->
+        <apex:outputPanel rendered="{!$CurrentPage.parameters.origid}">
+            <div class="page-title" style="margin-top:15px;">
+                
+                <div class="application-tabs">
+                    <a href="/credebtCommunity/ApplicationLanding"><h1 style="color:#4fc6e0;font-weight:bold;display: inline !important;">Application Process</h1></a>
+                    <apex:outputPanel rendered="{!app.Application_Approval_Status__c}">
+                        <a href="/credebtCommunity/apex/ApplicationCredebtors"><h1>Credebtors</h1></a>
+                    </apex:outputPanel>
+                    </div>
+            </div>
+        </apex:outputPanel>
+        
+        <apex:outputPanel rendered="{!$CurrentPage.parameters.origid!=null}">
+            <div class="page-title-inside-sf" style="margin-top:15px">
+                
+            </div>
+        </apex:outputPanel>
+    
+        <!-- END Page Title -->
+</apex:page>

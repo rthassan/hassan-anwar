@@ -1,0 +1,26 @@
+<apex:page controller="NewMasterCredebtorController"  >
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    
+    <body>
+        
+        <div class="form-container">
+            <div class="inner-wrapper">
+                <div class="slds-scope">
+                    <apex:form id="form">
+                        <apex:pageBlock title="New Master Credebtor" mode="edit">
+                            
+                            <apex:pageBlockButtons >
+                                <apex:commandButton action="{!addMaster}" value="Create" />
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockSection title="Master Credebtor Information">
+                                <apex:inputField value="{!Master.Name}" label="Name" required="true"/>
+                            </apex:pageBlockSection>
+                            
+                        </apex:pageBlock>
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</apex:page>

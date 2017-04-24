@@ -9,8 +9,8 @@ public class Test_ConvertCreditorController {
                                                            Email__c = 'test@mailinator.com',Company_Number__c='99');
         insert ac;
         
-        Application_Bank_Account__c b = new Application_Bank_Account__c(Bank_Name__c = 'ACC', Swift_Code__c = '894795', 
-                                                                        IBAN_Number__c = '83473', Application_Creditor__c = ac.Id);
+        Application_Bank_Account__c b = new Application_Bank_Account__c(Bank_Name__c = 'ACC', Swift_Code__c = 'ABCDEF12', 
+                                                                        IBAN_Number__c = 'IE02BOFI90008413113207', Application_Creditor__c = ac.Id);
         insert b; 
         
         Account a2 = new Account(Name='testappCreditor',Company_Registration_Number__c='99');

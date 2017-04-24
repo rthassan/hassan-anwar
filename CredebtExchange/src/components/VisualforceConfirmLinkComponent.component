@@ -31,5 +31,4 @@
         {!originator.phone}<br/>
     </p>
     
-   
 </apex:component>

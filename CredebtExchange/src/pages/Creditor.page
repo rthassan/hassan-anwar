@@ -1,4 +1,4 @@
-<apex:page controller="ApplicationProcess" extensions="CreditorController" tabStyle="Application__tab" action="{!isCreditorsFilled}">
+<apex:page sidebar="false" controller="ApplicationProcess" extensions="CreditorController" tabStyle="Application__tab" action="{!isCreditorsFilled}">
     <script>
     function confirmCancel() {
         var isCancel = confirm("Are you sure you wish to cancel?");
@@ -7,131 +7,280 @@
     }
     
     function copyAddress() {
-        // Variables for Primary Address
-        var primaryStreet = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryStreet}').value;
-        var primaryCode = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCode}').value;
-        var primaryPhone = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryPhone}').value;
-        var primaryCity = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCity}').value;
-        var primaryFax = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryFax}').value;
-        var primaryCountry = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCountry}').value;
-        var primaryEmail = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryEmail}').value;
+       // Variables for Primary Address
+        var primaryStreet = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryStreetItem.primaryStreet}').value;
+        var primaryCode = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCodeItem.primaryCode}').value;
+        var primaryCity = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCityItem.primaryCity}').value;
+        var primaryCountry = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCountryItem.primaryCountry}').value;
+        var primaryProvince = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryProvinceItem.primaryProvince}').value;
         
         // Copying the Primary Address to the Billing Address
-        if(document.getElementById('{!$Component.form.mainblock.BillingAddress.isCopy}').checked)
+        if(document.getElementById('{!$Component.form.mainblock.BillingAddress.isCopyItem.isCopy}').checked)
         {
             //alert(primaryStreet);
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreet}').value = primaryStreet;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCode}').value = primaryCode;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingPhone}').value = primaryPhone;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCity}').value = primaryCity;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingFax}').value = primaryFax;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountry}').value = primaryCountry;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingEmail}').value = primaryEmail;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreetItem.billingStreet}').value = primaryStreet;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCodeItem.billingCode}').value = primaryCode;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCityItem.billingCity}').value = primaryCity;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountryItem.billingCountry}').value = primaryCountry;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingProvinceItem.billingProvince}').value = primaryProvince;
             
         }
         else
         {
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreet}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCode}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingPhone}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCity}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingFax}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountry}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingEmail}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreetItem.billingStreet}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCodeItem.billingCode}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCityItem.billingCity}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingProvinceItem.billingProvince}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountryItem.billingCountry}').value = '';
         }
         
     }
     
-    </script>
-    <apex:sectionHeader title="Credebtors Information" subtitle="Step 8"/>
-    <apex:form id="form">
-        
-        <apex:pageBlock title="Creditor Information" id="mainblock" >
-            
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!cancel}" value="Cancel"
-                                    onclick="return confirmCancel()" immediate="true"/>
-                <apex:commandButton action="{!saveAndcontinue}" value="Save & Continue"/>
-            </apex:pageBlockButtons>
-            <div style="text-align:center;font-size: 15px;">
-                <apex:outputText style="color:red" value="IMPORTANT:- "/>
-                <apex:outputText value="Select the currency of the Counterparty before entering any other data. 
-                                        Do not enter details using all capital letters. 
-                                        This will delay your application to have this Counterparty authorised. 
-                                        Enter data by capitalising each word, e.g. do not enter 'COMPANY NAME LIMITED', or 'MAIN STREET'. Enter 'Company Name' and 'Main Street'." /> 
+    </script><body>
+   
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    <apex:sectionHeader title="Step 8"/>
+                    <apex:form id="form">
+                       
+                        <apex:pageBlock title="Creditor Information" id="mainblock" >
+                            
+                            <apex:pageBlockButtons location="bottom">
+                                <apex:commandButton tabindex="380" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+                                <apex:commandButton tabindex="390" action="{!Back7}" value="Previous Step" immediate="true" />
+                                <apex:commandButton tabindex="400" action="{!saveAndcontinue}" value="Save & Continue"/>
+                            </apex:pageBlockButtons>
+                            <div style="text-align:center;font-size: 15px;">
+                                <apex:outputText style="color:red" value="IMPORTANT:- "/>
+                                <apex:outputText value="Select the currency of the Counterparty before entering any other data. 
+                                                        Do not enter details using all capital letters. 
+                                                        This will delay your application to have this Counterparty authorised. 
+                                                        Enter data by capitalising each word, e.g. do not enter 'COMPANY NAME LIMITED', or 'MAIN STREET'. Enter 'Company Name' and 'Main Street'." /> 
+                            </div>
+                            
+                            <apex:pageBlockSection title="Information Account" columns="2">
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Name.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Creditor Company Name"/>
+                                    <apex:inputField taborderhint="1" styleClass="slds-input" value="{!AppCreditor.Name}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Company_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Company Registration Number"/>
+                                    <apex:inputField taborderhint="8" styleClass="slds-input" value="{!AppCreditor.Company_Number__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.CurrencyIsoCode.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Currency"/>
+                                    <apex:inputField taborderhint="2" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppCreditor.CurrencyIsoCode}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Trading_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Trading Name"/>
+                                    <apex:inputField taborderhint="9" styleClass="slds-input" value="{!AppCreditor.Trading_Name__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Previous_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Previous Name"/>
+                                    <apex:inputField taborderhint="3" styleClass="slds-input" value="{!AppCreditor.Previous_Name__c}"/>
+                                </apex:pageBlockSectionItem>                  
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Originator__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Organisation"/>
+                                    <apex:inputField taborderhint="10" styleClass="slds-input" value="{!AppCreditor.Originator__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Counterparty_Since__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Counterparty Since"/>
+                                    <apex:inputField taborderhint="4" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppCreditor.Counterparty_Since__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Total_Historic_Value__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Total Historic Value"/>
+                                    <apex:inputField taborderhint="11" styleClass="slds-input" value="{!AppCreditor.Total_Historic_Value__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Average_Cycle_Payment__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Average Payment Cycle"/>
+                                    <apex:inputField taborderhint="5" styleClass="slds-input" value="{!AppCreditor.Average_Cycle_Payment__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Credit_Notes_Issued__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Credits Notes Issued"/>
+                                    <apex:inputField taborderhint="12" styleClass="slds-input" value="{!AppCreditor.Credit_Notes_Issued__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Invoices_Predicted_Per_Annum__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Invoices Predicted Per Annum"/>
+                                    <apex:inputField taborderhint="6" styleClass="slds-input" value="{!AppCreditor.Invoices_Predicted_Per_Annum__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Predicted_Annual_Revenue__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Predicted Annual Revenue"/>
+                                    <apex:inputField taborderhint="13" styleClass="slds-input" value="{!AppCreditor.Predicted_Annual_Revenue__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Agreed_Early_Payment_Discount__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Agreed Early Payment Dsicount"/>
+                                    <apex:inputField taborderhint="7" styleClass="slds-input" value="{!AppCreditor.Agreed_Early_Payment_Discount__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                
+                            </apex:pageBlockSection>
+                            
+                            
+                            <apex:pageBlockSection title="Bank Details" columns="2">
+                                                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.Name.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Account Name"/>
+                                    <apex:inputField taborderhint="14" styleClass="slds-input" value="{!AppBankAccount.Name}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.Bank_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Name"/>
+                                    <apex:inputField taborderhint="18" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppBankAccount.Bank_Name__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.IBAN_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="IBAN Number"/>
+                                    <apex:inputField taborderhint="15" styleClass="slds-input" value="{!AppBankAccount.IBAN_Number__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.Bank_Account_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Account Number"/>
+                                    <apex:inputField taborderhint="19" styleClass="slds-input" value="{!AppBankAccount.Bank_Account_Number__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.Swift_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="SWIFT Code"/>
+                                    <apex:inputField taborderhint="16" styleClass="slds-input" value="{!AppBankAccount.Swift_Code__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.Sort_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Sort Code"/>
+                                    <apex:inputField taborderhint="20" styleClass="slds-input" value="{!AppBankAccount.Sort_Code__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Bank_Account__c.Fields.CurrencyISOCode.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Currency"/>
+                                    <apex:inputField taborderhint="17" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppBankAccount.CurrencyISOCode}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Primary Address" columns="2" id="PrimaryAddress">
+                                
+                                <apex:pageBlockSectionItem id="primaryPhoneItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Phone__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Phone"/>
+                                    <apex:inputField taborderhint="21" styleClass="slds-input" value="{!AppCreditor.Phone__c}" required="true" id="primaryPhone"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCodeItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Zip_Postal_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Area/Postal Code"/>
+                                    <apex:inputField taborderhint="24" styleClass="slds-input" value="{!AppCreditor.Zip_Postal_Code__c}" required="true" id="primaryCode"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryStreetItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Street__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Street"/>
+                                    <apex:inputField taborderhint="22" styleClass="slds-input" value="{!AppCreditor.Street__c}" required="true" id="primaryStreet"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryProvinceItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.State_Province__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="County/Province"/>
+                                    <apex:inputField taborderhint="25" styleClass="slds-input" value="{!AppCreditor.State_Province__c}" required="true" id="primaryProvince"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCityItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.City__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="City"/>
+                                    <apex:inputField taborderhint="23" styleClass="slds-input" value="{!AppCreditor.City__c}" required="true" id="primaryCity"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCountryItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Primary_Country__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Country"/>
+                                    <apex:inputField taborderhint="26" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppCreditor.Primary_Country__c}" required="true" id="primaryCountry"/>
+                                </apex:pageBlockSectionItem>
+                                
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Billing Address" columns="2" id="BillingAddress">
+                                <apex:pageBlockSectionItem id="isCopyItem">
+                                        <apex:outputLabel styleClass="slds-form-element__label" value="Same as Primary Address"/>
+                                        <apex:inputCheckbox tabindex="270" onclick="return copyAddress();" id="isCopy" />
+                                    </apex:pageBlockSectionItem>
+                                
+                                <br/>
+                                
+                                <apex:pageBlockSectionItem id="billingStreetItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Street_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Street"/>
+                                    <apex:inputField taborderhint="28" styleClass="slds-input" value="{!AppCreditor.Street_Bill__c}" required="true" id="billingStreet"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingCodeItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Zip_Postal_Code_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Area/Postal Code"/>
+                                    <apex:inputField taborderhint="30" styleClass="slds-input" value="{!AppCreditor.Zip_Postal_Code_Bill__c}" required="true" id="billingCode"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingCityItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.City_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="City"/>
+                                    <apex:inputField taborderhint="29" styleClass="slds-input" value="{!AppCreditor.City_Bill__c}" required="true" id="billingCity"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingProvinceItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.State_Province_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="County/Province"/>
+                                    <apex:inputField taborderhint="31" styleClass="slds-input" value="{!AppCreditor.State_Province_Bill__c}" required="true" id="billingProvince"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingCountryItem" helpText="{!$ObjectType.Application_Creditor__c.Fields.Billing_Country__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Country"/>
+                                    <apex:inputField taborderhint="32" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppCreditor.Billing_Country__c}" required="true" id="billingCountry"/>
+                                </apex:pageBlockSectionItem>
+                                
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Account Contact Details" columns="2">
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.First_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="First Name"/>
+                                    <apex:inputField taborderhint="33" styleClass="slds-input" value="{!AppCreditor.First_Name__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Direct_Dial_Phone__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Phone"/>
+                                    <apex:inputField taborderhint="35" styleClass="slds-input" value="{!AppCreditor.Direct_Dial_Phone__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Last_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Last Name"/>
+                                    <apex:inputField taborderhint="34" styleClass="slds-input" value="{!AppCreditor.Last_Name__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Mobile__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Mobile"/>
+                                    <apex:inputField taborderhint="36" styleClass="slds-input" value="{!AppCreditor.Mobile__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Creditor__c.Fields.Email__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Email"/>
+                                    <apex:inputField taborderhint="37" styleClass="slds-input" value="{!AppCreditor.Email__c}" required="true">
+                                        <span style="color:blue"><b>ETR Invoices are Emailed to this Email Address</b></span>
+                                    </apex:inputField>
+                                </apex:pageBlockSectionItem>
+                
+                            </apex:pageBlockSection>
+                            
+                        </apex:pageBlock>
+                    </apex:form>
+                </div>
             </div>
-            
-            <apex:pageBlockSection title="Information Account" columns="2">
-                
-                <apex:inputField value="{!AppCreditor.Name}" label="Creditor Name" required="true"/>
-                <apex:inputField value="{!AppCreditor.Company_Number__c}" label="Company Registration Number" required="true"/>
-                <apex:inputField value="{!AppCreditor.Company_Name__c}" label="Company Name" required="true"/>
-                <apex:inputField value="{!AppCreditor.CurrencyIsoCode}" label="Currency" required="true"/>
-                <apex:inputField value="{!AppCreditor.Trading_Name__c}" label="Trading Name"/>
-                <apex:inputField value="{!AppCreditor.Previous_Name__c}" label="Previous Name"/>
-                <apex:inputField value="{!AppCreditor.Originator__c}" label="Organisation" required="true"/>
-                <apex:inputField value="{!AppCreditor.Agreed_Early_Payment_Discount__c}" label="Agreed Early Payment Dsicount" required="true"/>
-                
-            </apex:pageBlockSection>
-            
-            
-            <apex:pageBlockSection title="Bank Details" columns="2">
-                
-                <apex:inputField value="{!AppBankAccount.Name}" label="Bank Account Name" required="true"/>
-                 <apex:inputField value="{!AppBankAccount.Bank_Name__c}" label="Bank Name" required="true"/>
-                <apex:inputField value="{!AppBankAccount.IBAN_Number__c}" label="IBAN Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Bank_Account_Number__c}" label="Account Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code" required="true"/>
-                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency" required="true"/>
-                
-            </apex:pageBlockSection>
-            
-            
-            <apex:pageBlockSection title="Primary Address" columns="2" id="PrimaryAddress">
-                
-                <apex:inputField value="{!AppCreditor.Street__c}" label="Address Line" required="true" id="primaryStreet"/>
-                <apex:inputField value="{!AppCreditor.Zip_Postal_Code__c}" label="Postal Code" required="true" id="primaryCode"/>
-                <apex:inputField value="{!AppCreditor.Phone__c}" label="Phone" required="true" id="primaryPhone"/>
-                <apex:inputField value="{!AppCreditor.City__c}" label="City/Town"  required="true" id="primaryCity"/>
-                <apex:inputField value="{!AppCreditor.Fax__c}" label="Fax Number" required="true" id="primaryFax"/>
-                <apex:inputField value="{!AppCreditor.Country__c}" label="Country" required="true" id="primaryCountry"/>
-                <apex:inputField value="{!AppCreditor.Email_Address__c}" label="Email Address" required="true" id="primaryEmail"/>
-                
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Billing Address" columns="2" id="BillingAddress">
-                <apex:inputCheckbox label="Same as Primary Address" onclick="return copyAddress();" id="isCopy" />
-               
-                <br/>
-                <apex:inputField value="{!AppCreditor.Street_Bill__c}" label="Address Line" required="true" id="billingStreet"/>
-                <apex:inputField value="{!AppCreditor.Zip_Postal_Code_Bill__c}" label="Postal Code" required="true" id="billingCode"/>
-                <apex:inputField value="{!AppCreditor.Phone_Bill__c}" label="Phone" required="true" id="billingPhone"/>
-                <apex:inputField value="{!AppCreditor.City_Bill__c}" label="City/Town"  required="true" id="billingCity"/>
-                <apex:inputField value="{!AppCreditor.Fax_Bill__c}" label="Fax Number" required="true" id="billingFax"/>
-                <apex:inputField value="{!AppCreditor.Country_Bill__c}" label="Country" required="true" id="billingCountry"/>
-                <apex:inputField value="{!AppCreditor.Email_Address_Bill__c}" label="Email Address" required="true" id="billingEmail"/>
-                
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Account Contact Details" columns="2">
-                
-                <apex:inputField value="{!AppCreditor.First_Name__c}" label="Contact First Name" required="true"/>
-                <apex:inputField value="{!AppCreditor.Last_Name__c}" label="Contact Last Name" required="true"/>
-                <apex:inputField value="{!AppCreditor.Direct_Dial_Phone__c}" label="Contact Direct Dial Phone" required="true"/>
-                <apex:inputField value="{!AppCreditor.Email__c}" label="Contact Email" required="true">
-                     <span style="color:red">ETR Invoices are Emailed to this Email Address</span>
-                </apex:inputField>
-                <apex:inputField value="{!AppCreditor.Counterparty_Since__c}" label="Counterparty Since" required="true"/>
-                <apex:inputField value="{!AppCreditor.Total_Historic_Value__c}" label="Total Historic Value" required="true"/>
-                <apex:inputField value="{!AppCreditor.Average_Cycle_Payment__c}" label="Average Payment Cycle" required="true"/>
-                <apex:inputField value="{!AppCreditor.Credit_Notes_Issued__c}" label="Credits Notes Issued" required="true"/>
-                <apex:inputField value="{!AppCreditor.Invoices_Predicted_Per_Annum__c}" label="Invoices Predicted Per Annum" required="true"/>
-                <apex:inputField value="{!AppCreditor.Predicted_Annual_Revenue__c}" label="Predicted Annual Revenue" required="true"/>
-                
-            </apex:pageBlockSection>
-            
-            
-        </apex:pageBlock>
-    </apex:form>
+        </div>
+        
+        <apex:include pageName="FooterPage"/>
+    </body>
 </apex:page>

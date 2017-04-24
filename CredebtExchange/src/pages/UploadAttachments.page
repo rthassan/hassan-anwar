@@ -1,55 +1,72 @@
-<apex:page controller="ApplicationProcess" extensions="UploadController" action="{!SkipUploadPage}">
-
-	<apex:sectionHeader title="Upload All Missing Attachments" subtitle="Step 10"/>
-	<apex:form >
-		<apex:pageblock >
-		   <apex:messages style="color:red"></apex:messages>
-		   <apex:PageBlockSection title="Company's Logo" rendered="{!company_logo == false}">
-		    	<apex:pageBlockSectionItem >
-			              <apex:outputLabel value="Company's Logo" for="Company's Logo" />
-			              <apex:inputFile value="{!LogoAttachment.body}" filename="{!LogoAttachment.name}" id="file" required="true"/>
-			    </apex:pageBlockSectionItem>
-		   </apex:PageBlockSection>
-		    
-		   <apex:PageBlockSection title="Bank Statement" rendered="{!obank_statement == false}">
-		    	<apex:pageBlockSectionItem >
-			              <apex:outputLabel value="Bank Statement" for="Bank Statement"/>
-			              <apex:inputFile value="{!BankStatementAttachment.body}" filename="{!BankStatementAttachment.name}" id="file" required="true"/>
-			    </apex:pageBlockSectionItem>
-		   </apex:PageBlockSection>
-	       <apex:repeat value="{!UAttachments}" var="att">
-	             
-	             <apex:pageBlock title="Director[{!att.name}]" rendered="{!att.PBlockVisibility == true}">
-		            
-		            <apex:pageBlockSection title="Director’s Utility Bill" rendered="{! att.bank_attachment_visibility == false}">
-			            <apex:pageBlockSectionItem >
-			              <apex:outputLabel value="PDF" for="PDF"/>
-			              <apex:inputFile value="{!att.bill_bankattachment.body}" accept="application/pdf" filename="{!att.bill_bankattachment.name}" id="file" required="true"/>
-			            </apex:pageBlockSectionItem>
-		             </apex:pageBlockSection>
-		        	
-                      <apex:pageBlockSection title="Director’s Passport/Driving License Document" rendered="{! att.passport_attachment_visibility == false}">
-				       	<apex:pageBlockSectionItem >
-			              <apex:outputLabel value="PDF" for="PDF"/>
-			              <apex:inputFile value="{!att.passport_attachment.body}" accept="application/pdf" filename="{!att.passport_attachment.name}" id="file" required="true"/>
-			            </apex:pageBlockSectionItem>
-		             </apex:pageBlockSection>
-		          
-		       
-		            <apex:pageBlockSection title="Director's Signature Image" rendered="{! att.director_signature_visibility == false}">
-			            <apex:pageBlockSectionItem >
-			              <apex:outputLabel value="PDF" for="PDF"/>
-			              <apex:inputFile value="{!att.company_bankattachment.body}" accept="image/*" filename="{!att.company_bankattachment.name}" id="file" required="true"/>
-			            </apex:pageBlockSectionItem>
-			        </apex:pageBlockSection>    
-               </apex:pageBlock>
-              
-	       </apex:repeat>
-	       
-	       <apex:pageBlockButtons >
-	       		<apex:commandButton value="Save & Continue" action="{!save}"/>
-	       </apex:pageBlockButtons>
-		</apex:pageblock>
-     </apex:form>
-
+<apex:page sidebar="false" controller="ApplicationProcess" extensions="UploadController" action="{!SkipUploadPage}">
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
+    <body>
+    
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    <apex:sectionHeader title="Step 9"/>
+                    
+                    <apex:form id="Form">
+                        <apex:messages style="color:red"></apex:messages>
+                        <apex:pageblock title="Upload All Missing Attachments">
+                            
+                            <apex:PageBlockSection title="Originator's Attachments" columns="2" rendered="{!company_logo == false || obank_statement == false}">
+                                <apex:pageBlockSectionItem rendered="{!company_logo == false}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Company's Logo" for="Company's Logo" />
+                                    <apex:inputFile filesize="{!LogoAttachmentG.BodyLength}" value="{!LogoAttachmentG.body}" filename="{!LogoAttachmentG.name}" id="file1" accept="image/*" />
+                                </apex:pageBlockSectionItem>
+                            
+                                <apex:pageBlockSectionItem rendered="{!obank_statement == false}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Statement" for="Bank Statement"/>
+                                    <apex:inputFile filesize="{!BankStatementAttachmentG.BodyLength}" value="{!BankStatementAttachmentG.body}" filename="{!BankStatementAttachmentG.name}" accept="image/*" id="file2" />
+                                </apex:pageBlockSectionItem>
+                            </apex:PageBlockSection>
+                            <apex:repeat value="{!UAttachments}" var="DirectorA">
+                                
+                                <apex:pageBlock title="Director[{!DirectorA.d.name}]" rendered="{! DirectorA.d.BankAttachment__c == false || DirectorA.d.PasswordAttachment__c == false || DirectorA.d.SignatureAttachment__c == false  }">
+                                    
+                                    <apex:pageBlockSection columns="3">
+                                        <apex:pageBlockSectionItem rendered="{! DirectorA.d.BankAttachment__c == false}">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="Utility Bill" for="PDF"/>
+                                            <apex:inputFile filesize="{!DirectorA.BAttachment.BodyLength}" accept="application/pdf,image/*" value="{!DirectorA.BAttachment.body}" filename="{!DirectorA.BAttachment.name}" id="file1" />
+                                        </apex:pageBlockSectionItem>
+                                        
+                                        <apex:pageBlockSectionItem rendered="{! DirectorA.d.PasswordAttachment__c == false}">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="Passport/Driving License" for="PDF"/>
+                                            <apex:inputFile filesize="{!DirectorA.PAttachment.BodyLength}" accept="application/pdf,image/*" value="{!DirectorA.PAttachment.body}" filename="{!DirectorA.PAttachment.name}" id="file2" />
+                                        </apex:pageBlockSectionItem>
+                                        
+                                        <apex:pageBlockSectionItem rendered="{! DirectorA.d.SignatureAttachment__c == false}">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="Signature" for="PDF"/>
+                                            <apex:inputFile filesize="{!DirectorA.CAttachment.BodyLength}" value="{!DirectorA.CAttachment.body}" filename="{!DirectorA.CAttachment.name}" id="file3" accept="image/*" />
+                                        </apex:pageBlockSectionItem>
+                                    </apex:pageBlockSection>
+                                </apex:pageBlock>
+                                
+                            </apex:repeat>
+                            
+                            <apex:pageBlockButtons location="bottom">
+                                <apex:commandButton action="{!cancel}" value="Cancel"
+                                                    onclick="return confirmCancel()" immediate="true"/>
+                                <apex:commandButton action="{!Back8}" value="Previous Step" immediate="true" />
+                                <apex:commandButton value="Save & Continue"  action="{!save}"  />
+                                
+                            </apex:pageBlockButtons>
+                        </apex:pageblock>
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+        
+        <apex:include pageName="FooterPage"/>
+    </body>
 </apex:page>

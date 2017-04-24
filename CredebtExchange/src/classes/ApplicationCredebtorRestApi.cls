@@ -1,7 +1,7 @@
 public  class ApplicationCredebtorRestApi {
 
 		//@future(callout=true)
-		public static void sendDebtors(ID DebtorId)
+		/*public static void sendDebtors(ID DebtorId)
 		{
 			string json ;
             string type = null;
@@ -11,13 +11,17 @@ public  class ApplicationCredebtorRestApi {
             
             
             
-			List<Account> Debtor = [Select originator__c,id,name,CurrencyIsoCode,Trading_Name__c,Counterparty_Since__c,Website,Company_Registration_Number__c,NACE_Section__c,
-			 NACE_Code__c,Year_of_Registration__c,Country_of_Registration__c,Average_Cycle_Payment__c,
-			 ShippingAddress,ShippingStreet,ShippingCity,ShippingCountry,ShippingPostalcode,ShippingState,BillingStreet,BillingCity,BillingCountry,BillingPostalcode,BillingState from Account where id =: DebtorId];
+			List<Account> Debtor = [Select originator__c,id,name,CurrencyIsoCode,Trading_Name__c, Counterparty_Since__c,
+                                    Website,Company_Registration_Number__c, NACE_Section__c, NACE_Code__c,recordTypeId,
+                                    Year_of_Registration__c,Country_of_Registration__c,Average_Cycle_Payment__c,
+                                    ShippingAddress,ShippingStreet,ShippingCity,ShippingCountry,ShippingPostalcode,
+                                    ShippingState,BillingStreet,BillingCity,BillingCountry,BillingPostalcode,
+                                    BillingState from Account where id =: DebtorId];
 			
 			for(Account d : Debtor)
 			{
-                List<Account> originator = [Select id,originator_reference_id__c from Account where id =: d.originator__c Limit 1];
+                List<Account> originator = [Select id,originator_reference_id__c from Account 
+                                            where id =: d.originator__c Limit 1];
                 if(d.recordTypeId == DebtType)
                 {
                     type = 'Debtor';
@@ -31,7 +35,9 @@ public  class ApplicationCredebtorRestApi {
                 {
 					oid = originator[0].originator_reference_id__c;
                 }
-				List<Bank_Account__c> BankAccount = [Select Name,Bank_Account_Number__c,Bank__c,CurrencyIsoCode,IBAN_Number__c,Sort_Code__c,Swift_Code__c from Bank_Account__c where Account__c =: d.id];
+				List<Bank_Account__c> BankAccount = [Select Name,Bank_Account_Number__c,Bank__c,CurrencyIsoCode,
+                                                     IBAN_Number__c,Sort_Code__c,Swift_Code__c from Bank_Account__c 
+                                                     where Account__c =: d.id];
 				List<Contact> Contacts = [Select firstname,lastname,phone,email from Contact where AccountId =: d.id];
                 json = json + '{"request_type":"Credebtors", "originator_reference_id": "'+oid+'", "type": "'+type+'", "currency_code": "'+d.CurrencyIsoCode+'" ,"debtor_name":"'+d.name+'", "trade_name":"'+d.Trading_Name__c+'", "customer_since":"'+d.Counterparty_Since__c+'", "website":"'+d.website+'", "debtor_company_registration_number":"'+d.Company_Registration_Number__c+'", "nace_category":"'+d.NACE_Section__c+'", "nace_code":"'+d.NACE_Code__c+'", "founded":"'+d.Year_of_Registration__c+'","organisation_jurisdiction":"'+d.Country_of_Registration__c+'","average_payment_cycle":'+d.Average_Cycle_Payment__c+',  "Registered Address":{"address_line_one":"'+d.ShippingStreet+'", "address_city":"'+d.ShippingCity+'", "address_zipcode":"'+d.ShippingPostalcode+'" ,"address_state":"'+d.ShippingState+'" , "address_country": "'+d.ShippingCountry+'"},"Billing Address":{"address_line_one":"'+d.BillingStreet+'", "address_city":"'+d.BillingCity+'", "address_zipcode":"'+d.BillingPostalcode+'" ,"address_state":"'+d.BillingState+'" ,  "address_country": "'+d.BillingCountry+'" }';
 				if(BankAccount.size() > 0)
@@ -72,18 +78,28 @@ public  class ApplicationCredebtorRestApi {
 		public static void sendOriginator(ID OriginatorId)
 		{
 			string json ;
-			List<Account> Originator = [Select id,name,originator_reference_id__c,CurrencyIsoCode,Trading_Name__c,NumberOfEmployees,Website,Accounting_Software__c,Company_Registration_Number__c,VAT_Number__c,
-			Company_Structure__c,Credit_Insurer__c,IDF_Provider__c,Number_of_Directors__c,NACE_Section__c,
-			 NACE_Code__c,Year_of_Registration__c,Country_of_Registration__c,
-			 ShippingAddress,ShippingStreet,ShippingCity,ShippingCountry,ShippingPostalcode,ShippingState,BillingStreet,BillingCity,BillingCountry,BillingPostalcode,BillingState from Account where id =: OriginatorId];
+			List<Account> Originator = [Select id,name,originator_reference_id__c,CurrencyIsoCode,Trading_Name__c,
+                                        NumberOfEmployees,Website,Accounting_Software__c,Company_Registration_Number__c,
+                                        VAT_Number__c, Company_Structure__c,Credit_Insurer__c,IDF_Provider__c,
+                                        Number_of_Directors__c,NACE_Section__c, NACE_Code__c,Year_of_Registration__c,
+                                        Country_of_Registration__c, ShippingAddress,ShippingStreet,ShippingCity,
+                                        ShippingCountry,ShippingPostalcode,ShippingState,BillingStreet,BillingCity,
+                                        BillingCountry,BillingPostalcode,BillingState from Account 
+                                        where id =: OriginatorId];
 			
 			for(Account o : Originator)
 			{
-				List<Bank_Account__c> BankAccounts = [Select Name,Bank_Account_Number__c,Bank__c,CurrencyIsoCode,IBAN_Number__c,Sort_Code__c,Swift_Code__c from Bank_Account__c where Account__c =: o.id];
-				List<Contact> Contacts = [Select firstname,lastname,phone,email,MailingStreet,MailingCity,MailingPostalCode,MailingCountry,OtherStreet,OtherCity,OtherPostalCode,OtherCountry from Contact where AccountId =: o.id and Director__c = false];
-				LIst<Contact> Directors = [Select email,firstname,lastname,phone,Director__c,MailingStreet,MailingCity,MailingPostalCode,MailingCountry,
-                                           OtherStreet,OtherCity,OtherPostalCode,OtherCountry from Contact where AccountId =: o.id and Director__c = true];
-				List<Opportunity> Opportunity = [Select Trade_Commission__c,Processing_Commission__c,Purchase_Payment__c,d_ETR_Sell_Rate__c	,c_ETR_Deposit__c from
+				List<Bank_Account__c> BankAccounts = [Select Name,Bank_Account_Number__c,Bank__c,CurrencyIsoCode,
+                                                      IBAN_Number__c,Sort_Code__c,Swift_Code__c from Bank_Account__c 
+                                                      where Account__c =: o.id];
+				List<Contact> Contacts = [Select firstname,lastname,phone,email,MailingStreet,MailingCity,
+                                          MailingPostalCode,MailingCountry,OtherStreet,OtherCity,OtherPostalCode,
+                                          OtherCountry from Contact where AccountId =: o.id and Director__c = false];
+				LIst<Contact> Directors = [Select email,firstname,lastname,phone,Director__c,MailingStreet,MailingCity,
+                                           MailingPostalCode,MailingCountry,OtherStreet,OtherCity,OtherPostalCode,
+                                           OtherCountry from Contact where AccountId =: o.id and Director__c = true];
+				List<Opportunity> Opportunity = [Select Trade_Commission__c,Processing_Commission__c,
+                                                 Purchase_Payment__c,d_ETR_Sell_Rate__c	,c_ETR_Deposit__c from
                                                 Opportunity where AccountId =: o.id Limit 1];
 				json = json + '{"request_type":"Originator", "currency_code": "'+o.CurrencyIsoCode+'" ,"organisation_name":"'+o.name+'", "organisation_trade_name":"'+o.Trading_Name__c+'", "total_employee":'+o.NumberOfEmployees+', "website":"'+o.website+'","accounting_software":"'+o.Accounting_Software__c+'", "vat_number":"'+o.Company_Registration_Number__c+'", "tax_number": "'+o.VAT_Number__c+'", "organisation_type":"'+o.Company_Structure__c+'", "insurance_provider":"'+o.Credit_Insurer__c+'",	 "discount_provider":"'+o.IDF_Provider__c+'","number_of_directors":'+o.Number_of_Directors__c+',"nace_category":"'+o.NACE_Section__c+'", "nace_code":"'+o.NACE_Code__c+'","formation_year":"'+o.Year_of_Registration__c+'","organisation_jurisdiction":"'+o.Country_of_Registration__c+'","Billing Address": {"address_line_one":"'+o.BillingStreet+'","address_city":"'+o.BillingCity+'","address_zipcode":"'+o.BillingPostalCode+'","address_state":"'+o.BillingState+'","address_country":"'+o.BillingCountry+'"},  "Delivery Address" : {"address_line_one":"'+o.ShippingStreet+'","address_city":"'+o.ShippingCity+'","address_zipcode":"'+o.ShippingPostalCode+'","address_state":"'+o.ShippingState+'" ,"address_country":"'+o.ShippingCountry+'"}';
 				
@@ -160,5 +176,5 @@ public  class ApplicationCredebtorRestApi {
 		       // System.debug('The status code returned was not expected: ' +
 		         //            response.getStatusCode() + ' ' + response.getBody()); 
 		    //}
-		}
+		}*/
 }

@@ -12,8 +12,8 @@ public class Test_ApplicationDebtorTrigger {
         
         //insert app bank account
         Application_Bank_Account__c b = new Application_Bank_Account__c(Name = 'testappbank', Application_Debtor__c = d.Id,
-                                                                       Bank_Name__c = 'ACC', Swift_Code__c = '894795',
-                                                                       IBAN_Number__c = '83473');
+                                                                       Bank_Name__c = 'ACC', Swift_Code__c = 'ABCDEF12',
+                                                                       IBAN_Number__c = 'IE02BOFI90008413113207');
         insert b;
         
         //update debtor

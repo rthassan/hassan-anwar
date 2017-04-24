@@ -28,7 +28,7 @@ public class Test_VisualforceEmailCtrl {
                                                            Email__c = 'test@mailinator.com', Mandatory__c = true);
         insert c;
         
-        Bank_Account__c ba = new Bank_Account__c(Bank__c = 'ACC', Swift_Code__c = '784', IBAN_Number__c='858', 
+        Bank_Account__c ba = new Bank_Account__c(Bank__c = 'ACC', Swift_Code__c = 'ABCDEF12', IBAN_Number__c='IE02BOFI90008413113207', 
                                                  Account__c = a.Id);
         insert ba;
         

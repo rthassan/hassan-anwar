@@ -5,21 +5,20 @@ public class SelectOrganizationController {
     
     public List<Application_Creditor__c> AppCreditors{get;set;}
     public List<Application_Debtor__c> AppDebtors{get;set;}
-    public String CType{
-        get{ CType = 'Creditor'; return CType;}set;}
-    public String DType{
-        get{ DType = 'Debtor'; return Dtype;}set;}
+    
+    String origid;
     
     public SelectOrganizationController(ApplicationProcess obj)
     {
         originatorId=obj.ORIGINATOR_ID;
         app=obj.app;
+        origid = apexpages.currentpage().getparameters().get('origid');
     }
     
     public List<Application_Creditor__c> GetCreditorOrganisations(){
         
         AppCreditors = [Select id,name,Amount__c,Company_Number__c, Mandatory__c
-                          from Application_Creditor__c where Originator__c = :originatorId];
+                          from Application_Creditor__c where Originator__c = :originatorId and Mandatory__c=true];
                           
         return AppCreditors;
         
@@ -29,9 +28,24 @@ public class SelectOrganizationController {
     public List<Application_Debtor__c> GetDebtorOrganisations(){
         
         AppDebtors = [Select id,name,Amount__c,Company_Number__c, Mandatory__c
-                          from Application_Debtor__c where Originator__c = :originatorId];
+                          from Application_Debtor__c where Originator__c = :originatorId and Mandatory__c=true];
                           
         return AppDebtors;
+    }
+    
+    public PageReference isSelectOrganisation()
+    {
+        PageReference p=null;
+        if(app.Credebtors__c == true)
+        {
+            if( origid != null)
+            {
+                p = new PageReference('/apex/FastTrading');
+                p.getParameters().put('origid',origid);
+            }
+            else  p = new PageReference('/apex/FastTrading');
+        }
+        return p;
     }
     
     public PageReference step3(){
@@ -39,10 +53,15 @@ public class SelectOrganizationController {
         update AppDebtors;
         
         app.Credebtors__c=true;
-        app.Stage__c='Credebtors';
+        app.Stage__c='Fast-Trading';
         update app;
-       
-        return Page.Verified;
+        
+        PageReference p = new PageReference('/apex/FastTrading');
+        if( origid != null)
+        {
+             p.getParameters().put('origid',origid);
+        }
+        return p;
     }
     
 }

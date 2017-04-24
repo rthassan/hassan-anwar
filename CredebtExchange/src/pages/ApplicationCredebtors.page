@@ -1,0 +1,26 @@
+<apex:page sidebar="false" controller="ApplicationProcess">
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    <body>
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPageCredebtors"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                   <apex:form >
+                   <apex:pageBlock title="Create Credebtors">
+                       
+                       Create Application Creditors and Debtors!
+                        <apex:pageBlockButtons location="bottom">
+                            <apex:commandButton action="{!cancel}" value="Cancel"
+                                                    onclick="return confirmCancel()" immediate="true"/>
+                            <apex:commandButton value="Create Creditor" action="/apex/CreateCreditor" />
+                            <apex:commandButton value="Create Debtor" action="/apex/CreateDebtor"/>
+                        </apex:pageBlockButtons>
+                   </apex:pageBlock>
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+        
+        <apex:include pageName="FooterPage"/>
+    </body>
+</apex:page>

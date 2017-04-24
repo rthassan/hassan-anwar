@@ -36,9 +36,13 @@ public class Test_ReferAFriendController {
         Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Upload_Stage__c = true);
         insert app;
         
+        app.Refer_a_Friend__c=true;
+        update app;
+        
         ApplicationProcess applprocess = new ApplicationProcess();
         //appprocess.cancel();
         //appprocess.LandingPage();
+        Test.setCurrentPage(new PageReference('/apex/ReferAFriend?origid='+a.id));
         ReferAFriendController rr = new ReferAFriendController(applprocess);
         rr.getLead();
         rr.getOriginator();
@@ -46,5 +50,7 @@ public class Test_ReferAFriendController {
         rr.lead.Company = 'company';
         rr.lead.LastName = 'lastname';
         rr.step2();
+        rr.isReferFriend();
+        
     }
 }

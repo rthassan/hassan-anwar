@@ -14,7 +14,7 @@ global class InboundEmailService implements Messaging.InboundEmailHandler {
 		if(contacts.size() > 0)
 		{
 			Contact c = contacts[0];
-			List<Account> DebtorAccount = [Select id,Originator__c,Trading_Name__c,name,Bank_Details_Changed__c from Account where id =: c.AccountId];
+			List<Account> DebtorAccount = [Select id,Originator__c,Trading_Name__c,name,Bank_Details_Changed__c,Bank_Details_Changed_Time__c from Account where id =: c.AccountId];
             
 			if(DebtorAccount.size() > 0)
 			{

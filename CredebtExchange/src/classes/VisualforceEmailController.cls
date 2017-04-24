@@ -51,7 +51,7 @@ public class VisualforceEmailController {
                     return originator[0];
                 }	 	
             }
-         
+            
         }
         return null;
     }
@@ -88,14 +88,29 @@ public class VisualforceEmailController {
                 List<Account> originator = [Select baseurl__c, name, email__c, phone, mobile__c, BillingCity, BillingCountry from Account where id =: DAccount.originator__c];
                 if(originator.size() > 0)
                 {
-                    List<Contact> directors=[SELECT Id, (SELECT Id, Name FROM Attachments where name='Signature') from Contact where AccountId=:DebtorAccounts[0].originator__c AND Director__c=true];
+                    List<Contact> directors=[SELECT Id, name from Contact where AccountId=:DebtorAccounts[0].originator__c AND Director__c=true order by CreatedDate ASC];
+                    
                     if(directors.size()>0)
                     {
-                        return originator[0].baseurl__c + '/servlet/servlet.FileDownload?file='+directors[0].Attachments[0].Id;
+                        Id dirId=directors[0].Id;
+                        List<ContentDocumentLink> cdlList=[Select ContentDocumentId from ContentDocumentLink where LinkedEntityId=:dirId];
+                        
+                        if(cdlList.size()>0)
+                        {
+                            for(ContentDocumentLink cdl:cdlList)
+                            {
+                               List<ContentVersion> cv=[Select Id from ContentVersion where ContentDocumentId=:cdl.ContentDocumentId and title =:directors[0].Name+'-Signature'];
+                               if(cv.size()>0)
+                               {
+                                    return originator[0].baseurl__c + '/sfc/servlet.shepherd/version/download/' + cv[0].Id;
+                               }
+                               
+                            }
+                        }
+                       
                     }
                     
-                }	 
-                
+                }	   
             }
             
         }
@@ -103,39 +118,40 @@ public class VisualforceEmailController {
     }
     
     public string getLogoId()
-   {
-      con = [Select id,account.Id,name from contact where id =: CId];
-      if(con.size() > 0)
-      {
-          Contact Tcontact = con[0];
-          system.debug('contact id is' + TContact.id);
-          String debt_id = TContact.Account.Id;
-          List<Account> DebtorAccounts = [Select id,name,originator__c from Account where id=: debt_id];
-          if(DebtorAccounts.size() > 0)
-          {
-              Account DAccount = DebtorAccounts[0];
-              List<Account> originator = [Select OrgLogoId__c,name, baseurl__c from Account where id =: DAccount.originator__c];
-              if(originator.size() > 0)
-              {
-                  string origid = originator[0].orgLogoId__c;
-                  system.debug('origid id is' + origid);
-                  path = originator[0].baseurl__c  +'/servlet/servlet.FileDownload?file=' + origid + '&oid=' + UserInfo.getOrganizationId();
-              }	
-          }
-      }   
-      system.debug('path is' + path);
-      return path;
-   }
+    {
+        con = [Select id,account.Id,name from contact where id =: CId];
+        if(con.size() > 0)
+        {
+            Contact Tcontact = con[0];
+            system.debug('contact id is' + TContact.id);
+            String debt_id = TContact.Account.Id;
+            List<Account> DebtorAccounts = [Select id,name,originator__c from Account where id=: debt_id];
+            if(DebtorAccounts.size() > 0)
+            {
+                Account DAccount = DebtorAccounts[0];
+                List<Account> originator = [Select OrgLogoId__c,name, baseurl__c from Account where id =: DAccount.originator__c];
+                if(originator.size() > 0)
+                {
+                    string origid = originator[0].orgLogoId__c;
+                    system.debug('origid id is' + origid);
+                    path = originator[0].baseurl__c  +'/sfc/servlet.shepherd/version/download/' + origid;
+                    //servlet/servlet.FileDownload?file=
+                }	
+            }
+        }   
+        system.debug('path is' + path);
+        return path;
+    }
     
     public string getDirectorSignatureId()
     {
-       List<Document> lstDocument = [Select Id,Name from Document where Name ='Director Signature' limit 1];
-       
+        List<Document> lstDocument = [Select Id,Name from Document where Name ='Director Signature' limit 1];
+        
         if(lstDocument.size()>0)
         {
             return URL.getSalesforceBaseUrl().toExternalForm() +'/servlet/servlet.ImageServer?id=' + lstDocument[0].Id + '&oid=' + UserInfo.getOrganizationId();
         }
-         
+        
         return null;
     }
     

@@ -1,26 +1,40 @@
 @isTest
 public class Test_UploadWrapper {
-    @isTest static void TestUploadWrapper() {
-        UploadWrapper uw1 = new UploadWrapper('test');
-        UploadWrapper uw2 = new UploadWrapper('test', false, false, false);
-        UploadWrapper uw3 = new UploadWrapper('test', true, true, true);
-        
-        uw2.saveFAttachments('test', 'test');
-        
+    
+    @testSetup static void createData()
+    {
         Account a = new Account(Name='a');
         insert a;
-		string s1 = String.valueOf(a.Id);
+        
         Contact c = new Contact(LastName='c');
         insert c;
-		string s2 = String.valueOf(c.Id);
         
-        Blob b = Blob.valueOf('test');
+        Application__c app = new Application__c(originator__c = a.id);
+        insert app;
+    }
+    
+    
+    @isTest static void TestUploadWrapper() {
         
-        uw3.passport_attachment.body = b;
-        uw3.bill_bankattachment.body = b;
-        uw3.company_bankattachment.body = b;
+        Application__c app = [Select id,originator__c from APplication__c Limit 1];
+        Contact c = [Select id,name from Contact Limit 1];
+        Blob b = Blob.valueOf('t1');
+        UploadWrapper uw1 = new UploadWrapper(c);
+        uw1.getPAttachment();
+        uw1.getCAttachment();
+        uw1.getBAttachment();
+        uw1.passport_attachment.name ='t1';
+        uw1.passport_attachment.body = b;
+        uw1.bill_bankattachment.body = b;
+        uw1.bill_bankattachment.name ='t1';
+        uw1.company_bankattachment.body = b;
+        uw1.company_bankattachment.name ='t1';
         
-        uw3.saveFAttachments(s1,s2);
-        //uw3.saveDAttachments(s1,s2);
+        uw1.checksize();
+        uw1.checksizeDirector();
+        
+        uw1.saveFAttachments(app.id, c.id,'bil');
+        uw1.saveDAttachments(app.id,c.id,'bil');
+        
     }
 }

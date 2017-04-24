@@ -1,68 +1,86 @@
-<apex:page controller="ApplicationProcess" extensions="FastTradingController"  tabStyle="Application__tab">
-
-	<script>
-		function confirmCancel()
-		{
-			var isCancel = confirm("Are you sure you wish to cancel?");
+<apex:page sidebar="false" controller="ApplicationProcess" extensions="FastTradingController" action="{!isFastTrading}" tabStyle="Application__tab">
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    <script>
+        function confirmCancel()
+        {
+            var isCancel = confirm("Are you sure you wish to cancel?");
             if (isCancel) return true;
             return false;
-		}
-	</script>
-	
-	<style>
-	    h1 {
-	        font-size: 18px;
-	        font-weight: bold;
-	        margin-bottom: 8px;
-	    }
-	    p {
-	     	margin-bottom: 8px;
-	        padding-bottom: 8px;
-	    }
+        }
+    </script>
+    
+    <style>
+        h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        p {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+        }
         #col1{float:left; width:49%;}
         #col2{float:right; width:49%;}
     </style>
-	<apex:sectionHeader title="Fast Trading" subtitle="Step 4"/>
-	 
-    <apex:form >
-       <apex:pageBlock title="Fast Trading">
-               <h1>EUR 500 Fast Trading Offer for You</h1><br/>
-		  	   <p> As you are the person that will be responsible for completing this application process we have a special offer for you. 
-               <br/>If you complete the 7 steps listed below within the next 72 hours, the Fast Trading promotional offer will result in 
-               <br/>you receiving <b>EUR 500</b> directly into your personal bank account, or a bank account of your choice.
-               </p><br/><br/>
-       
-       
-	       	<div id="col1">  
-                 <apex:pageBlock >
-                          <p><b>All steps below must be completed to avail of the Fast Trading promotional offer.</b></p>
-                         <p>1.Complete and submit four online application forms (i.e. company details, bank details, directors' details, accounting questionnaire and proof of identity).</p>
-                         <p>2. Export the debtors, creditors, aged debtors, aged creditors and debtor’s experience listing and import them into the system.</p>
-                         <p>3. If you are not a director, then you must ensure that at least one of the directors' must confirm their consent for you to sign the trading agreement.</p>
-                         <p>4. Enter the details of the initial debtor(s)/customer(s) that your organisation will trade (that must be accepted and approved by the Trade Desk).</p>
-                         <p>5. Using this NoI Template, prepare the Notice of Assignment [NoI] on your own letterhead *that must be approved by the Trade Desk).</p>
-                         <p>6. Issue the NoI to your debtor(s) and have these debtor(s) confirm their consent to your email using Reply All that includes the Trade Desk email.</p>
-                         <p>7. Open a Trade on the system and then upload a minimum of three invoices for trading (that must be approved by the Trade Desk).</p>
-                 </apex:pageBlock> 
-					
-	        </div>
-	        <div id="col2">
-	             <apex:pageBlock >
-	             	<apex:pageBlockSection columns="1">
-					    <p>Great! Please use these details when sending me the Fast Trading <b>EUR 500</b></p>
-						<apex:inputField value="{!originator.Bank_Account_Number_Fast_Trading__c}" label="Bank Account Number" />
-				        <apex:inputField value="{!originator.SWIFT_BIC_Fast_Trading__c}" label="SWIFT/BIC" />
-					</apex:pageBlockSection>
-	            </apex:pageBlock> 
-					
-	        </div>     
-	         <apex:pageBlockButtons >
-			       		<apex:commandButton action="{!cancel}" value="Cancel"
-			                                    onclick="return confirmCancel()" immediate="true"/>
-			            <apex:commandButton action="{!step5}" value="Save & Continue"/>
-       			     </apex:pageBlockButtons> 
-	         </apex:pageBlock>   
-    </apex:form>
-	
-	
+    <body>
+        
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    <apex:sectionHeader title="Step 3"/>
+                    <apex:form id="form">
+                       <apex:pageBlock title="Fast Trading">
+                               <h1>EUR 500 Fast Trading Offer for You</h1><br/>
+                               <p> As you are the person that will be responsible for completing this application process we have a special offer for you. 
+                               <br/>If you complete the 7 steps listed below within the next 72 hours, the Fast Trading promotional offer will result in 
+                               <br/>you receiving <b>EUR 500</b> directly into your personal bank account, or a bank account of your choice.
+                               </p><br/><br/>
+                       
+                       
+                            <div id="col1">  
+                                 <apex:pageBlock >
+                                          <p><b>All steps below must be completed to avail of the Fast Trading promotional offer.</b></p>
+                                         <p>1.Complete and submit four online application forms (i.e. company details, bank details, directors' details, accounting questionnaire and proof of identity).</p>
+                                         <p>2. Export the debtors, creditors, aged debtors, aged creditors and debtor’s experience listing and import them into the system.</p>
+                                         <p>3. If you are not a director, then you must ensure that at least one of the directors' must confirm their consent for you to sign the trading agreement.</p>
+                                         <p>4. Enter the details of the initial debtor(s)/customer(s) that your organisation will trade (that must be accepted and approved by the Trade Desk).</p>
+                                         <p>5. Using this NoI Template, prepare the Notice of Assignment [NoI] on your own letterhead *that must be approved by the Trade Desk).</p>
+                                         <p>6. Issue the NoI to your debtor(s) and have these debtor(s) confirm their consent to your email using Reply All that includes the Trade Desk email.</p>
+                                         <p>7. Open a Trade on the system and then upload a minimum of three invoices for trading (that must be approved by the Trade Desk).</p>
+                                 </apex:pageBlock> 
+                                    
+                            </div>
+                            <div id="col2">
+                                 <apex:pageBlock >
+                                    <apex:pageBlockSection columns="1">
+                                        <p>Great! Please use these details when sending me the Fast Trading <b>EUR 500</b></p>
+                                        
+                                        <apex:pageBlockSectionItem helpText="{!$ObjectType.Account.Fields.Bank_Account_Number_Fast_Trading__c.InlineHelpText}">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="Bank Account No."/>
+                                            <apex:inputField taborderhint="1" styleClass="slds-input" value="{!originator.Bank_Account_Number_Fast_Trading__c}"/>
+                                        </apex:pageBlockSectionItem>
+                                        
+                                        <apex:pageBlockSectionItem helpText="{!$ObjectType.Account.Fields.SWIFT_BIC_Fast_Trading__c.InlineHelpText}">
+                                            <apex:outputLabel styleClass="slds-form-element__label" value="SWIFT/BIC"/>
+                                            <apex:inputField taborderhint="2" styleClass="slds-input" value="{!originator.SWIFT_BIC_Fast_Trading__c}"/>
+                                        </apex:pageBlockSectionItem>
+                                   </apex:pageBlockSection>
+                                </apex:pageBlock> 
+                                    
+                            </div>     
+                             <apex:pageBlockButtons location="bottom">
+                                        <apex:commandButton tabindex="30" action="{!cancel}" value="Cancel"
+                                                                onclick="return confirmCancel()" immediate="true"/>
+                                        <apex:commandButton tabindex="40" action="{!Back2}" value="Previous Step" immediate="true"/>
+                                        <apex:commandButton tabindex="50" action="{!step5}" value="Save & Continue" />
+                                     </apex:pageBlockButtons> 
+                             </apex:pageBlock>   
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+        <apex:include pageName="FooterPage"/>
+    </body>
+    
 </apex:page>

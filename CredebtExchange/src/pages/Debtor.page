@@ -1,4 +1,5 @@
-<apex:page controller="ApplicationProcess" extensions="DebtorController" tabStyle="Application__tab" action="{!isDebtorsFilled}">
+<apex:page sidebar="false" controller="ApplicationProcess" extensions="DebtorController" tabStyle="Application__tab" action="{!isDebtorsFilled}">
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
     <script>
     function confirmCancel() {
         var isCancel = confirm("Are you sure you wish to cancel?");
@@ -8,140 +9,251 @@
     
     function copyAddress() {
         // Variables for Primary Address
-        var primaryStreet = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryStreet}').value;
-        var primaryCode = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCode}').value;
-        var primaryPhone = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryPhone}').value;
-        var primaryCity = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCity}').value;
-        var primaryFax = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryFax}').value;
-        var primaryCountry = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCountry}').value;
-        var primaryEmail = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryEmail}').value;
+        var primaryStreet = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryStreetItem.primaryStreet}').value;
+        var primaryCode = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCodeItem.primaryCode}').value;
+        var primaryCity = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCityItem.primaryCity}').value;
+        var primaryCountry = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryCountryItem.primaryCountry}').value;
+        var primaryProvince = document.getElementById('{!$Component.form.mainblock.PrimaryAddress.primaryProvinceItem.primaryProvince}').value;
         
         // Copying the Primary Address to the Billing Address
-        if(document.getElementById('{!$Component.form.mainblock.BillingAddress.isCopy}').checked)
+        if(document.getElementById('{!$Component.form.mainblock.BillingAddress.isCopyItem.isCopy}').checked)
         {
             //alert(primaryStreet);
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreet}').value = primaryStreet;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCode}').value = primaryCode;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingPhone}').value = primaryPhone;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCity}').value = primaryCity;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingFax}').value = primaryFax;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountry}').value = primaryCountry;
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingEmail}').value = primaryEmail;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreetItem.billingStreet}').value = primaryStreet;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCodeItem.billingCode}').value = primaryCode;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCityItem.billingCity}').value = primaryCity;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountryItem.billingCountry}').value = primaryCountry;
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingProvinceItem.billingProvince}').value = primaryProvince;
             
         }
         else
         {
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreet}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCode}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingPhone}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCity}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingFax}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountry}').value = '';
-            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingEmail}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingStreetItem.billingStreet}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCodeItem.billingCode}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCityItem.billingCity}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingProvinceItem.billingProvince}').value = '';
+            document.getElementById('{!$Component.form.mainblock.BillingAddress.billingCountryItem.billingCountry}').value = '';
         }
         
     }
     
     </script>
-    <apex:sectionHeader title="Credebtors Information" subtitle="Step 8"/>
-    <apex:messages style="color:red"/>
-    <apex:form id="form">
-        
-        <apex:pageBlock title="Debtor Information" id="mainblock" >
-            
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!cancel}" value="Cancel"
-                                    onclick="return confirmCancel()" immediate="true"/>
-                <apex:commandButton action="{!saveAndcontinue}" value="Save & Continue"/>
-            </apex:pageBlockButtons>
-            <div style="text-align:center;font-size: 15px;">
-                <apex:outputText style="color:red" value="IMPORTANT:-"/>
-                <apex:outputText value=" Select the currency of the Counterparty before entering any other data. 
-                                        Do not enter details using all capital letters. 
-                                        This will delay your application to have this Counterparty authorised. 
-                                        Enter data by capitalising each word, e.g. do not enter 'COMPANY NAME LIMITED', or 'MAIN STREET'. Enter 'Company Name' and 'Main Street'." /> 
+    <body>
+    
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    <apex:sectionHeader title="Step 7"/>
+                    <apex:Pagemessages />
+                    <apex:form id="form">
+                        
+                        <apex:pageBlock title="Debtor Information" id="mainblock" >
+                            
+                            <apex:pageBlockButtons location="bottom">
+                                <apex:commandButton tabindex="320" action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true"/>
+                                <apex:commandButton tabindex="330" action="{!Back6}" value="Previous Step" immediate="true" />
+                                <apex:commandButton tabindex="340" action="{!saveAndcontinue}" value="Save & Continue"/>
+                            </apex:pageBlockButtons>
+                            <div style="text-align:center;font-size: 15px;">
+                                <apex:outputText style="color:red" value="IMPORTANT:-"/>
+                                <apex:outputText value=" Select the currency of the Counterparty before entering any other data. 
+                                                        Do not enter details using all capital letters. 
+                                                        This will delay your application to have this Counterparty authorised. 
+                                                        Enter data by capitalising each word, e.g. do not enter 'COMPANY NAME LIMITED', or 'MAIN STREET'. Enter 'Company Name' and 'Main Street'." /> 
+                            </div>
+                            
+                            <apex:pageBlockSection title="Information Account" columns="2">
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Name.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Debtor Company Name"/>
+                                    <apex:inputField taborderhint="1" styleClass="slds-input" value="{!AppDebtor.Name}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Company_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Company Registration Number"/>
+                                    <apex:inputField taborderhint="7" styleClass="slds-input" value="{!AppDebtor.Company_Number__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.CurrencyIsoCode.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Currency"/>
+                                    <apex:inputField taborderhint="2" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppDebtor.CurrencyIsoCode}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Trading_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Trading Name"/>
+                                    <apex:inputField taborderhint="8" styleClass="slds-input" value="{!AppDebtor.Trading_Name__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Previous_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Previous Name"/>
+                                    <apex:inputField taborderhint="3" styleClass="slds-input" value="{!AppDebtor.Previous_Name__c}"/>
+                                </apex:pageBlockSectionItem>                                
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Originator__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Organisation"/>
+                                    <apex:inputField taborderhint="9" styleClass="slds-input" value="{!AppDebtor.Originator__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Counterparty_Since__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Counterparty Since"/>
+                                    <apex:inputField taborderhint="4" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppDebtor.Counterparty_Since__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Total_Historic_Value__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Total Historic Value"/>
+                                    <apex:inputField taborderhint="10" styleClass="slds-input" value="{!AppDebtor.Total_Historic_Value__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Average_Cycle_Payment__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Average Payment Cycle"/>
+                                    <apex:inputField taborderhint="5" styleClass="slds-input" value="{!AppDebtor.Average_Cycle_Payment__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Credit_Notes_Issued__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Credits Notes Issued"/>
+                                    <apex:inputField taborderhint="11" styleClass="slds-input" value="{!AppDebtor.Credit_Notes_Issued__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Invoices_Predicted_Per_Annum__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Invoices Predicted Per Annum"/>
+                                    <apex:inputField taborderhint="6" styleClass="slds-input" value="{!AppDebtor.Invoices_Predicted_Per_Annum__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Predicted_Annual_Revenue__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Predicted Annual Revenue"/>
+                                    <apex:inputField taborderhint="12" styleClass="slds-input" value="{!AppDebtor.Predicted_Annual_Revenue__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            
+                            
+                            <apex:pageBlockSection title="Primary Address" columns="2" id="PrimaryAddress">
+                                <apex:pageBlockSectionItem id="primaryPhoneItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Phone__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Phone"/>
+                                    <apex:inputField taborderhint="13" styleClass="slds-input" value="{!AppDebtor.Phone__c}" required="true" id="primaryPhone"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCodeItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Zip_Postal_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Area/Postal Code"/>
+                                    <apex:inputField taborderhint="16" styleClass="slds-input" value="{!AppDebtor.Zip_Postal_Code__c}" required="true" id="primaryCode"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryStreetItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Street__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Street"/>
+                                    <apex:inputField taborderhint="14" styleClass="slds-input" value="{!AppDebtor.Street__c}" required="true" id="primaryStreet"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryProvinceItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.State_Province__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="County/Province"/>
+                                    <apex:inputField taborderhint="17" styleClass="slds-input" value="{!AppDebtor.State_Province__c}" required="true" id="primaryProvince"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCityItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.City__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="City"/>
+                                    <apex:inputField taborderhint="15" styleClass="slds-input" value="{!AppDebtor.City__c}" required="true" id="primaryCity"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="primaryCountryItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Primary_Country__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Country"/>
+                                    <apex:inputField taborderhint="18" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppDebtor.Primary_Country__c}" required="true" id="primaryCountry"/>
+                                </apex:pageBlockSectionItem>
+                                
+                           </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Billing Address" columns="2" id="BillingAddress">
+                                <apex:pageBlockSectionItem id="isCopyItem">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Same as Primary Address"/>
+                                    <apex:inputCheckbox tabindex="190" onclick="return copyAddress();" id="isCopy" />
+                                </apex:pageBlockSectionItem>                                
+                                <br/>
+                                
+                                <apex:pageBlockSectionItem id="billingStreetItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Street_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Street"/>
+                                    <apex:inputField taborderhint="20" styleClass="slds-input" value="{!AppDebtor.Street_Bill__c}" required="true" id="billingStreet"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingCodeItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Zip_Postal_Code_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Area/Postal Code"/>
+                                    <apex:inputField taborderhint="22" styleClass="slds-input" value="{!AppDebtor.Zip_Postal_Code_Bill__c}" required="true" id="billingCode"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingCityItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.City_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="City"/>
+                                    <apex:inputField taborderhint="21" styleClass="slds-input" value="{!AppDebtor.City_Bill__c}" required="true" id="billingCity"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem id="billingProvinceItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.State_Province_Bill__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="County/Province"/>
+                                    <apex:inputField taborderhint="23" styleClass="slds-input" value="{!AppDebtor.State_Province_Bill__c}" required="true" id="billingProvince"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                                                           
+                                <apex:pageBlockSectionItem id="billingCountryItem" helpText="{!$ObjectType.Application_Debtor__c.Fields.Billing_Country__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Country"/>
+                                    <apex:inputField taborderhint="24" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!AppDebtor.Billing_Country__c}" required="true" id="billingCountry"/>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Account Contact Details" columns="2">
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.First_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="First Name"/>
+                                    <apex:inputField taborderhint="25" styleClass="slds-input" value="{!AppDebtor.First_Name__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Direct_Dial_Phone__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Phone"/>
+                                    <apex:inputField taborderhint="27" styleClass="slds-input" value="{!AppDebtor.Direct_Dial_Phone__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Last_Name__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Last Name"/>
+                                    <apex:inputField taborderhint="26" styleClass="slds-input" value="{!AppDebtor.Last_Name__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Mobile__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Mobile"/>
+                                    <apex:inputField taborderhint="28" styleClass="slds-input" value="{!AppDebtor.Mobile__c}" required="true"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.Email__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Email"/>
+                                    <apex:inputField taborderhint="29" styleClass="slds-input" value="{!AppDebtor.Email__c}" required="true">
+                                        <span style="color:blue"><b>ETR Invoices are Emailed to this Email Address</b></span>
+                                    </apex:inputField>
+                                </apex:pageBlockSectionItem>                                
+                                
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockSection title="Experience*" columns="1">
+                                
+                                <span style="text-align:center;font-size: 15px; ">Upload the Experience File (also called statement, or account history) in XLS, XLSX or CSV file format. Download the Experience File XLSX Template using the link provided below. 
+                                    Read the instructions carefully on how to complete this important file otherwise you will not be able to create this account</span>
+                                
+                                
+                                <apex:pageBlockSection columns="2">
+                                    
+                                    <apex:pageBlockSectionItem helpText="{!$ObjectType.Application_Debtor__c.Fields.No_Previous_Trade_History__c.InlineHelpText}">
+                                        <apex:outputLabel styleClass="slds-form-element__label" value="No Previous Trade History"/>
+                                        <apex:inputField taborderhint="30" value="{!AppDebtor.No_Previous_Trade_History__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputlabel styleClass="slds-form-element__label" value="Experience File"/>
+                                        <apex:inputFile tabindex="310" filename="{!EAttachment.name}" fileSize="{!EAttachment.BodyLength}" value="{!EAttachment.body}" accept=".csv,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                    </apex:pageBlockSectionItem>
+                                </apex:pageBlockSection>
+                                
+                            </apex:pageBlockSection>
+                        </apex:pageBlock>
+                    </apex:form>
+                </div>
             </div>
-            
-            <apex:pageBlockSection title="Information Account" columns="2">
-                
-                <apex:inputField value="{!AppDebtor.Name}" label="Debtor Name" required="true"/>
-                <apex:inputField value="{!AppDebtor.Company_Number__c}" label="Company Registration Number" required="true"/>
-                <apex:inputField value="{!AppDebtor.Company_Name__c}" label="Company Name" required="true"/>
-                <apex:inputField value="{!AppDebtor.CurrencyIsoCode}" label="Currency" required="true"/>
-                <apex:inputField value="{!AppDebtor.Trading_Name__c}" label="Trading Name"/>
-                <apex:inputField value="{!AppDebtor.Previous_Name__c}" label="Previous Name"/>
-                <apex:inputField value="{!AppDebtor.Originator__c}" label="Organisation" required="true"/>
-                
-            </apex:pageBlockSection>
-            
-            
-            <apex:pageBlockSection title="Bank Details" columns="2">
-                
-                <apex:inputField value="{!AppBankAccount.Name}" label="Bank Account Name" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Bank_Name__c}" label="Bank Name" required="true"/>
-                <apex:inputField value="{!AppBankAccount.IBAN_Number__c}" label="IBAN Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Bank_Account_Number__c}" label="Account Number" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Swift_Code__c}" label="SWIFT Code" required="true"/>
-                <apex:inputField value="{!AppBankAccount.Sort_Code__c}" label="Sort Code" required="true"/>
-                <apex:inputField value="{!AppBankAccount.CurrencyISOCode}" label="Currency" required="true"/>
-            </apex:pageBlockSection>
-            
-            
-            <apex:pageBlockSection title="Primary Address" columns="2" id="PrimaryAddress">
-                
-                <apex:inputField value="{!AppDebtor.Street__c}" label="Address Line" required="true" id="primaryStreet"/>
-                <apex:inputField value="{!AppDebtor.Zip_Postal_Code__c}" label="Postal Code" required="true" id="primaryCode"/>
-                <apex:inputField value="{!AppDebtor.Phone__c}" label="Phone" required="true" id="primaryPhone"/>
-                <apex:inputField value="{!AppDebtor.City__c}" label="City/Town"  required="true" id="primaryCity"/>
-                <apex:inputField value="{!AppDebtor.Fax__c}" label="Fax Number" required="true" id="primaryFax"/>
-                <apex:inputField value="{!AppDebtor.Country__c}" label="Country" required="true" id="primaryCountry"/>
-                <apex:inputField value="{!AppDebtor.Email_Address__c}" label="Email Address" required="true" id="primaryEmail"/>
-                
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Billing Address" columns="2" id="BillingAddress">
-                <apex:inputCheckbox label="Same as Primary Address" onclick="return copyAddress();" id="isCopy" />
-                
-                <br/>
-                <apex:inputField value="{!AppDebtor.Street_Bill__c}" label="Address Line" required="true" id="billingStreet"/>
-                <apex:inputField value="{!AppDebtor.Zip_Postal_Code_Bill__c}" label="Postal Code" required="true" id="billingCode"/>
-                <apex:inputField value="{!AppDebtor.Phone_Bill__c}" label="Phone" required="true" id="billingPhone"/>
-                <apex:inputField value="{!AppDebtor.City_Bill__c}" label="City/Town"  required="true" id="billingCity"/>
-                <apex:inputField value="{!AppDebtor.Fax_Bill__c}" label="Fax Number" required="true" id="billingFax"/>
-                <apex:inputField value="{!AppDebtor.Country_Bill__c}" label="Country" required="true" id="billingCountry"/>
-                <apex:inputField value="{!AppDebtor.Email_Address_Bill__c}" label="Email Address" required="true" id="billingEmail"/>
-                
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Account Contact Details" columns="2">
-                
-                <apex:inputField value="{!AppDebtor.First_Name__c}" label="Contact First Name" required="true"/>
-                <apex:inputField value="{!AppDebtor.Last_Name__c}" label="Contact Last Name" required="true"/>
-                <apex:inputField value="{!AppDebtor.Direct_Dial_Phone__c}" label="Contact Direct Dial Phone" required="true"/>
-                <apex:inputField value="{!AppDebtor.Email__c}" label="Contact Email" required="true">
-                    <span style="color:red">ETR Invoices are Emailed to this Email Address</span>
-                </apex:inputField>
-                <apex:inputField value="{!AppDebtor.Counterparty_Since__c}" label="Counterparty Since" required="true"/>
-                <apex:inputField value="{!AppDebtor.Total_Historic_Value__c}" label="Total Historic Value" required="true"/>
-                <apex:inputField value="{!AppDebtor.Average_Cycle_Payment__c}" label="Average Payment Cycle" required="true"/>
-                <apex:inputField value="{!AppDebtor.Credit_Notes_Issued__c}" label="Credits Notes Issued" required="true"/>
-                <apex:inputField value="{!AppDebtor.Invoices_Predicted_Per_Annum__c}" label="Invoices Predicted Per Annum" required="true"/>
-                <apex:inputField value="{!AppDebtor.Predicted_Annual_Revenue__c}" label="Predicted Annual Revenue" required="true"/>
-                
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Experience*" columns="1">
-                 
-                <span style="text-align:center;font-size: 15px; ">Upload the Experience File (also called statement, or account history) in XLS, XLSX or CSV file format. Download the Experience File XLSX Template using the link provided below. 
-                                            Read the instructions carefully on how to complete this important file otherwise you will not be able to create this account</span>
-                
-                <apex:pageBlockSectionItem >
-                    <apex:outputlabel value="Experience File"/>
-                    <apex:inputfile filename="{!attachment.name}" value="{!attachment.body}" required="true"/>
-                </apex:pageBlockSectionItem>
-                
-                
-            </apex:pageBlockSection>
-        </apex:pageBlock>
-    </apex:form>
+        </div>
+        
+        <apex:include pageName="FooterPage"/>
+    </body>
 </apex:page>

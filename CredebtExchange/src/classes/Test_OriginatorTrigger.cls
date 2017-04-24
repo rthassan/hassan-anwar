@@ -1,6 +1,6 @@
 @isTest
 public class Test_OriginatorTrigger {
-	@isTest static void TestOriginatorTrigger() {
+  @isTest static void TestOriginatorTrigger() {
         //insert account
         Account a = new Account(Name='test_acct');
         insert a;
@@ -32,6 +32,7 @@ public class Test_OriginatorTrigger {
         
         //update account with General Info and Jotform OppId fields
         a.Submit_Verification_Approval__c = true;
+        a.Bank_Details_Changed__c = true;
         update a;
         
         //approve approval process

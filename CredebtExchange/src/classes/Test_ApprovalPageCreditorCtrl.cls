@@ -9,8 +9,8 @@ public class Test_ApprovalPageCreditorCtrl {
                                                            Email__c = 'test@mailinator.com',Company_Number__c='99');
         insert d;
         
-        Application_Bank_Account__c b = new Application_Bank_Account__c(Bank_Name__c = 'ACC', Swift_Code__c = '894795', 
-                                                                        IBAN_Number__c = '83473', Application_Creditor__c = d.Id);
+        Application_Bank_Account__c b = new Application_Bank_Account__c(Bank_Name__c = 'ACC', Swift_Code__c = 'ABCDEF12', 
+                                                                        IBAN_Number__c = 'IE02BOFI90008413113207', Application_Creditor__c = d.Id);
         insert b; 
         
         ApprovalPageCreditorController ctrl = new ApprovalPageCreditorController();

@@ -1,6 +1,6 @@
 @isTest
 public class Test_TreasuryApproval {
-	@isTest static void TestTreasuryApproval() {
+  @isTest static void TestTreasuryApproval() {
         //insert account
         Account a = new Account(Name='test_acct');
         insert a;

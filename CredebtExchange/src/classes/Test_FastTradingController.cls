@@ -27,12 +27,13 @@ public class Test_FastTradingController {
         
         User u1 = [Select LastName, Originator_Id__c from User where Id=:u.Id];
         Account a1 = [Select Name, Id from Account where Id=:a.Id];
-        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Upload_Stage__c = true);
+        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Fast_Trading__c = true);
         insert app;
-        
+        Test.setCurrentPage(new pageReference('/apex/FastTrading?origid='+a.id));
         ApplicationProcess applprocess = new ApplicationProcess();
         FastTradingController ft = new FastTradingController(applprocess);
         ft.getOriginator();
         ft.step5();
+        ft.isFastTrading();
     }
 }

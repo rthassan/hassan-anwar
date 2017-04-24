@@ -4,7 +4,7 @@
     	<apex:pageBlock title="Confirm Bank Details">
             <br/><br/>
             
-            <h1>Do you want to change Bank Details? click confirm button to change Bank Details!!</h1><br/><br/><br/>
+            <h1>Click Confirm Button to change Bank Details!!</h1><br/><br/><br/>
             
             <!--<apex:pageBlockSection columns="1">
                      <apex:inputField label="Name               :" value="{!BankDetails.name}" />

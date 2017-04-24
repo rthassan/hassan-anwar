@@ -16,7 +16,7 @@ public with sharing class TreasuryApproval {
         Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
         req1.setComments('Submitting request for approval..');
         req1.setObjectId(app.Id);
-        req1.setSubmitterId('0059E000000Jbdz');
+        req1.setSubmitterId('0050Y000000LUfX');
         req1.setProcessDefinitionNameOrId('Application_Treasury_Approval');
         req1.setSkipEntryCriteria(true);
         Approval.ProcessResult result = Approval.process(req1);

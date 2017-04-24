@@ -16,8 +16,8 @@ public class Test_CreditorController {
         
         //insert app bank account
         Application_Bank_Account__c b = new Application_Bank_Account__c(Name = 'testappbank', Application_Creditor__c = d.Id,
-                                                                       Bank_Name__c = 'ACC', Swift_Code__c = '894795',
-                                                                       IBAN_Number__c = '83473');
+                                                                       Bank_Name__c = 'ACC', Swift_Code__c = 'ABCDEF12',
+                                                                       IBAN_Number__c = 'IE02BOFI90008413113207');
         insert b;
         
         User u = new User(
@@ -36,7 +36,7 @@ public class Test_CreditorController {
              //UserRoleId = [SELECT Id FROM UserRole where Name = 'MyOrg Partner User'].Id
         );
         insert u;
-        
+        Test.setCurrentPage(new pageReference('/apex/Creditor?origid='+a.id));
         User u1 = [Select LastName, Originator_Id__c from User where Id=:u.Id];
         Account a1 = [Select Name, Id from Account where Id=:a.Id];
         Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Upload_Stage__c = true);

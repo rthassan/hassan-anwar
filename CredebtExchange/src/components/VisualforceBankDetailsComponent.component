@@ -24,7 +24,7 @@
         {!Originator.BillingCountry}
     </div>  
     
-    <div style="float:right;">
+    <div style="float:right;padding-right:5%;">
         To:
         {!Debtor.FirstName} {!Debtor.LastName}<br/> 
         {!DebtorOrganisation.Name}<br/> 
@@ -37,7 +37,7 @@
     <div>
         <p>
             <b>
-                Re: Assignment of all invoices present and future issued or to be issued by the
+                Re: Assignment of all invoices present and future issued or to be issued by the 
                 Originator and addressed to {!DebtorOrganisation.Name}
             </b>
         </p>	

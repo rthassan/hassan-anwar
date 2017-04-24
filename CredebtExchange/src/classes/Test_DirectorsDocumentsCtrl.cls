@@ -26,7 +26,7 @@ public class Test_DirectorsDocumentsCtrl {
         
         User u1 = [Select LastName, Originator_Id__c from User where Id=:u.Id];
         Account a1 = [Select Name, Id from Account where Id=:a.Id];
-        Application__c app = new Application__c(Originator__c = a1.Id, Upload_Stage__c = true);
+        Application__c app = new Application__c(Originator__c = a1.Id, Directors__c = true);
         insert app;
         
         ApplicationProcess applprocess1 = new ApplicationProcess();
@@ -45,5 +45,6 @@ public class Test_DirectorsDocumentsCtrl {
         ctrl.upload.clear();
         ctrl.upload.add(uw3);
         ctrl.save();
+        ctrl.isDirectorsDocs();
     }
 }

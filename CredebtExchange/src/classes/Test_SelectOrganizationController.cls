@@ -1,6 +1,6 @@
 @isTest
 public class Test_SelectOrganizationController {
-	@isTest static void SelectOrgTest() {
+  @isTest static void SelectOrgTest() {
         //insert account
         Account a = new Account(Name='test_acct');
         insert a;
@@ -30,15 +30,15 @@ public class Test_SelectOrganizationController {
         system.debug(u1);
         Account a1 = [Select Name, Id from Account where Id=:a.Id];
         system.debug(a1);
-        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Upload_Stage__c = true);
+        Application__c app = new Application__c(Originator__c = u1.Originator_Id__c, Credebtors__c = true);
         insert app;
         
         ApplicationProcess applprocess = new ApplicationProcess();
-        //appprocess.cancel();
-        //appprocess.LandingPage();
+        Test.setCurrentPage(new pageReference('/apex/SelectOrganisation?origid='+a.id));
         SelectOrganizationController soc = new SelectOrganizationController(applprocess);
         soc.GetCreditorOrganisations();
         soc.GetDebtorOrganisations();
         soc.step3();
+      	soc.isSelectOrganisation();
     }
 }

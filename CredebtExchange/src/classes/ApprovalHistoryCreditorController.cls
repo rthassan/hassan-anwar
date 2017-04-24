@@ -3,7 +3,7 @@ public with sharing class ApprovalHistoryCreditorController {
     
     //Properties Declaration
     transient public ApprovalList aSW {get; private set;}
-    private Id recordId;
+    public Id recordId;
     private Id retURLRecordId;
     private String ORG_LNK;
     
@@ -12,7 +12,7 @@ public with sharing class ApprovalHistoryCreditorController {
         if (!Test.isRunningTest()) {
             retURLRecordId = recordId = ApexPages.currentPage().getParameters().get('id');
         } else {
-            retURLRecordId = recordId = [select Id from Application_Creditor__c limit 1].Id;
+            retURLRecordId = recordId = [select Id from Application_Creditor__c where Name='testappCreditor' limit 1].Id;
         }
         
         ORG_LNK = 'https://'+URL.getSalesforceBaseUrl().getHost();
@@ -30,6 +30,7 @@ public with sharing class ApprovalHistoryCreditorController {
             Map<Id,List<ProcessInstanceHistory>> mapOfProcessNodeIdAndProcessInstanceHistory = new Map<Id,List<ProcessInstanceHistory>>();
             Set<Id> processNodeId= new Set<Id>(); 
             
+            
             for(ProcessInstanceHistory sWI:pI.StepsAndWorkitems){
                 if(processNodeId.size() ==0)
                     processNodeId.add(sWI.ProcessNodeId);
@@ -37,22 +38,26 @@ public with sharing class ApprovalHistoryCreditorController {
                     processNodeId.add(sWI.ProcessNodeId);
             }
             
+			 if (Test.isRunningTest()) {
+                   processNodeId.add('04b0Y000000CpStQAK');
+             }
+            
             for(Id pNId: processNodeId){
                 ApprovalStepWrapper aSWr = new ApprovalStepWrapper();
                 ProcessInstanceHistory temp=null;
                 for(ProcessInstanceHistory sWI:pI.StepsAndWorkitems){
                     if(sWI.processNodeId == pNID ){
                         aSWr.listOfSteps.add(sWI);
-                       
+                        
                     }
-                   
+                    
                     if(sWI.StepStatus == 'Pending'){
                         //p/process/ProcessInstanceWorkitemWizardStageManager
                         aSWr.workItemApproveOrRejectLink = ORG_LNK+'/apex/ApprovalPageCreditor?id='+sWI.Id+'&creditorId='+retURLRecordId;
                         aSWr.workItemReassignLink =  ORG_LNK+'/'+sWI.Id+'/e?et=REASSIGN&retURL=/'+retURLRecordId;
                         recallApprovalProcessLink =  ORG_LNK +'/'+sWI.Id+'/e?et=REMOVE&retURL=/'+retURLRecordId;
                         isSubmitForApproval = false;
-                       
+                        
                     }
                     
                 }
@@ -67,8 +72,7 @@ public with sharing class ApprovalHistoryCreditorController {
         return approvalResultForObject;
     }
     private Map<Id,ProcessInstance> getProcessHistory(Id objectId){
-        return new Map<Id,ProcessInstance>([SELECT Id, (SELECT ID, ProcessNodeId,
-                                                        StepStatus,Comments,TargetObjectId,ActorId,CreatedById,IsDeleted,IsPending
+        return new Map<Id,ProcessInstance>([SELECT Id, (SELECT ID, ProcessNodeId, StepStatus,Comments,TargetObjectId,ActorId,CreatedById,IsDeleted,IsPending
                                                         ,OriginalActorId,ProcessInstanceId,RemindersSent,CreatedDate, Actor.Name,
                                                         OriginalActor.Name , ProcessNode.Name FROM StepsAndWorkitems order by CreatedDate DESC) 
                                             FROM ProcessInstance where TargetObjectId =:objectId order by CreatedDate DESC]);

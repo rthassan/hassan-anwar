@@ -1,6 +1,6 @@
 trigger directorRollup on Contact (after insert, after Update) {    
     
-    List<Id> updateAccountIds = new List<Id>();
+   /* List<Id> updateAccountIds = new List<Id>();
     
     for(Contact c : trigger.new){
         if(c.director__c ){
@@ -22,5 +22,5 @@ trigger directorRollup on Contact (after insert, after Update) {
     	updateAccountMap.get((Id)ar.get('AccountId')).Directors_Details_Count__c = (decimal)ar.get('expr0');
     }
     
-    update updateAccountMap.values();
+    update updateAccountMap.values();*/
 }

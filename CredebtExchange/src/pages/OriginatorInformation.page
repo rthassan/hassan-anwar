@@ -1,0 +1,47 @@
+<apex:page standardController="Account" sidebar="false" tabStyle="Application__tab">
+    
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    
+   <body>
+    
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    
+                    <br/><br/>
+                    <apex:sectionHeader title="Originator Information"/>
+                    <apex:pageBlock >
+                        
+                        <apex:pageBlockSection columns="2">
+                            
+                            <apex:outputField styleClass="uiOutputText" value="{!account.Credit_Insurer__c}" label="Our current credit Insurance provider is"/>
+                            <apex:outputField value="{!account.website}" label="Website"/>
+                            <apex:outputField value="{!account.IDF_Provider__c}" label="Our current invoice discounting provider is"/>
+                            <apex:outputField value="{!account.Company_Registration_Number__c}" label="Company Number"/>
+                            <apex:outputField value="{!account.name}" label="Organisation Name"/>
+                            <apex:outputField value="{!account.VAT_Number__c}" label="VAT Number"/>
+                            <apex:outputField value="{!account.Trading_Name__c}" label="Organisation Trade Name"/>
+                            <apex:outputField value="{!account.Company_Structure__c}" label="Organisation Type"/>
+                            <apex:outputField value="{!account.NumberOfEmployees}" label="Total Employees"/>
+                            <apex:outputField value="{!account.Number_of_Directors__c}" label="Number of Directors" />
+                            <apex:outputField value="{!account.Country_of_Registration__c}" label="Country of Registration"/> 
+                            <apex:outputField value="{!account.PPSN_Tax_Reference_Number__c}" label="PPSN ot Tax Reference Number"/> 
+                            <apex:outputField value="{!account.Revenue_Access_Number__c}" label="Revenue Access Number"/> 
+                            <apex:outputField label="Fiscal Year End Date (MM-DD)" value="{!account.Fiscal_Year_End__c}" />
+                            <apex:outputField value="{!account.Bank_Account_Number_Fast_Trading__c}" label="Bank Account Number (Fast Trading)" />
+                            <apex:outputField value="{!account.SWIFT_BIC_Fast_Trading__c}" label="SWIFT/BIC (Fast Trading)" />
+                            <apex:outputField value="{!account.Referral_Bank_Account_Number__c}" label="Referral Bank Account Number" />
+                            <apex:outputField value="{!account.Referral_Swift_Bic__c}" label="Referral SWIFT/BIC" />
+                            
+                        </apex:pageBlockSection>
+                        
+                    </apex:pageBlock>    
+                    
+                </div>
+            </div>
+        </div>
+            <apex:include pageName="FooterPage"/>
+        </body>
+        
+    </apex:page>

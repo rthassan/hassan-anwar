@@ -1,0 +1,47 @@
+<apex:page showHeader="false" sidebar="false" controller="ApplicationProcess" extensions="ApplicationMain" tabStyle="Application__tab"  >
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    
+    <apex:slds />
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
+    <div class="slds-scope">
+        
+        <div class="page-header">
+            <div class="inner-wrapper">
+                <div class="row clear">
+                    <div class="col col-span-6">
+                        <img class="site-logo" src="{!URLFOR($Resource.visco_app_resources, 'visco_app_resources/convertibill.png')}" alt="Convertibill"/>
+                        <br/> <br/> 
+                        <h7 style="font-weight:bold;padding-top:150px;">There's a better way to finance your business</h7>
+                    </div>
+                    
+                    <div class="col col-span-6">
+                        <img class="site-logo" src="{!$Resource.better_way_to_finance_your_business}" alt="Better way to finance your business"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="page-title">
+            <div class="inner-wrapper">
+                <h1>Application Process</h1>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <div class="inner-wrapper">
+
+                <apex:include rendered="{!refer==true}" pageName="ReferAFriend"/>
+
+                <apex:include rendered="{!refer1==true}" pageName="FastTrading"/>
+                
+            </div>
+        </div>
+    </div>
+    
+</apex:page>

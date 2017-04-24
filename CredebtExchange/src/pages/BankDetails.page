@@ -1,29 +1,80 @@
-<apex:page controller="ApplicationProcess" extensions="ApplicationBankDetailsController"  tabStyle="Application__tab">
+<apex:page sidebar="false" controller="ApplicationProcess" extensions="ApplicationBankDetailsController" action="{!isBankDetails}" tabStyle="Application__tab">
+    <apex:stylesheet value="{!$Resource.AppProcessStyle}"/>
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel) return true;
+        return false;
+    }
+    </script>
+    <body>
     
-    <apex:sectionHeader title="Bank Details" subtitle="Step 7"/>
+        <div class="slds-scope">
+            <apex:include pageName="HeaderPage"/>
+            <div class="form-container">
+                <div class="inner-wrapper">
+                    <apex:sectionHeader title="Step 6"/>
+                    
+                    <apex:form id="form">
+                        <apex:pageBlock title="Bank Details">
+                            <apex:pageBlockSection columns="2">
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.Bank__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Name"/>
+                                    <apex:inputField taborderhint="1" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!BankAccountInformation.Bank__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.Name.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Account Name"/>
+                                    <apex:inputField taborderhint="5" styleClass="slds-input" value="{!BankAccountInformation.Name}" required="true"/>
+                                </apex:pageBlockSectionItem>
+
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.Bank_Account_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Account Number"/>
+                                    <apex:inputField taborderhint="2" styleClass="slds-input" value="{!BankAccountInformation.Bank_Account_Number__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.Sort_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Sort Code"/>
+                                    <apex:inputField taborderhint="6" styleClass="slds-input" value="{!BankAccountInformation.Sort_Code__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.IBAN_Number__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="IBAN Number"/>
+                                    <apex:inputField taborderhint="3" styleClass="slds-input" value="{!BankAccountInformation.IBAN_Number__c}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.Swift_Code__c.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Swift Code"/>
+                                    <apex:inputField taborderhint="7" styleClass="slds-input" value="{!BankAccountInformation.Swift_Code__c}"/>
+                                </apex:pageBlockSectionItem> 
+                                
+                                <apex:pageBlockSectionItem helpText="{!$ObjectType.Bank_Account__c.Fields.CurrencyIsoCode.InlineHelpText}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Currency"/>
+                                    <apex:inputField taborderhint="4" style="padding: 0px 10px !important;" styleClass="slds-select" value="{!BankAccountInformation.CurrencyIsoCode}"/>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Bank Statement" for="Upload Logo"/>
+                                    <apex:inputFile tabindex="80" filesize="{!BAttachment.BodyLength}" value="{!BAttachment.body}" filename="{!BAttachment.name}" id="file" accept="image/*"/>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            
+                            <apex:pageBlockButtons location="bottom">
+                                <apex:commandButton tabindex="90" action="{!cancel}" value="Cancel"
+                                                    onclick="return confirmCancel()" immediate="true"/>
+                                <apex:commandButton tabindex="100" action="{!Back5}" value="Previous Step" immediate="true" />
+                                <apex:commandButton tabindex="110" action="{!save}" value="Save & Continue" />
+                            </apex:pageBlockButtons>
+                        </apex:pageBlock>
+                    </apex:form>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <apex:include pageName="FooterPage"/>
+    </body>
     
-    <apex:form >
-        <apex:pageBlock title="Bank Details">
-            <apex:pageBlockSection columns="1">
-            
-                <apex:inputField label="Bank Name : " value="{!BankAccountInformation.Bank__c}"/>
-                <apex:inputField label="Bank Account Name:" value="{!BankAccountInformation.Name}" required="true"/>
-                <apex:inputField label="Bank Account Number :" value="{!BankAccountInformation.Bank_Account_Number__c}"/>
-                <apex:inputField label="Sort Code :" value="{!BankAccountInformation.Sort_Code__c}"/>
-                <apex:inputField label="IBAN Number :" value="{!BankAccountInformation.IBAN_Number__c}"/>
-                <apex:inputField label="Swift Code :" value="{!BankAccountInformation.Swift_Code__c}"/>
-                <apex:inputField label="Currency :" value="{!BankAccountInformation.CurrencyIsoCode}"/>
-                 <apex:pageBlockSectionItem >
-                     <apex:outputLabel value="Upload Logo" for="Upload Logo"/>
-                     <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" accept="image/*"/>
-                </apex:pageBlockSectionItem>
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!save}" value="Save & Continue"/>
-            </apex:pageBlockButtons>
-        </apex:pageBlock>
-    </apex:form>
     
-     
 </apex:page>

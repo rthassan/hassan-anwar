@@ -5,17 +5,34 @@ public class DirectorsDocumentsController
     List<Contact> no_directors;
     public String name{get;set;}
     public List<UploadWrapper> upload{get;set;}
+    String origid;
     
     public DirectorsDocumentsController(ApplicationProcess ap)
     {
         this.originator = ap.originator;
         this.App = ap.App;
+        origid = apexpages.currentpage().getparameters().get('origid');
     }
     
     
     public Account getOriginator()
     {
         return originator;
+    }
+    
+    public PageReference isDirectorsDocs()
+    {
+        PageReference p=null;
+       if(app.Directors__c == true  || app.Stage__c == 'Directors')
+        {
+            if( origid != null)
+            {
+                p = new PageReference('/apex/BankDetails');
+                p.getParameters().put('origid',Origid);
+            }
+            else  p = new PageReference('/apex/BankDetails');
+        }
+        return p;
     }
     
     public List<UploadWrapper> getUAttachments()
@@ -44,11 +61,17 @@ public class DirectorsDocumentsController
         update no_directors;
         app.Directors__c = true;
         update app;
-        return Page.BankDetails; 
+        PageReference p = new PageReference('/apex/BankDetails');
+        if( origid != null)
+        {
+             p.getParameters().put('origid',origid);
+        }
+        return p; 
     }
     
     public PageReference save()
     {
+        PageReference p;
         for(INteger i=0; i < upload.size() ; i++)
         {
             if(upload[i].passport_attachment.body != null)
@@ -65,12 +88,12 @@ public class DirectorsDocumentsController
             }
             if(upload[i].passport_attachment.body != null && upload[i].bill_bankattachment.body != null && upload[i].company_bankattachment.body != null)
             {
-                upload[i].saveDAttachments(this.App.Id,this.no_directors[i].id);
+                upload[i].saveDAttachments(this.App.Id,this.no_directors[i].id,'');
             }
             else
             {
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please upload all Documents'));
-                return null;
+                return ApexPages.currentPage();
             }
                 
         }
@@ -79,6 +102,11 @@ public class DirectorsDocumentsController
         app.Directors__c = true;
         app.Stage__c='Directors';
         update app;
-        return Page.BankDetails; 
+        p = new PageReference('/apex/BankDetails');
+        if( origid != null)
+        {
+             p.getParameters().put('origid',origid);
+        }
+        return p;
     }
 }

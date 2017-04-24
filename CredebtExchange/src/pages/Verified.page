@@ -1,4 +1,4 @@
-<apex:page tabStyle="Application__tab" >
+<apex:page tabStyle="Application__tab" controller="ApplicationProcess" extensions="VerifiedController" action="{!isVerified}" >
     
     <style>
         h1 {

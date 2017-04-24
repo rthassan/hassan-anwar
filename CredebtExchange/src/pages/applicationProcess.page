@@ -1,52 +1,50 @@
-<apex:page standardController="Opportunity" extensions="applicationProcessController" tabstyle="Application_Process__tab" sidebar="false">
-    <apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/versioning.css" />
-    <apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/extended.css" />
-    <style>
-        .block{
-            height: 30px;
-            padding: 4px;
-            font-size: 12px;
-            vertical-align: text-top;
-        }
-        .info {
-        //color: #0070DC;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .complete{
-            color: black;
-        }
-        
-        .incomplete{
-            color: black;
-        }
-        
-        
-    h1 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 8px;
-    }
-    p {
-        margin-bottom: 8px;
-        padding-bottom: 8px;
-    }
-        .color-box {
-            width: 5px;
-            height: 30px;
-            display: inline-block;
-            background-color: black;
-            //position: absolute;
-            //left: 5px;
-            //top: 5px;
-            margin-right: 10px;
-        }
-    </style>
-   
-    <apex:form >
-        
-        <apex:pageMessages ></apex:pageMessages>
-        
+<apex:page standardController="Opportunity" extensions="applicationProcessController" sidebar="false" showHeader="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+<!--<apex:stylesheet value="{!URLFOR($Resource.visco_app_resources, 'visco_app_resources/viscoAppStyles.css')}"/>-->
+<apex:stylesheet value="{!URLFOR($Resource.viscoAppStyles)}"/>
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<title>Convertibill Application Process</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="" />
+<link rel="stylesheet" href="visco_app_resources/viscoAppStyles.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:100,400,700" />
+</head>
+
+<apex:form >
+<apex:pageMessages ></apex:pageMessages>
+
+<body>
+
+<!-- BEGIN Page Header -->
+<div class="page-header">
+    <div class="inner-wrapper">
+        <div class="row clear">
+            <div class="col col-span-6">
+                <img class="site-logo" src="{!URLFOR($Resource.visco_app_resources, 'visco_app_resources/convertibill.png')}" alt="Convertibill"/>
+                <!--<img class="site-logo" src="visco_app_resources/convertibill.png" alt=""/>-->
+            </div>
+            <div class="col col-span-6">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Page Header -->
+
+<!-- BEGIN Page Title -->
+<div class="page-title">
+    <div class="inner-wrapper">
+        <h1>Application Process</h1>
+    </div>
+</div>
+<!-- END Page Title -->
+
+<!-- BEGIN Tabs -->
+<div class="form-container">
+    <div class="inner-wrapper">
+
         <table>
             <tr>
                 <td class="{!IF(opp.Funding_Requirement_Complete__c, 'complete', 'incomplete')} block"><div class="color-box" ></div><div  style="display: inline-block" >Funding Requirement<br/><span class="info"><apex:outputText value="{0,date,dd-MM-yyyy}" rendered="{!opp.Funding_Requirement_Complete__c}" ><apex:param value="{!opp.Funding_Requirement_Complete_Date__c}" /></apex:outputText><apex:outputText value="Incomplete" rendered="{!NOT(opp.Funding_Requirement_Complete__c)}" /></span></div></td>
@@ -60,15 +58,15 @@
                 <td class="{!IF(opp.Account.Number_of_Debtors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Debtors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Debtors__c}" rendered="{!opp.Account.Number_of_Debtors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Debtors__c > 0)}" /></span></div></td>
                 
                 <td class="{!IF(opp.Account.Number_of_Creditors__c > 0, 'complete', 'incomplete')} block"><div class="color-box" ></div><div style="display: inline-block" >Creditors<br/><span class="info"><apex:outputText value="{!opp.Account.Number_of_Creditors__c}" rendered="{!opp.Account.Number_of_Creditors__c > 0}" /><apex:outputText value="Incomplete" rendered="{!NOT(opp.Account.Number_of_Creditors__c > 0)}" /></span></div></td>
-                
             </tr>
         </table>
         
-        <apex:tabPanel value="{!selectedTab}" >
-            <apex:tab label="Funding Requirement"  id="tab1">
+        <apex:tabPanel value="{!selectedTab}" styleClass="tab-container">
+
+            <apex:tab label="Funding Requirement" id="tab1">
                 <apex:pageBlock >
                     <apex:pageBlockButtons >
-                        <apex:commandButton value="Save" action="{!save}" />
+                        <apex:commandButton value="Save" action="{!save}" styleClass="btn more"/>
                     </apex:pageBlockButtons>
                     <p>Please enter in the details of your funding requirements below, hover over the ? for further explanation of the different fields.</p>
                     <apex:pageBlockSection >
@@ -83,10 +81,10 @@
                 </apex:pageBlock>
             </apex:tab>
             
-             <apex:tab label="Additional Information"  id="tab2">
+            <apex:tab label="Additional Information" id="tab2">
                 <apex:pageBlock >
                     <apex:pageBlockButtons >
-                        <apex:commandButton value="Save" action="{!save}" />
+                        <apex:commandButton value="Save" action="{!save}" styleClass="btn more"/>
                     </apex:pageBlockButtons>
                     <p>Please enter in further details regarding your company below.</p>
                     <apex:pageBlockSection title="Company">
@@ -114,7 +112,7 @@
             <apex:tab label="Practices" id="tab3">
                 <apex:pageBlock >
                     <apex:pageBlockButtons >
-                        <apex:commandButton value="Save" action="{!save}" />
+                        <apex:commandButton value="Save" action="{!save}" styleClass="btn more"/>
                     </apex:pageBlockButtons>
                     <p>Please enter in the details regarding some of your companies practices.</p>
                     <apex:pageBlockSection title="Details">
@@ -128,8 +126,6 @@
                         <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
                         <apex:inputField value="{!acc.Offer_Return_Rights__c}" />
                     </apex:pageBlockSection>
-                    
-                    
                 </apex:pageBlock>
             </apex:tab>
             
@@ -170,9 +166,8 @@
                         <apex:column headerValue="Swift">
                             <apex:inputField value="{!nbAcc.Swift_Code__c}" required="false" />
                         </apex:column>
-                        
                     </apex:pageBlockTable>
-                    <apex:commandButton value="Add Account" action="{!addBankAcc}" />
+                    <apex:commandButton value="Add Account" action="{!addBankAcc}" styleClass="btn more"/>
                 </apex:pageBlock>
             </apex:tab>
             
@@ -206,7 +201,7 @@
                     </apex:pageBlockButtons>
                 </apex:pageBlock>
             </apex:tab>
-            
+
             <apex:tab label="Supporting Files" id="tab6">
                 <apex:pageBlock >
                     <p>Upload supporting files here by selecting the file type, choosing file and saving.</p>
@@ -347,7 +342,7 @@
                 </apex:pageBlock>
             </apex:tab>
             
-            <apex:tab label="RPA Offer" rendered="{!opp.RPA_Status__c == 'Approved'}"  id="tab10">
+            <apex:tab label="RPA Offer" rendered="{!opp.RPA_Status__c == 'Approved'}" id="tab10">
                 <apex:pageBlock >
                     <apex:pageBlockButtons >
                         <apex:commandLink value="Preview PDF" action="/apex/provisionalRpaOfferPDF?id={!opp.id}" styleClass="btn" immediate="false" target="_blank" style="text-decoration:none; padding: 4px"/>
@@ -403,10 +398,31 @@
                 </apex:pageBlock>
             </apex:tab>
             
-            
-            
-            
-            
-        </apex:tabPanel>
-    </apex:form>
+            </apex:tabPanel>
+        </div>
+    </div>
+
+    <!-- BEGIN Page Footer -->
+    <footer class="page-footer">
+        <div class="inner-wrapper">
+            <img class="site-logo" src="{!URLFOR($Resource.visco_app_resources, 'visco_app_resources/convertibill.png')}" alt="Convertibill"/>
+            <h4>Credebt Exchange&reg; Limited</h4>
+            <address>
+                <p>60 Lower Baggot Street, Dublin,<br />
+                    D02 KP79, Ireland<br />
+                    Phone: <a href="tel:+353-1-685-3600">+353 1 685-3600</a><br />
+                    Website: www.convertibill.com</p>
+            </address>
+        </div>
+        <div class="site-info">
+            <div class="inner-wrapper">
+                <p>&copy; Convertibill&trade;. A division of Credebt Exchange&reg; Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- END Page Footer -->
+
+</body>
+
+</apex:form>
 </apex:page>
