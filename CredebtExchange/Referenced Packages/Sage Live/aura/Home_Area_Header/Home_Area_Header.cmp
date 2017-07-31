@@ -1,7 +1,0 @@
-<!--
- - Created by john.hulme on 11/08/2016.
- -->
-
-<aura:component description="Home_Area_Header" extends="s2cor:Base_Component" access="global">
-    <s2cor:Header title="Sales" buttons="" titleOptions="" subtitle="" breadcrumbs='[{"visualforceParams":null,"visualforce":"Sage_ACC_Banks_Tab","type":"VFPage","title":"Sales","multiselect":null,"eventParams":null,"event":null}]' />
-</aura:component>

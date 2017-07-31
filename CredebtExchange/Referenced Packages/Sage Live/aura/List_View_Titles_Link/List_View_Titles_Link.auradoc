@@ -1,9 +1,0 @@
-<!--
- - Created by ansja02 on 10/20/16.
- -->
-
-<aura:documentation>
-    <aura:description>
-        <p>The List_View_Titles_Link displays a list title for a table.  The user can click on it in order to display the results for that list.</p>
-    </aura:description>
-</aura:documentation>

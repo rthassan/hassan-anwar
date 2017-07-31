@@ -1,4 +1,0 @@
-<aura:event type="COMPONENT" description="Event_File">
-    <aura:attribute name="content" type="string" access="global" />
-    <aura:attribute name="name" type="string" access="global" />
-</aura:event>

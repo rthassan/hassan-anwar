@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Event fired when the user presses the Cancel button to cancel the changes they made to a journal item." >
-    <aura:attribute name="item" type="s2cor.Sage_ACC_Rec_JournalItem"/>
-</aura:event>

@@ -1,9 +1,0 @@
-<!--
- - Created by ansja02 on 11/24/16.
- -->
-
-<aura:event type="COMPONENT" description="Event_Table_Column_Resizing" access="global">
-    <aura:attribute name="column" type="s2cor.Sage_COR_Column_DTO" />
-    <aura:attribute name="resizeStartX" type="integer"/>
-    <aura:attribute name="resizeStartWidth" type="integer"/>
-</aura:event>

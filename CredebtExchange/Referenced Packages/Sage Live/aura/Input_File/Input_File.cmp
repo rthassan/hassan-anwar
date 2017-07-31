@@ -1,9 +1,0 @@
-<aura:component >
-
-    <aura:registerEvent name="fileEvent" type="s2cor:Event_File" />
-    <aura:attribute name="button_name" type="string" default="Upload" />
-
-    <input type="file" aura:id="files" />
-    <lightning:button variant="brand" label="{!v.button_name}" onclick="{!c.handleUpload}" />
-
-</aura:component>

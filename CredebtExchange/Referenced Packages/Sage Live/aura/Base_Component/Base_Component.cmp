@@ -1,7 +1,0 @@
-<!--
- - Base Component
- -->
-
-<aura:component description="Base_Component" extensible="true" >
-    {!v.body}
-</aura:component>

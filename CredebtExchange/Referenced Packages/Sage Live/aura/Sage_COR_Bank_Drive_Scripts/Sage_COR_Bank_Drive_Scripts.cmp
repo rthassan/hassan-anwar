@@ -1,6 +1,0 @@
-<aura:component >
-    <ltng:require scripts="{!join(',',
-        $Resource.s2cor__jQuery_1_12_4,
-        $Resource.s2cor__jQuery_UI_1_11_4,
-        $Resource.s2cor__Custom_Script)}" afterScriptsLoaded="{!c.doInit}" />
-</aura:component>

@@ -1,6 +1,0 @@
-<!--
- - Created by daniel.colquhoun on 27/10/2016.
- -->
-
-<aura:event type="APPLICATION" description="Event_Close_Model_On_Cancel">
-</aura:event>

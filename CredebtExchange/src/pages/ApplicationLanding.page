@@ -1,3 +1,0 @@
-<apex:page standardController="Account" extensions="ApplicationProcess" action="{!LandingPage}"  >
-   
-</apex:page>

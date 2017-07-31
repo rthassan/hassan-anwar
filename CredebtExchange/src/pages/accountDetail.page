@@ -1,3 +1,0 @@
-<apex:page standardController="Account" extensions="accountDetailController" tabStyle="my_company__tab">
-    <apex:detail subject="{!acc}" />
-</apex:page>

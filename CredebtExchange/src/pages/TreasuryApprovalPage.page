@@ -1,3 +1,0 @@
-<apex:page StandardController="Application__c" extensions="TreasuryApproval" sidebar="false" showHeader="false">
-    
-</apex:page>

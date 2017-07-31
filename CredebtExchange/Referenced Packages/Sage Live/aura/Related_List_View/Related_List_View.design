@@ -1,8 +1,0 @@
-<design:component label="Related List View" >
-    <design:attribute name="SObjectType" label="SObjectType" description="sObject for which the list view must be displayed." />
-    <design:attribute name="listView" label="List View" description="List view UID to be displayed." />
-    <design:attribute name="UID" label="UID" description="Optional filter for the list view, it can be a Dimension Name, a Journal Type or a Transaction Type (UID). Only used on tags, transactions or journals."/>
-    <design:attribute name="title" label="Title" description="Title. If not defined, the list view name will be used." />
-    <design:attribute name="displayWhenEmpty" label="Display when empty" description="If unchecked, the card will not be displayed if there isn't data." />
-    <design:attribute name="dimensions" label="Dimensions" description="The list of parent Dimensions for which this list will be displayed.  Leave blank to show for all Dimensions." />
-</design:component>

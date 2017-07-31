@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Event fired when the search criteria for the journal changes." >
-    <aura:attribute name="searchValue" type="String"/>
-</aura:event>

@@ -1,9 +1,0 @@
-<!--
- - Created by dancolq on 16/08/2016.
- -->
-
-<design:component label="VisualForce Page">
-    <design:attribute name="paramIdName" label="Param Id" description="Param Id Name" />
-    <design:attribute name="url" label="URL" description="Apex url." />
-    <design:attribute name="height" label="Height" description="Height of the the visual force page." />
-</design:component>

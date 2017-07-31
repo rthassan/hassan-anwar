@@ -1,7 +1,0 @@
-<!--
- - Created by daniel.colquhoun on 10/10/2016.
- -->
-
-<design:component label="Area Tabs">
-    <design:attribute name="area" label="area" description="The area id of used to identify the context of a layout." />
-</design:component>

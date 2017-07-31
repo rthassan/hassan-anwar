@@ -1,7 +1,0 @@
-<!--
- - Created by dancolq on 12/08/2016.
- -->
-
-<design:component label="Context Area Id">
-    <design:attribute name="Id" label="Id" description="The area id of used to identify the context of a layout." />
-</design:component>

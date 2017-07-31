@@ -1,7 +1,0 @@
-<!--
- - Created by daniel.colquhoun on 18/11/2016.
- -->
-
-<design:component label="These are not visible but are used as reference">
-    <design:attribute name="mode" label="Mode" description="The type of the form - options: edit, view, new, inline. "/>
-</design:component>

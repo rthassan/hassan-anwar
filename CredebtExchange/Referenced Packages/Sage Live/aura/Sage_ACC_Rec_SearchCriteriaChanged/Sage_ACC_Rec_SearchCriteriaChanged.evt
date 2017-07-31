@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Event fired when the search criteria on the dimensions list changes." >
-    <aura:attribute name="searchCriteria" type="String"/>
-</aura:event>

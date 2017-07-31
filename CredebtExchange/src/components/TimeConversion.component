@@ -1,4 +1,0 @@
-<apex:component access="global" controller="TimeConversionController">
-    <apex:attribute assignTo="{!s}" description="The seconds value to be rendered as hours and seconds" name="seconds" type="Decimal"></apex:attribute>   
-    {!hoursValue}
-</apex:component>

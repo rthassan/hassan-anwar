@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION" description="Event fired when the user presses the Validate button to validate the tags selected for a journal item." >
-    <aura:attribute name="item" type="s2cor.Sage_ACC_Rec_JournalItem"/>
-    <aura:attribute name="split" type="boolean"/>
-</aura:event>
